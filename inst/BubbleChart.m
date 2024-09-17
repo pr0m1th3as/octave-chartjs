@@ -81,91 +81,91 @@ classdef BubbleChart
             val = varargin{2};
             pname = "backgroundColor";
             if (! isobject (val))
-              this = utils.parseColor (this, pname, val);
+              this = parseColor (this, pname, val);
             else
-              this = utils.parseValue (this, pname, val, "Color", "object");
+              this = parseValue (this, pname, val, "Color", "object");
             endif
 
           case "bordercolor"
             val = varargin{2};
             pname = "borderColor";
             if (! isobject (val))
-              this = utils.parseColor (this, pname, val);
+              this = parseColor (this, pname, val);
             else
-              this = utils.parseValue (this, pname, val, "Color", "object");
+              this = parseValue (this, pname, val, "Color", "object");
             endif
 
           case "borderwidth"
             val = varargin{2};
             pname = "borderWidth";
-            this = utils.parseValue (this, pname, val, [], "scalar");
+            this = parseValue (this, pname, val, [], "scalar");
 
           case "clip"
             val = varargin{2};
             pname = "clip";
-            this = utils.parseValue (this, pname, val, [], "scalar");
+            this = parseValue (this, pname, val, [], "scalar");
 
           case "drawactiveelementsontop"
             val = varargin{2};
             pname = "drawActiveElementsOnTop";
-            this = utils.parseValue (this, pname, val, [], "boolean");
+            this = parseValue (this, pname, val, [], "boolean");
 
           case "hoverbackgroundcolor"
             val = varargin{2};
             pname = "hoverBackgroundColor";
             if (! isobject (val))
-              this = utils.parseColor (this, pname, val);
+              this = parseColor (this, pname, val);
             else
-              this = utils.parseValue (this, pname, val, "Color", "object");
+              this = parseValue (this, pname, val, "Color", "object");
             endif
 
           case "hoverbordercolor"
             val = varargin{2};
             pname = "hoverBorderColor";
             if (! isobject (val))
-              this = utils.parseColor (this, pname, val);
+              this = parseColor (this, pname, val);
             else
-              this = utils.parseValue (this, pname, val, "Color", "object");
+              this = parseValue (this, pname, val, "Color", "object");
             endif
 
           case "hoverborderwidth"
             val = varargin{2};
             pname = "hoverBorderWidth";
-            this = utils.parseValue (this, pname, val, [], "scalar");
+            this = parseValue (this, pname, val, [], "scalar");
 
           case "hoverradius"
             val = varargin{2};
             pname = "hoverRadius";
-            this = utils.parseValue (this, pname, val, [], "scalar");
+            this = parseValue (this, pname, val, [], "scalar");
 
           case "hitradius"
             val = varargin{2};
             pname = "hitRadius";
-            this = utils.parseValue (this, pname, val, [], "scalar");
+            this = parseValue (this, pname, val, [], "scalar");
 
           case "label"
             val = varargin{2};
             pname = "label";
-            this = utils.parseValue (this, pname, val, val, "string");
+            this = parseValue (this, pname, val, val, "string");
 
           case "order"
             val = varargin{2};
             pname = "order";
-            this = utils.parseValue (this, pname, val, [], "scalar");
+            this = parseValue (this, pname, val, [], "scalar");
 
           case "pointstyle"
             val = varargin{2};
-            this = utils.parseStyle (this, val);
+            this = parseStyle (this, val);
 
           case "rotation"
             val = varargin{2};
             pname = "rotation";
-            this = utils.parseValue (this, pname, val, [], "scalar");
+            this = parseValue (this, pname, val, [], "scalar");
 
           case "radius"
             val = varargin{2};
             pname = "radius";
-            this = utils.parseValue (this, pname, val, [], "scalar");
+            this = parseValue (this, pname, val, [], "scalar");
 
           case "chartid"
             val = varargin{2};

@@ -74,34 +74,34 @@ classdef BarChart
             val = varargin{2};
             pname = "backgroundColor";
             if (! isobject (val))
-              this = utils.parseColor (this, pname, val);
+              this = parseColor (this, pname, val);
             else
-              this = utils.parseValue (this, pname, val, "Color", "object");
+              this = parseValue (this, pname, val, "Color", "object");
             endif
 
           case "base"
             val = varargin{2};
             pname = "base";
-            this = utils.parseValue (this, pname, val, [], "scalar");
+            this = parseValue (this, pname, val, [], "scalar");
 
           case "barpercentage"
             val = varargin{2};
             pname = "barPercentage";
-            this = utils.parseValue (this, pname, val, [], "scalar");
+            this = parseValue (this, pname, val, [], "scalar");
 
           case "barthickness"
             val = varargin{2};
             pname = "barThickness";
             validstr = "flex";
-            this = utils.parseValue (this, pname, val, validstr, "numstring");
+            this = parseValue (this, pname, val, validstr, "numstring");
 
           case "bordercolor"
             val = varargin{2};
             pname = "borderColor";
             if (! isobject (val))
-              this = utils.parseColor (this, pname, val);
+              this = parseColor (this, pname, val);
             else
-              this = utils.parseValue (this, pname, val, "Color", "object");
+              this = parseValue (this, pname, val, "Color", "object");
             endif
 
           case "borderskipped"
@@ -109,102 +109,102 @@ classdef BarChart
             pname = "borderSkipped";
             validstr = {"start", "end", "middle", ...
                         "bottom", "left", "top", "right"};
-            this = utils.parseValue (this, pname, val, validstr, "boolstring");
+            this = parseValue (this, pname, val, validstr, "boolstring");
 
           case "borderwidth"
             val = varargin{2};
             pname = "borderWidth";
-            this = utils.parseValue (this, pname, val, [], "scalar");
+            this = parseValue (this, pname, val, [], "scalar");
 
           case "borderradius"
             val = varargin{2};
             pname = "borderRadius";
-            this = utils.parseValue (this, pname, val, [], "scalar");
+            this = parseValue (this, pname, val, [], "scalar");
 
           case "categorypercentage"
             val = varargin{2};
             pname = "categoryPercentage";
-            this = utils.parseValue (this, pname, val, [], "scalar");
+            this = parseValue (this, pname, val, [], "scalar");
 
           case "clip"
             val = varargin{2};
             pname = "clip";
-            this = utils.parseValue (this, pname, val, [], "scalar");
+            this = parseValue (this, pname, val, [], "scalar");
 
           case "grouped"
             val = varargin{2};
             pname = "grouped";
-            this = utils.parseValue (this, pname, val, [], "boolean");
+            this = parseValue (this, pname, val, [], "boolean");
 
           case "hoverbackgroundcolor"
             val = varargin{2};
             pname = "hoverBackgroundColor";
             if (! isobject (val))
-              this = utils.parseColor (this, pname, val);
+              this = parseColor (this, pname, val);
             else
-              this = utils.parseValue (this, pname, val, "Color", "object");
+              this = parseValue (this, pname, val, "Color", "object");
             endif
 
           case "hoverbordercolor"
             val = varargin{2};
             pname = "hoverBorderColor";
             if (! isobject (val))
-              this = utils.parseColor (this, pname, val);
+              this = parseColor (this, pname, val);
             else
-              this = utils.parseValue (this, pname, val, "Color", "object");
+              this = parseValue (this, pname, val, "Color", "object");
             endif
 
           case "hoverborderwidth"
             val = varargin{2};
             pname = "hoverBorderWidth";
-            this = utils.parseValue (this, pname, val, [], "scalar");
+            this = parseValue (this, pname, val, [], "scalar");
 
           case "hoverborderradius"
             val = varargin{2};
             pname = "hoverBorderRadius";
-            this = utils.parseValue (this, pname, val, [], "scalar");
+            this = parseValue (this, pname, val, [], "scalar");
 
           case "indexaxis"
             val = varargin{2};
             pname = "indexAxis";
             validstr = {"x", "y"};
-            this = utils.parseValue (this, pname, val, validstr, "string");
+            this = parseValue (this, pname, val, validstr, "string");
 
           case "inflateamount"
             val = varargin{2};
             pname = "inflateAmount";
             validstr = "auto";
-            this = utils.parseValue (this, pname, val, validstr, "numstring");
+            this = parseValue (this, pname, val, validstr, "numstring");
 
           case "maxbarthickness"
             val = varargin{2};
             pname = "maxBarThickness";
-            this = utils.parseValue (this, pname, val, [], "scalar");
+            this = parseValue (this, pname, val, [], "scalar");
 
           case "minbarlength"
             val = varargin{2};
             pname = "minBarLength";
-            this = utils.parseValue (this, pname, val, [], "scalar");
+            this = parseValue (this, pname, val, [], "scalar");
 
           case "label"
             val = varargin{2};
             pname = "label";
-            this = utils.parseValue (this, pname, val, val, "string");
+            this = parseValue (this, pname, val, val, "string");
 
           case "order"
             val = varargin{2};
             pname = "order";
-            this = utils.parseValue (this, pname, val, [], "scalar");
+            this = parseValue (this, pname, val, [], "scalar");
 
           case "skipnull"
             val = varargin{2};
             pname = "skipNull";
-            this = utils.parseValue (this, pname, val, [], "boolean");
+            this = parseValue (this, pname, val, [], "boolean");
 
           case "stack"
             val = varargin{2};
             pname = "stack";
-            this = utils.parseValue (this, pname, val, val, "boolstring");
+            this = parseValue (this, pname, val, val, "boolstring");
 
           case "chartid"
             val = varargin{2};

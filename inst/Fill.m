@@ -41,7 +41,7 @@ classdef Fill
       ## Store 'target' property
       if (toaxis)
         if (! isnumeric (value))
-          error ("utils.Fill: value must be numeric when toaxis is true.");
+          error ("Fill: value must be numeric when toaxis is true.");
         endif
         this.target = sprintf ("{value: %d}", value);
       else
@@ -53,14 +53,14 @@ classdef Fill
           endif
         elseif (isnumeric (value))
           if (value < 0 || round (value) != value)
-            error (strcat (["utils.Fill: value for absolute indexing"], ...
+            error (strcat (["Fill: value for absolute indexing"], ...
                            [" must be a nonnegative integer."]));
           endif
           this.target = sprintf ("%i", value);
         elseif (ischar (value))
           this.target = sprintf ("'%s'", value);
         else
-          error ("utils.Fill: invalid value.");
+          error ("Fill: invalid value.");
         endif
       endif
 
@@ -68,17 +68,17 @@ classdef Fill
       if (! isempty (above))
         pname = "above";
         if (! isobject (above))
-          this = utils.parseColor (this, pname, above);
+          this = parseColor (this, pname, above);
         else
-          this = utils.parseValue (this, pname, above, "Fill", "object");
+          this = parseValue (this, pname, above, "Fill", "object");
         endif
       endif
       if (! isempty (below))
         pname = "below";
         if (! isobject (below))
-          this = utils.parseColor (this, pname, below);
+          this = parseColor (this, pname, below);
         else
-          this = utils.parseValue (this, pname, below, "Fill", "object");
+          this = parseValue (this, pname, below, "Fill", "object");
         endif
       endif
 

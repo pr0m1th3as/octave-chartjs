@@ -20,10 +20,5 @@ Chart Classes
 Parameter Classes
  Color
  Fill
-Helper Functions
- utils.parseColor
- utils.parseDataProperties
- utils.parseStyle
- utils.parseValue
 Webserver
  webserve

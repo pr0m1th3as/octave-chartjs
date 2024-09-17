@@ -74,125 +74,125 @@ classdef PieChart
             val = varargin{2};
             pname = "backgroundColor";
             if (! isobject (val))
-              this = utils.parseColor (this, pname, val);
+              this = parseColor (this, pname, val);
             else
-              this = utils.parseValue (this, pname, val, "Color", "object");
+              this = parseValue (this, pname, val, "Color", "object");
             endif
 
           case "borderalign"
             val = varargin{2};
             pname = "borderAlign";
             validstr = {"center", "inner"};
-            this = utils.parseValue (this, pname, val, validstr, "string");
+            this = parseValue (this, pname, val, validstr, "string");
 
           case "bordercolor"
             val = varargin{2};
             pname = "borderColor";
             if (! isobject (val))
-              this = utils.parseColor (this, pname, val);
+              this = parseColor (this, pname, val);
             else
-              this = utils.parseValue (this, pname, val, "Color", "object");
+              this = parseValue (this, pname, val, "Color", "object");
             endif
 
           case "borderdash"
             val = varargin{2};
             pname = "borderDash";
-            this = utils.parseValue (this, pname, val, [], "vector");
+            this = parseValue (this, pname, val, [], "vector");
 
           case "borderdashoffset"
             val = varargin{2};
             pname = "borderDashOffset";
-            this = utils.parseValue (this, pname, val, [], "scalar");
+            this = parseValue (this, pname, val, [], "scalar");
 
           case "borderjoinstyle"
             val = varargin{2};
             pname = "borderJoinStyle";
             validstr = {"bevel", "round", "miter"};
-            this = utils.parseValue (this, pname, val, validstr, "string");
+            this = parseValue (this, pname, val, validstr, "string");
 
           case "borderradius"
             val = varargin{2};
             pname = "borderRadius";
-            this = utils.parseValue (this, pname, val, [], "scalar");
+            this = parseValue (this, pname, val, [], "scalar");
 
           case "borderwidth"
             val = varargin{2};
             pname = "borderWidth";
-            this = utils.parseValue (this, pname, val, [], "scalar");
+            this = parseValue (this, pname, val, [], "scalar");
 
           case "circumference"
             val = varargin{2};
             pname = "circumference";
-            this = utils.parseValue (this, pname, val, [], "scalar");
+            this = parseValue (this, pname, val, [], "scalar");
 
           case "clip"
             val = varargin{2};
             pname = "clip";
-            this = utils.parseValue (this, pname, val, [], "scalar");
+            this = parseValue (this, pname, val, [], "scalar");
 
           case "hoverbackgroundcolor"
             val = varargin{2};
             pname = "hoverBackgroundColor";
             if (! isobject (val))
-              this = utils.parseColor (this, pname, val);
+              this = parseColor (this, pname, val);
             else
-              this = utils.parseValue (this, pname, val, "Color", "object");
+              this = parseValue (this, pname, val, "Color", "object");
             endif
 
           case "hoverbordercolor"
             val = varargin{2};
             pname = "hoverBorderColor";
             if (! isobject (val))
-              this = utils.parseColor (this, pname, val);
+              this = parseColor (this, pname, val);
             else
-              this = utils.parseValue (this, pname, val, "Color", "object");
+              this = parseValue (this, pname, val, "Color", "object");
             endif
 
           case "hoverborderdash"
             val = varargin{2};
             pname = "hoverBorderDash";
-            this = utils.parseValue (this, pname, val, [], "vector");
+            this = parseValue (this, pname, val, [], "vector");
 
           case "hoverborderdashoffset"
             val = varargin{2};
             pname = "hoverBorderDashOffset";
-            this = utils.parseValue (this, pname, val, [], "scalar");
+            this = parseValue (this, pname, val, [], "scalar");
 
           case "hoverborderjoinstyle"
             val = varargin{2};
             pname = "hoverBorderJoinStyle";
             validstr = {"bevel", "round", "miter"};
-            this = utils.parseValue (this, pname, val, validstr, "string");
+            this = parseValue (this, pname, val, validstr, "string");
 
           case "hoverborderwidth"
             val = varargin{2};
             pname = "hoverBorderWidth";
-            this = utils.parseValue (this, pname, val, [], "scalar");
+            this = parseValue (this, pname, val, [], "scalar");
 
           case "hoveroffset"
             val = varargin{2};
             pname = "hoverOffset";
-            this = utils.parseValue (this, pname, val, [], "scalar");
+            this = parseValue (this, pname, val, [], "scalar");
 
           case "offset"
             val = varargin{2};
             pname = "offset";
-            this = utils.parseValue (this, pname, val, [], "scalar");
+            this = parseValue (this, pname, val, [], "scalar");
 
           case "rotation"
             val = varargin{2};
             pname = "rotation";
-            this = utils.parseValue (this, pname, val, [], "scalar");
+            this = parseValue (this, pname, val, [], "scalar");
 
           case "spacing"
             val = varargin{2};
             pname = "spacing";
-            this = utils.parseValue (this, pname, val, [], "scalar");
+            this = parseValue (this, pname, val, [], "scalar");
 
           case "weight"
             val = varargin{2};
             pname = "weight";
-            this = utils.parseValue (this, pname, val, [], "scalar");
+            this = parseValue (this, pname, val, [], "scalar");
 
           case "chartid"
             val = varargin{2};

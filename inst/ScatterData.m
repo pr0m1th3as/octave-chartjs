@@ -78,7 +78,7 @@ classdef ScatterData
       json = [json, data];
 
       ## Add optional properties
-      json = utils.parseDataProperties (json, this);
+      json = parseDataProperties (json, this);
 
       ## Close json string
       json = [json, "\n    }"];
