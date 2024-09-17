@@ -304,7 +304,7 @@ classdef LineChart
           case "webport"
             val = varargin{2};
             if (! (isnumeric (val) && isscalar (val) &&
-                   fix (val) == val && val > 0 && val =< 65535)
+                   fix (val) == val && val > 0 && val <= 65535))
               error ("LineChart: 'webport' must be a character vector.");
             endif
             this.webport = val;
@@ -381,16 +381,13 @@ classdef LineChart
 
     ## Serve Chart online
     function webserve (this)
-
-      ## Parse html string to the htmlserve function
-      html = htmlstring (this)
-      htmlserve (html, this.webport);
-
+      html = htmlstring (this);
+      webserve (html, this.webport);
     endfunction
 
     ## Close web service
     function webstop (this)
-      htmlserve (0);
+        webserve (0);
     endfunction
 
   endmethods
