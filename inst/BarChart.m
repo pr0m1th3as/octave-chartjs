@@ -23,6 +23,7 @@ classdef BarChart
     datasets           = {};
     options            = {};
     chartID            = "barChart";
+    webport            = 8080;
 
   endproperties
 
@@ -212,6 +213,14 @@ classdef BarChart
             endif
             this.chartID = val;
 
+          case "webport"
+            val = varargin{2};
+            if (! (isnumeric (val) && isscalar (val) &&
+                   fix (val) == val && val > 0 && val =< 65535)
+              error ("BarChart: 'webport' must be a character vector.");
+            endif
+            this.webport = val;
+
         endswitch
         varargin([1:2]) = [];
       endwhile
@@ -280,6 +289,20 @@ classdef BarChart
       fprintf (fid, "%s", htmlstring (this));
       fclose (fid);
 
+    endfunction
+
+    ## Serve Chart online
+    function webserve (this)
+
+      ## Parse html string to the htmlserve function
+      html = htmlstring (this)
+      htmlserve (html, this.webport);
+
+    endfunction
+
+    ## Close web service
+    function webstop (this)
+      htmlserve (0);
     endfunction
 
   endmethods

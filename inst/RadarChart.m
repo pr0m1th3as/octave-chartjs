@@ -23,6 +23,7 @@ classdef RadarChart
     datasets           = {};
     options            = {};
     chartID            = "radarChart";
+    webport            = 8080;
 
   endproperties
 
@@ -267,6 +268,14 @@ classdef RadarChart
             endif
             this.chartID = val;
 
+          case "webport"
+            val = varargin{2};
+            if (! (isnumeric (val) && isscalar (val) &&
+                   fix (val) == val && val > 0 && val =< 65535)
+              error ("RadarChart: 'webport' must be a character vector.");
+            endif
+            this.webport = val;
+
         endswitch
         varargin([1:2]) = [];
       endwhile
@@ -335,6 +344,20 @@ classdef RadarChart
       fprintf (fid, "%s", htmlstring (this));
       fclose (fid);
 
+    endfunction
+
+    ## Serve Chart online
+    function webserve (this)
+
+      ## Parse html string to the htmlserve function
+      html = htmlstring (this)
+      htmlserve (html, this.webport);
+
+    endfunction
+
+    ## Close web service
+    function webstop (this)
+      htmlserve (0);
     endfunction
 
   endmethods
