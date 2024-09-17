@@ -1,0 +1,54 @@
+ Initial release of octave-chartjs 0.1.0:
+-------------------------------------------------------------------
+
+ New functions:
+ ==============
+
+ ** utils.parseColor
+
+ ** utils.parseDataProperties
+
+ ** utils.parseStyle
+
+ ** utils.parseValue
+
+ ** webserve
+
+ New classdefs:
+ ==============
+
+ ** BarChart
+
+ ** BarData
+
+ ** BubbleChart
+
+ ** BubbleData
+
+ ** Color
+
+ ** DoughnutChart
+
+ ** DoughnutData
+
+ ** Fill
+
+ ** LineChart
+
+ ** LineData
+
+ ** PieChart
+
+ ** PieData
+
+ ** PolarAreaChart
+
+ ** PolarAreaData
+
+ ** RadarChart
+
+ ** RadarData
+
+ ** ScatterChart
+
+ ** ScatterData

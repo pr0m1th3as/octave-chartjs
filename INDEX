@@ -1,0 +1,29 @@
+octave-chartjs >> octave-chartjs
+Data Classes
+ BarData
+ BubbleData
+ DoughnutData
+ LineData
+ PieData
+ PolarAreaData
+ RadarData
+ ScatterData
+Chart Classes
+ BarChart
+ BubbleChart
+ DoughnutChart
+ LineChart
+ PieChart
+ PolarAreaChart
+ RadarChart
+ ScatterChart
+Parameter Classes
+ Color
+ Fill
+Helper Functions
+ utils.parseColor
+ utils.parseDataProperties
+ utils.parseStyle
+ utils.parseValue
+Webserver
+ webserve

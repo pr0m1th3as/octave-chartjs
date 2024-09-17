@@ -1,0 +1,11 @@
+Name: octave-chartjs
+Version: 0.1.0
+Date: 2024-09-22
+Author: Andreas Bertsatos
+Maintainer: Andreas Bertsatos <abertsatos@biol.uoa.gr>
+Title: ChartJS interface for GNU Octave
+Description: ChartJS interface for GNU Octave.
+Categories: Data Visualization
+Depends: octave (>= 8.1.0)
+License: GPLv3+
+Url: https://github.com/pr0m1th3as/octave-chartjs
