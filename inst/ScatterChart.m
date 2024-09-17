@@ -23,7 +23,6 @@ classdef ScatterChart
     datasets           = {};
     options            = {};
     chartID            = "scatterChart";
-    chartWidth         = 100;
 
   endproperties
 
@@ -167,13 +166,6 @@ classdef ScatterChart
             endif
             this.chartID = val;
 
-          case "chartwidth"
-            val = varargin{2};
-            if (! isnumeric (val) || val < 0 || val > 100)
-              error ("ScatterChart: 'ChartWidth' must be a scalar percentage.");
-            endif
-            this.chartID = val;
-
         endswitch
         varargin([1:2]) = [];
       endwhile
@@ -210,9 +202,9 @@ classdef ScatterChart
       tmp1 = "<!DOCTYPE html>\n<html>\n";
       tmp2 = "  <script src=""https://cdn.jsdelivr.net/npm/chart.js"">";
       tmp3 = "  </script>\n  <body>\n    <div>\n";
-      tmp4 = "    <canvas id=""%s"" style=""width:%i%%;max-width:600px"">";
+      tmp4 = "    <canvas id=""%s"" style=""width:100%%;max-width:1000px"">";
       ## Add chart ID
-      tmp4 = sprintf (tmp4, this.chartID, this.chartWidth);
+      tmp4 = sprintf (tmp4, this.chartID);
       tmp5 = "</canvas>\n    </div>\n  </body>\n</html>\n";
       tmp6 = "<script>\n";
       tmp7 = sprintf ("new Chart('%s', ", this.chartID);
