@@ -36,6 +36,8 @@ string served_html;
 // Function to run a crow instance
 void run_crow (int port)
 {
+  // FIXME: Handle multiple servers on different ports?
+
   // Run app
   app.loglevel(crow::LogLevel::Warning).port(port).run();
 }
@@ -44,6 +46,8 @@ void run_crow (int port)
 void stop_crow ()
 {
   // Close all connections
+  // HOW??
+
   app.stop ();
 
   try
