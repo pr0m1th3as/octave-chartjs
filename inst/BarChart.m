@@ -17,8 +17,8 @@
 
 classdef BarChart
 ## -*- texinfo -*-
-## @deftypefn  {octave-chartjs} {@var{obj} =} BarChart (@var{data}, @var{labels})
-## @deftypefnx {octave-chartjs} {@var{obj} =} BarChart (@dots{}, @var{Name}, @var{Value})
+## @deftypefn  {chartjs} {@var{obj} =} BarChart (@var{data}, @var{labels})
+## @deftypefnx {chartjs} {@var{obj} =} BarChart (@dots{}, @var{Name}, @var{Value})
 ##
 ## Create a @qcode{BarChart} object.
 ##
