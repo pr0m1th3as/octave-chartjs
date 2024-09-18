@@ -233,9 +233,9 @@ classdef ScatterChart
     function webserve (this, port = 8080)
 
       ## Check for valid port number
-      if (! (isnumeric (val) && isscalar (val) &&
-             fix (val) == val && val > 0 && val <= 65535))
-        error (strcat (["ScatterChart.webserve: 'port' must be a scalar"], ...
+      if (! (isnumeric (port) && isscalar (port) &&
+             fix (port) == port && port > 0 && port <= 65535))
+        error (strcat (["ScatterChart.webserve: PORT must be a scalar"], ...
                        [" integer value assigning a valid port."]));
       endif
 

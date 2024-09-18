@@ -286,10 +286,10 @@ classdef DoughnutChart
     function webserve (this, port = 8080)
 
       ## Check for valid port number
-      if (! (isnumeric (val) && isscalar (val) &&
-             fix (val) == val && val > 0 && val <= 65535))
-        error (strcat (["DoughnutChart.webserve: 'port' must be a"], ...
-                       [" scalar integer value assigning a valid port."]));
+      if (! (isnumeric (port) && isscalar (port) &&
+             fix (port) == port && port > 0 && port <= 65535))
+        error (strcat (["DoughnutChart.webserve: PORT must be a scalar"], ...
+                       [" integer value assigning a valid port."]));
       endif
 
       ## Build html page and serve it on assigned port

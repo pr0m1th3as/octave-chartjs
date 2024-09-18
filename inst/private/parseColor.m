@@ -42,7 +42,7 @@ function obj = parseColor (obj, pname, value)
       obj.datasets{i}.(pname) = Color (value(i,:));
     endfor
   else
-    error ("%s: invalid value for '%s' property.", class (obj), pname);
+    error ("%s: invalid color value for '%s' property.", class (obj), pname);
   endif
 
 
