@@ -19,10 +19,10 @@ classdef BubbleChart
 
   properties (Access = public)
 
-    labels             = [];
-    datasets           = {};
-    options            = {};
     chartID            = "bubbleChart";
+    datasets           = {};
+    labels             = [];
+    options            = {};
 
   endproperties
 
@@ -169,13 +169,6 @@ classdef BubbleChart
             pname = "radius";
             this = parseValue (this, pname, val, [], "scalar");
 
-          case "chartid"
-            val = varargin{2};
-            if (! ischar (val))
-              error ("BubbleChart: 'ChartID' must be a character vector.");
-            endif
-            this.chartID = val;
-
         endswitch
         varargin([1:2]) = [];
       endwhile
@@ -212,7 +205,7 @@ classdef BubbleChart
       tmp1 = "<!DOCTYPE html>\n<html>\n";
       tmp2 = "  <script src=""https://cdn.jsdelivr.net/npm/chart.js"">";
       tmp3 = "  </script>\n  <body>\n    <div>\n";
-      tmp4 = "    <canvas id=""%s"" style=""width:100%%;max-width:1000px"">";
+      tmp4 = "    <canvas id=""%s"" style=""width:100%%"">";
       ## Add chart ID
       tmp4 = sprintf (tmp4, this.chartID);
       tmp5 = "</canvas>\n    </div>\n  </body>\n</html>\n";
