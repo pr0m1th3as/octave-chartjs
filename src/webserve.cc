@@ -56,7 +56,7 @@ void stop_crow ()
     if (crow_server)
       crow_server->join ();
   }
-  catch (std::system_error const& e)
+  catch (system_error const& e)
   {
     // do nothing
   }
