@@ -46,6 +46,13 @@ classdef BarChart
 ## accepted by that property.  Type @code{help BarData} for more details on the
 ## available properties.
 ##
+## Specifically for the properties that accept a @qcode{Color} object as their
+## input value, beside the @qcode{Color} object you may also parse to the
+## @qcode{BarChart} constructor the same values accepted by the constructor of
+## the @qcode{Color} object.  However, if you choose to manually modify the
+## @qcode{BarChart}'s properties using the dot notation syntax, then you must
+## assign a @qcode{Color} object to the chosen property.
+##
 ## For properties that accept scalar values, you can pass a vector of the same
 ## type with each element corresponding to a different dataset.  For properties
 ## that accept vectors, you can pass a matrix of the same type with each row
@@ -55,6 +62,8 @@ classdef BarChart
 ## multiple datasets, whereas for properties that can take mixed types of scalar
 ## values (i.e. either boolean and character vectors), you need to pass a cell
 ## array with each element corresponding to a different dataset.
+##
+## The properties that accept @qcode{Color} objects, can alternati
 ##
 ## A @qcode{BarChart} object, @var{obj}, stores the following properties, which
 ## can be accessed/modified using dot notation syntax similarly to a
