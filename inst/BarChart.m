@@ -42,8 +42,14 @@ classdef BarChart
 ## BarChart object with the properties of each dataset specified by a
 ## @qcode{Name-Value} pair arguments.  @var{Name} can be any property name of a
 ## @qcode{BarData} object and @var{Value} must be a corresponding to the value
-## accepted by that property.  Type @code{help BarData} for more details on
+## accepted by that property.  Type @code{help BarData} for more details on the
 ## available properties.
+##
+## For properties that accept scalar values, you can pass a vector with each
+## element corresponding to a different dataset.  For properties that accept
+## vectors, you can pass a matrix with each row corresponding to a different
+## dataset.  Otherwise, the same property value will be assigned to all datasets
+## available in @var{data}.
 ##
 ## A @qcode{BarCHart} object, @var{obj}, stores the following properties, which
 ## can be accessed using dot notation similarly to a @qcode{struct} object:
@@ -72,7 +78,7 @@ classdef BarChart
 ##
 ## @end multitable
 ##
-## @seealso{fitcknn, knnsearch, rangesearch, pdist2}
+## @seealso{BarData, Color, Fill}
 ## @end deftypefn
 
   properties (Access = public)
