@@ -23,8 +23,9 @@ classdef BarChart
 ## Create a @qcode{BarChart} object.
 ##
 ## @code{@var{obj} = BarChart (@var{data}, @var{labels})} returns a BarChart
-## object, with @var{data} containing the bar heights (along the @qcode{y-axis})
-## and @var{labels} containing the bar labels (along the @qcode{x-axis}).
+## object, in which @var{data} contain the bar heights (by default along the
+## @qcode{y-axis}) and @var{labels} contain the bar labels (by default along the
+## @qcode{x-axis}).
 ##
 ## @itemize
 ## @item
@@ -33,9 +34,9 @@ classdef BarChart
 ## @var{labels}.  If @var{data} is a row vector and its length matches the
 ## number of elements in @var{labels}, then it is transposed to a column vector.
 ## @item
-## @var{labels} must be a nonempty numerical or cellstring vector, where each
-## element corresponds to a row in @var{data}.  If @var{labels} is a character
-## vector, then it is converted to a cellstring scalar.
+## @var{labels} must be a nonempty numerical vector or cellstring array, where
+## each element corresponds to a row in @var{data}.  If @var{labels} is a
+## character vector, then it is converted to a cellstring scalar.
 ## @end itemize
 ##
 ## @code{@var{obj} = BarChart (@dots{}, @var{Name}, @var{Value})} returns a
@@ -51,30 +52,24 @@ classdef BarChart
 ## dataset.  Otherwise, the same property value will be assigned to all datasets
 ## available in @var{data}.
 ##
-## A @qcode{BarCHart} object, @var{obj}, stores the following properties, which
-## can be accessed using dot notation similarly to a @qcode{struct} object:
+## A @qcode{BarChart} object, @var{obj}, stores the following properties, which
+## can be accessed/modified using dot notation syntax similarly to a
+## @qcode{struct} object:
 ##
 ## @multitable @columnfractions 0.23 0.02 0.75
 ## @headitem @var{Field} @tab @tab @var{Description}
 ##
-## @item @qcode{chartID} @tab @tab Unstandardized predictor data, specified as a
-## numeric matrix.  Each column of @var{X} represents one predictor (variable),
-## and each row represents one observation.
+## @item @qcode{chartID} @tab @tab A character vector defining the name of the
+## Chart in the generated html code.
 ##
-## @item @qcode{datasets} @tab @tab Class labels, specified as a logical or
-## numeric vector, or cell array of character vectors.  Each value in @var{Y} is
-## the observed class label for the corresponding row in @var{X}.
+## @item @qcode{datasets} @tab @tab A cell array containing one or more
+## @qcode{DarData} objects corresponding to the @var{data} input.
 ##
-## @item @qcode{labels} @tab @tab Number of observations used in
-## training the ClassificationKNN model, specified as a positive integer scalar.
-## This number can be less than the number of rows in the training data because
-## rows containing @qcode{NaN} values are not part of the fit.
+## @item @qcode{labels} @tab @tab A numeric vector or a cellstring array with
+## the data labels defined in @var{labels}.
 ##
-## @item @qcode{options} @tab @tab Rows of the original training data
-## used in fitting the ClassificationKNN model, specified as a numerical vector.
-## If you want to use this vector for indexing the training data in @var{X}, you
-## have to convert it to a logical vector, i.e
-## @qcode{X = obj.X(logical (obj.RowsUsed), :);}
+## @item @qcode{options} @tab @tab A cell array containing one or more
+## @qcode{Option} and @qcode{Plugin} objects.  Not used at the moment.
 ##
 ## @end multitable
 ##
