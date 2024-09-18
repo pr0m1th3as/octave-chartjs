@@ -46,11 +46,15 @@ classdef BarChart
 ## accepted by that property.  Type @code{help BarData} for more details on the
 ## available properties.
 ##
-## For properties that accept scalar values, you can pass a vector with each
-## element corresponding to a different dataset.  For properties that accept
-## vectors, you can pass a matrix with each row corresponding to a different
-## dataset.  Otherwise, the same property value will be assigned to all datasets
-## available in @var{data}.
+## For properties that accept scalar values, you can pass a vector of the same
+## type with each element corresponding to a different dataset.  For properties
+## that accept vectors, you can pass a matrix of the same type with each row
+## corresponding to a different dataset.  Otherwise, the same property value
+## will be assigned to all datasets available in @var{data}.  For properties
+## accepting a character vector, you need to pass a cellstring array for
+## multiple datasets, whereas for properties that can take mixed types of scalar
+## values (i.e. either boolean and character vectors), you need to pass a cell
+## array with each element corresponding to a different dataset.
 ##
 ## A @qcode{BarChart} object, @var{obj}, stores the following properties, which
 ## can be accessed/modified using dot notation syntax similarly to a
