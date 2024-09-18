@@ -34,6 +34,14 @@ classdef Color
     ## Class object constructor
     function this = Color (value)
 
+      ## Check value
+      if (nargin < 1)
+        error ("Color: too few input arguments.");
+      endif
+      if (isempty (value))
+        error ("Color: VALUE cannot be empty.");
+      endif
+
       ## Recognized color names
       color_names = {"red", "darkred", "lightgreen", "green", "darkgreen", ...
                      "lightblue", "blue", "darkblue", "lightgray", ...

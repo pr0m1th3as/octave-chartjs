@@ -31,17 +31,25 @@ classdef Fill
     function this = Fill (value, toaxis = false, above = [], below = [])
 
       ## Check value
-      if (! isscalar (value))
-        error ("Fill: value must be a scalar.");
+      if (nargin < 1)
+        error ("Fill: too few input arguments.");
       endif
       if (isempty (value))
-        error ("Fill: value must not be empty.");
+        error ("Fill: VALUE cannot be empty.");
+      endif
+      if (! isscalar (value) && isnumeric (value))
+        error ("Fill: numeric VALUE must be a scalar.");
+      endif
+
+      ## Check toaxis
+      if (! isbool (toaxis) || ! isscalar (toaxis))
+        error ("Fill: TOAXIS must be a boolean scalar.");
       endif
 
       ## Store 'target' property
       if (toaxis)
         if (! isnumeric (value))
-          error ("Fill: value must be numeric when toaxis is true.");
+          error ("Fill: VALUE must be numeric when TOAXIS is true.");
         endif
         this.target = sprintf ("{value: %d}", value);
       else
@@ -53,32 +61,52 @@ classdef Fill
           endif
         elseif (isnumeric (value))
           if (value < 0 || round (value) != value)
-            error (strcat (["Fill: value for absolute indexing"], ...
+            error (strcat (["Fill: VALUE for absolute indexing"], ...
                            [" must be a nonnegative integer."]));
           endif
           this.target = sprintf ("%i", value);
         elseif (ischar (value))
           this.target = sprintf ("'%s'", value);
         else
-          error ("Fill: invalid value.");
+          error ("Fill: invalid VALUE.");
         endif
       endif
 
       ## Store color properties
       if (! isempty (above))
-        pname = "above";
-        if (! isobject (above))
-          this = parseColor (this, pname, above);
+        if (ischar (above) || (iscellstr (above) && isscalar (above)))
+          above = Color (above);
+        elseif (iscellstr (above) && ! isscalar (above))
+          error ("Fill: invalid color value for 'above' property.");
+        elseif ((isnumeric (above) && isvector (above) &&
+                (numel (above) == 3 || numel (above) == 4)) ||
+                (iscell (above) && isvector (above) && numel (above) == 2))
+          above = Color (above);
         else
-          this = parseValue (this, pname, above, "Fill", "object");
+          error ("Fill: invalid color value for 'above' property.");
+        endif
+        if (isa (above, "Color"))
+          this.above = jsonstring (above);
+        else
+          error ("Fill: invalid object for 'above' property.");
         endif
       endif
       if (! isempty (below))
-        pname = "below";
-        if (! isobject (below))
-          this = parseColor (this, pname, below);
+        if (ischar (below) || (iscellstr (below) && isscalar (below)))
+            below = Color (below);
+        elseif (iscellstr (below) && ! isscalar (below))
+          error ("Fill: invalid color value for 'below' property.");
+        elseif ((isnumeric (below) && isvector (below) &&
+                (numel (below) == 3 || numel (below) == 4)) ||
+                (iscell (below) && isvector (below) && numel (below) == 2))
+            below = Color (below);
         else
-          this = parseValue (this, pname, below, "Fill", "object");
+          error ("Fill: invalid color value for 'below' property.");
+        endif
+        if (isa (below, "Color"))
+          this.below = jsonstring (below);
+        else
+          error ("Fill: invalid object for 'below' property.");
         endif
       endif
 
@@ -110,3 +138,25 @@ classdef Fill
   endmethods
 
 endclassdef
+
+## Test input validation
+%!error <Fill: too few input arguments.> Fill ()
+%!error <Fill: VALUE cannot be empty.> Fill ([])
+%!error <Fill: numeric VALUE must be a scalar.> Fill ([1, 2])
+%!error <Fill: TOAXIS must be a boolean scalar.> Fill (1, 2)
+%!error <Fill: VALUE must be numeric when TOAXIS is true.> Fill ("+1", true)
+%!error <Fill: VALUE for absolute indexing must be a nonnegative integer.> ...
+%! Fill (-1)
+%!error <Fill: invalid VALUE.> Fill ({1})
+%!error <Fill: invalid color value for 'above' property.> ...
+%! Fill (1, false, {"red", "green"})
+%!error <Fill: invalid color value for 'above' property.> ...
+%! Fill (1, false, {"rgb", 1, 1})
+%!error <Fill: invalid color value for 'above' property.> ...
+%! Fill (1, false, [1, 1])
+%!error <Fill: invalid color value for 'below' property.> ...
+%! Fill (1, false, "red", {"red", "green"})
+%!error <Fill: invalid color value for 'below' property.> ...
+%! Fill (1, false, [1, 1, 1], {"rgb", 1, 1})
+%!error <Fill: invalid color value for 'below' property.> ...
+%! Fill (1, false, {"rgba", [1, 1, 1, 0.5]}, [1, 1])
