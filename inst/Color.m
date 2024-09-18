@@ -60,7 +60,7 @@ classdef Color
         elseif (check_hexcolor (value))
           pstr = sprintf ("'%s'", value);
         else
-          error ("Color: '%s' is an invalid value value.", value);
+          error ("Color: '%s' is an invalid color value.", value);
         endif
 
       ## Cellstring vector of color names or hexadecimal values
@@ -72,12 +72,15 @@ classdef Color
           elseif (check_hexcolor (value{i}))
             pstr = [pstr, sprintf("'%s',\n%s", value{i}, tab)];
           else
-            error ("Color: '%s' is an invalid value value.", value{i});
+            error ("Color: '%s' is an invalid color value.", value{i});
           endif
         endfor
         pstr = strtrim (pstr);
         pstr([end-1:end]) = [];
         pstr = [pstr, sprintf("\n%s]", tab([1:end-2]))];
+
+      elseif (iscellstr (value) && ! isvector (value))
+        error ("Color: cellstr VALUE must be a vector.");
 
       ## Numeric vector of Octave RGB triplet values (and transparency)
       elseif (isnumeric (value) && isvector (value))
@@ -131,7 +134,7 @@ classdef Color
 
       ## Invalid input
       else
-        error ("Color: invalid COLOR input.");
+        error ("Color: invalid VALUE input.");
       endif
 
       this.value = value;
@@ -157,7 +160,7 @@ endfunction
 
 function pstr = namespacevector (value)
   if (! ischar (value{1}))
-    error ("Color: invalid value for value space.");
+    error ("Color: invalid value for color name space.");
   endif
   if (strcmpi (value{1}, "rgb"))
     if (numel (value{2}) != 3)
@@ -180,6 +183,30 @@ function pstr = namespacevector (value)
     endif
     pstr = sprintf ("'hsl(%i, %i%%, %i%%, %d)'", value{2});
   else
-    error ("Color: '%s' is an invalid value space.", value{1});
+    error ("Color: '%s' is an invalid color name space.", value{1});
   endif
 endfunction
+
+## Test input validation
+%!error <Color: too few input arguments.> Color ()
+%!error <Color: VALUE cannot be empty.> Color ([])
+%!error <Color: 'color' is an invalid color value.> Color ("color")
+%!error <Color: '#43' is an invalid color value.> Color ("#43")
+%!error <Color: 'color' is an invalid color value.> Color ({"red", "color"})
+%!error <Color: '#00550G' is an invalid color value.> Color ({"red", "#00550G"})
+%!error <Color: cellstr VALUE must be a vector.> ...
+%! Color ({"red", "red"; "gray", "gray"})
+%!error <Color: invalid size of numeric value vector.> Color ([2, 3])
+%!error <Color: invalid size of numeric value matrix.> Color (ones (2))
+%!error <Color: invalid VALUE input.> Color (true)
+%!error <Color: invalid value for color name space.> Color ({1, [1, 1, 1]})
+%!error <Color: mismatched vector for 'RGB' value space.> ...
+%! Color ({"rgb", [1, 1, 1, 1]})
+%!error <Color: mismatched vector for 'RGBA' value space.> ...
+%! Color ({"rgba", [1, 1, 1]})
+%!error <Color: mismatched vector for 'HSL' value space.> ...
+%! Color ({"hsl", [1, 1, 1, 1]})
+%!error <Color: mismatched vector for 'HSLA' value space.> ...
+%! Color ({"hsla", [1, 1, 1]})
+%!error <Color: 'ASD' is an invalid color name space.> ...
+%! Color ({"ASD", [1, 1, 1]})
