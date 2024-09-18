@@ -51,7 +51,8 @@ classdef BarChart
 ## @qcode{BarChart} constructor the same values accepted by the constructor of
 ## the @qcode{Color} object.  However, if you choose to manually modify the
 ## @qcode{BarChart}'s properties using the dot notation syntax, then you must
-## assign a @qcode{Color} object to the chosen property.
+## assign a @qcode{Color} object to the chosen property.  Type @code{help Color}
+## for more details on the available syntax.
 ##
 ## For properties that accept scalar values, you can pass a vector of the same
 ## type with each element corresponding to a different dataset.  For properties
