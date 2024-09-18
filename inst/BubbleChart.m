@@ -23,7 +23,6 @@ classdef BubbleChart
     datasets           = {};
     options            = {};
     chartID            = "bubbleChart";
-    webport            = 8080;
 
   endproperties
 
@@ -33,6 +32,9 @@ classdef BubbleChart
     function this = BubbleChart (X, Y, R, varargin)
 
       ## Check data (X, Y, R)
+      if (nargin < 3)
+        error ("BubbleChart: too few input arguments.");
+      endif
       if (! ismatrix (X) || ! isnumeric (X))
         error ("BubbleChart: X must be a numeric matrix.");
       endif
@@ -174,14 +176,6 @@ classdef BubbleChart
             endif
             this.chartID = val;
 
-          case "webport"
-            val = varargin{2};
-            if (! (isnumeric (val) && isscalar (val) &&
-                   fix (val) == val && val > 0 && val <= 65535))
-              error ("BubbleChart: 'webport' must be a character vector.");
-            endif
-            this.webport = val;
-
         endswitch
         varargin([1:2]) = [];
       endwhile
@@ -243,9 +237,19 @@ classdef BubbleChart
     endfunction
 
     ## Serve Chart online
-    function webserve (this)
+    function webserve (this, port = 8080)
+
+      ## Check for valid port number
+      if (! (isnumeric (val) && isscalar (val) &&
+             fix (val) == val && val > 0 && val <= 65535))
+        error (strcat (["BubbleChart.webserve: 'port' must be a scalar"], ...
+                       [" integer value assigning a valid port."]));
+      endif
+
+      ## Build html page and serve it on assigned port
       html = htmlstring (this);
-      webserve (html, this.webport);
+      webserve (html, port);
+
     endfunction
 
     ## Close web service
@@ -256,3 +260,20 @@ classdef BubbleChart
   endmethods
 
 endclassdef
+
+## Test input validation
+%!error <BubbleChart: too few input arguments.> BubbleChart (1)
+%!error <BubbleChart: too few input arguments.> BubbleChart (1, 2)
+%!error <BubbleChart: X must be a numeric matrix.> BubbleChart ("1", 2, 3)
+%!error <BubbleChart: X must be a numeric matrix.> BubbleChart ({1}, 2, 3)
+%!error <BubbleChart: X cannot be empty.> BubbleChart ([], 2, 3)
+%!error <BubbleChart: Y must be a numeric matrix.> BubbleChart (1, "2", 3)
+%!error <BubbleChart: Y must be a numeric matrix.> BubbleChart (1, {2}, 3)
+%!error <BubbleChart: Y cannot be empty.> BubbleChart (1, [], 3)
+%!error <BubbleChart: R must be a numeric matrix.> BubbleChart (1, 2, "3")
+%!error <BubbleChart: R must be a numeric matrix.> BubbleChart (1, 2, {3})
+%!error <BubbleChart: R cannot be empty.> BubbleChart (1, 2, [])
+%!error <BubbleChart: X, Y, and R must be of common size or scalars.> ...
+%! BubbleChart (1, ones (2), [1, 2])
+%!error <BubbleChart: optional arguments must be in Name,Value pairs.> ...
+%! BubbleChart (1, 2, 3, "backgroundColor")

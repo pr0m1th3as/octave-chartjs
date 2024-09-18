@@ -23,7 +23,6 @@ classdef BarChart
     datasets           = {};
     options            = {};
     chartID            = "barChart";
-    webport            = 8080;
 
   endproperties
 
@@ -33,25 +32,37 @@ classdef BarChart
     function this = BarChart (data, labels, varargin)
 
       ## Check data and labels
+      if (nargin < 2)
+        error ("BarChart: too few input arguments.");
+      endif
       if (! ismatrix (data) || ! isnumeric (data))
-        error ("BarChart: data must be a numeric matrix.");
+        error ("BarChart: DATA must be a numeric matrix.");
       endif
       if (isempty (data))
-        error ("BarChart: data cannot be empty.");
+        error ("BarChart: DATA cannot be empty.");
+      endif
+      if (isempty (labels))
+        error ("BarChart: LABELS cannot be empty.");
       endif
       if (! isvector (labels))
-        error ("BarChart: labels must be a vector.");
+        error ("BarChart: LABELS must be a vector.");
       endif
-      if (! isnumeric (labels) && ! iscellstr (labels))
-        error ("BarChart: labels can be either numeric or cellstring.");
+      if (ischar (labels))
+        labels = cellstr (labels);
+      elseif (! isnumeric (labels) && ! iscellstr (labels))
+        error (strcat (["BarChart: LABELS must be numeric,"], ...
+                       [" cellstring, or character vector."]));
       endif
-      ## Force row vector to column vector
+
+      ## Force row vectors to column vectors
       if (isvector (data))
         data = data(:);
       endif
+      labels = labels(:);
+
       ## Check for matching sample sizes
       if (numel (labels) != size (data, 1))
-        error ("BarChart: labels do not match sample size in data.");
+        error ("BarChart: LABELS do not match sample size in DATA.");
       endif
 
       ## Store labels
@@ -213,14 +224,6 @@ classdef BarChart
             endif
             this.chartID = val;
 
-          case "webport"
-            val = varargin{2};
-            if (! (isnumeric (val) && isscalar (val) &&
-                   fix (val) == val && val > 0 && val <= 65535))
-              error ("BarChart: 'webport' must be a character vector.");
-            endif
-            this.webport = val;
-
         endswitch
         varargin([1:2]) = [];
       endwhile
@@ -292,9 +295,19 @@ classdef BarChart
     endfunction
 
     ## Serve Chart online
-    function webserve (this)
+    function webserve (this, port = 8080)
+
+      ## Check for valid port number
+      if (! (isnumeric (val) && isscalar (val) &&
+             fix (val) == val && val > 0 && val <= 65535))
+        error (strcat (["BarChart.webserve: 'port' must be a scalar"], ...
+                       [" integer value assigning a valid port."]));
+      endif
+
+      ## Build html page and serve it on assigned port
       html = htmlstring (this);
-      webserve (html, this.webport);
+      webserve (html, port);
+
     endfunction
 
     ## Close web service
@@ -305,3 +318,17 @@ classdef BarChart
   endmethods
 
 endclassdef
+
+## Test input validation
+%!error <BarChart: too few input arguments.> BarChart (1)
+%!error <BarChart: DATA must be a numeric matrix.> BarChart ({1}, "A")
+%!error <BarChart: DATA must be a numeric matrix.> BarChart ("1", "A")
+%!error <BarChart: DATA cannot be empty.> BarChart ([], "A")
+%!error <BarChart: LABELS cannot be empty.> BarChart (1, [])
+%!error <BarChart: LABELS must be a vector.> BarChart (ones (2), ones (2))
+%!error <BarChart: LABELS must be numeric, cellstring, or character vector.> ...
+%! BarChart (ones (2), {1, 2})
+%!error <BarChart: LABELS do not match sample size in DATA.> ...
+%! BarChart (ones (2), "A")
+%!error <BarChart: optional arguments must be in Name,Value pairs.> ...
+%! BarChart (1, "A", "backgroundColor")

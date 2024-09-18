@@ -69,11 +69,14 @@ classdef LineData
     function this = LineData (data)
 
       ## Check data
-      if (! isvector (data))
-        error ("LineData: data must be a vector.");
+      if (nargin < 1)
+        error ("LineData: too few input arguments.");
       endif
       if (isempty (data))
-        error ("LineData: data must not be empty.");
+        error ("LineData: DATA cannot be empty.");
+      endif
+      if (! isvector (data) || ! isnumeric (data))
+        error ("LineData: DATA must be a numeric vector.");
       endif
 
       ## Store data
@@ -110,3 +113,9 @@ classdef LineData
   endmethods
 
 endclassdef
+
+## Test input validation
+%!error <LineData: too few input arguments.> LineData ()
+%!error <LineData: DATA cannot be empty.> LineData ([])
+%!error <LineData: DATA must be a numeric vector.> LineData ("1")
+%!error <LineData: DATA must be a numeric vector.> LineData ({1})

@@ -50,11 +50,14 @@ classdef DoughnutData
     function this = DoughnutData (data)
 
       ## Check data
-      if (! isvector (data))
-        error ("DoughnutData: data must be a vector.");
+      if (nargin < 1)
+        error ("DoughnutData: too few input arguments.");
       endif
       if (isempty (data))
-        error ("DoughnutData: data must not be empty.");
+        error ("DoughnutData: DATA cannot be empty.");
+      endif
+      if (! isvector (data) || ! isnumeric (data))
+        error ("DoughnutData: DATA must be a numeric vector.");
       endif
 
       ## Store data
@@ -86,3 +89,9 @@ classdef DoughnutData
   endmethods
 
 endclassdef
+
+## Test input validation
+%!error <DoughnutData: too few input arguments.> DoughnutData ()
+%!error <DoughnutData: DATA cannot be empty.> DoughnutData ([])
+%!error <DoughnutData: DATA must be a numeric vector.> DoughnutData ("1")
+%!error <DoughnutData: DATA must be a numeric vector.> DoughnutData ({1})

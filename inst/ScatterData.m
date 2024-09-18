@@ -44,14 +44,17 @@ classdef ScatterData
     function this = ScatterData (data)
 
       ## Check data
-      if (! ismatrix (data))
-        error ("ScatterData: data must be a matrix.");
-      endif
-      if (size (data, 2) != 2)
-        error ("ScatterData: data must have two columns for X and Y.");
+      if (nargin < 1)
+        error ("ScatterData: too few input arguments.");
       endif
       if (isempty (data))
-        error ("ScatterData: data must not be empty.");
+        error ("ScatterData: DATA cannot be empty.");
+      endif
+      if (! ismatrix (data) || ! isnumeric (data))
+        error ("ScatterData: DATA must be a numeric matrix.");
+      endif
+      if (size (data, 2) != 2)
+        error ("ScatterData: DATA must have two columns for X and Y.");
       endif
 
       ## Store data
@@ -88,3 +91,11 @@ classdef ScatterData
   endmethods
 
 endclassdef
+
+## Test input validation
+%!error <ScatterData: too few input arguments.> ScatterData ()
+%!error <ScatterData: DATA cannot be empty.> ScatterData ([])
+%!error <ScatterData: DATA must be a numeric matrix.> ScatterData ({1, 23})
+%!error <ScatterData: DATA must be a numeric matrix.> ScatterData ("ASD")
+%!error <ScatterData: DATA must have two columns for X and Y.> ...
+%! ScatterData ([1])

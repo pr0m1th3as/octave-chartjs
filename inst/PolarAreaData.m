@@ -44,11 +44,14 @@ classdef PolarAreaData
     function this = PolarAreaData (data)
 
       ## Check data
-      if (! isvector (data))
-        error ("PolarAreaData: data must be a vector.");
+      if (nargin < 1)
+        error ("PolarAreaData: too few input arguments.");
       endif
       if (isempty (data))
-        error ("PolarAreaData: data must not be empty.");
+        error ("PolarAreaData: DATA cannot be empty.");
+      endif
+      if (! isvector (data) || ! isnumeric (data))
+        error ("PolarAreaData: DATA must be a numeric vector.");
       endif
 
       ## Store data
@@ -80,3 +83,9 @@ classdef PolarAreaData
   endmethods
 
 endclassdef
+
+## Test input validation
+%!error <PolarAreaData: too few input arguments.> PolarAreaData ()
+%!error <PolarAreaData: DATA cannot be empty.> PolarAreaData ([])
+%!error <PolarAreaData: DATA must be a numeric vector.> PolarAreaData ("1")
+%!error <PolarAreaData: DATA must be a numeric vector.> PolarAreaData ({1})

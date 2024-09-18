@@ -60,11 +60,14 @@ classdef RadarData
     function this = RadarData (data)
 
       ## Check data
-      if (! isvector (data))
-        error ("RadarData: data must be a vector.");
+      if (nargin < 1)
+        error ("RadarData: too few input arguments.");
       endif
       if (isempty (data))
-        error ("RadarData: data must not be empty.");
+        error ("RadarData: DATA cannot be empty.");
+      endif
+      if (! isvector (data) || ! isnumeric (data))
+        error ("RadarData: DATA must be a numeric vector.");
       endif
 
       ## Store data
@@ -96,3 +99,9 @@ classdef RadarData
   endmethods
 
 endclassdef
+
+## Test input validation
+%!error <RadarData: too few input arguments.> RadarData ()
+%!error <RadarData: DATA cannot be empty.> RadarData ([])
+%!error <RadarData: DATA must be a numeric vector.> RadarData ("1")
+%!error <RadarData: DATA must be a numeric vector.> RadarData ({1})

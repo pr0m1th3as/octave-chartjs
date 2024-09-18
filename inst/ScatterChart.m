@@ -23,7 +23,6 @@ classdef ScatterChart
     datasets           = {};
     options            = {};
     chartID            = "scatterChart";
-    webport            = 8080;
 
   endproperties
 
@@ -33,6 +32,9 @@ classdef ScatterChart
     function this = ScatterChart (X, Y, varargin)
 
       ## Check data (X, Y)
+      if (nargin < 2)
+        error ("ScatterChart: too few input arguments.");
+      endif
       if (! ismatrix (X) || ! isnumeric (X))
         error ("ScatterChart: X must be a numeric matrix.");
       endif
@@ -47,7 +49,7 @@ classdef ScatterChart
       endif
       [err, X, Y] = common_size (X, Y);
       if (err > 0)
-        error ("ScatterChart: X, and Y must be of common size or scalars.");
+        error ("ScatterChart: X and Y must be of common size or scalars.");
       endif
 
       ## Force to column vectors (if applicable)
@@ -167,14 +169,6 @@ classdef ScatterChart
             endif
             this.chartID = val;
 
-          case "webport"
-            val = varargin{2};
-            if (! (isnumeric (val) && isscalar (val) &&
-                   fix (val) == val && val > 0 && val <= 65535))
-              error ("ScatterChart: 'webport' must be a character vector.");
-            endif
-            this.webport = val;
-
         endswitch
         varargin([1:2]) = [];
       endwhile
@@ -236,9 +230,19 @@ classdef ScatterChart
     endfunction
 
     ## Serve Chart online
-    function webserve (this)
+    function webserve (this, port = 8080)
+
+      ## Check for valid port number
+      if (! (isnumeric (val) && isscalar (val) &&
+             fix (val) == val && val > 0 && val <= 65535))
+        error (strcat (["ScatterChart.webserve: 'port' must be a scalar"], ...
+                       [" integer value assigning a valid port."]));
+      endif
+
+      ## Build html page and serve it on assigned port
       html = htmlstring (this);
-      webserve (html, this.webport);
+      webserve (html, port);
+
     endfunction
 
     ## Close web service
@@ -249,3 +253,16 @@ classdef ScatterChart
   endmethods
 
 endclassdef
+
+## Test input validation
+%!error <ScatterChart: too few input arguments.> ScatterChart (1)
+%!error <ScatterChart: X must be a numeric matrix.> ScatterChart ("1", 2)
+%!error <ScatterChart: X must be a numeric matrix.> ScatterChart ({1}, 2)
+%!error <ScatterChart: X cannot be empty.> ScatterChart ([], 2)
+%!error <ScatterChart: Y must be a numeric matrix.> ScatterChart (1, "2")
+%!error <ScatterChart: Y must be a numeric matrix.> ScatterChart (1, {2})
+%!error <ScatterChart: Y cannot be empty.> ScatterChart (1, [], 3)
+%!error <ScatterChart: X and Y must be of common size or scalars.> ...
+%! ScatterChart (ones (2), [1, 2])
+%!error <ScatterChart: optional arguments must be in Name,Value pairs.> ...
+%! ScatterChart (1, 2, "backgroundColor")

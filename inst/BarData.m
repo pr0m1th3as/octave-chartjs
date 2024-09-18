@@ -55,11 +55,14 @@ classdef BarData
     function this = BarData (data)
 
       ## Check data
-      if (! isvector (data))
-        error ("BarData: data must be a vector.");
+      if (nargin < 1)
+        error ("BarData: too few input arguments.");
       endif
       if (isempty (data))
-        error ("BarData: data must not be empty.");
+        error ("BarData: DATA cannot be empty.");
+      endif
+      if (! isvector (data) || ! isnumeric (data))
+        error ("BarData: DATA must be a numeric vector.");
       endif
 
       ## Store data
@@ -96,3 +99,9 @@ classdef BarData
   endmethods
 
 endclassdef
+
+## Test input validation
+%!error <BarData: too few input arguments.> BarData ()
+%!error <BarData: DATA cannot be empty.> BarData ([])
+%!error <BarData: DATA must be a numeric vector.> BarData ("1")
+%!error <BarData: DATA must be a numeric vector.> BarData ({1})

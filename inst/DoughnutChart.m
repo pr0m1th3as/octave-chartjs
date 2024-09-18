@@ -23,7 +23,6 @@ classdef DoughnutChart
     datasets           = {};
     options            = {};
     chartID            = "doughnutChart";
-    webport            = 8080;
 
   endproperties
 
@@ -33,25 +32,37 @@ classdef DoughnutChart
     function this = DoughnutChart (data, labels, varargin)
 
       ## Check data and labels
+      if (nargin < 2)
+        error ("DoughnutChart: too few input arguments.");
+      endif
       if (! ismatrix (data) || ! isnumeric (data))
-        error ("DoughnutChart: data must be a numeric matrix.");
+        error ("DoughnutChart: DATA must be a numeric matrix.");
       endif
       if (isempty (data))
-        error ("DoughnutChart: data cannot be empty.");
+        error ("DoughnutChart: DATA cannot be empty.");
+      endif
+      if (isempty (labels))
+        error ("DoughnutChart: LABELS cannot be empty.");
       endif
       if (! isvector (labels))
-        error ("DoughnutChart: labels must be a vector.");
+        error ("DoughnutChart: LABELS must be a vector.");
       endif
-      if (! isnumeric (labels) && ! iscellstr (labels))
-        error ("DoughnutChart: labels can be either numeric or cellstring.");
+      if (ischar (labels))
+        labels = cellstr (labels);
+      elseif (! isnumeric (labels) && ! iscellstr (labels))
+        error (strcat (["DoughnutChart: LABELS must be numeric,"], ...
+                       [" cellstring, or character vector."]));
       endif
-      ## Force row vector to column vector
+
+      ## Force row vectors to column vectors
       if (isvector (data))
         data = data(:);
       endif
+      labels = labels(:);
+
       ## Check for matching sample sizes
       if (numel (labels) != size (data, 1))
-        error ("DoughnutChart: labels do not match sample size in data.");
+        error ("DoughnutChart: LABELS do not match sample size in DATA.");
       endif
 
       ## Store labels
@@ -201,14 +212,6 @@ classdef DoughnutChart
             endif
             this.chartID = val;
 
-          case "webport"
-            val = varargin{2};
-            if (! (isnumeric (val) && isscalar (val) &&
-                   fix (val) == val && val > 0 && val <= 65535))
-              error ("DoughnutChart: 'webport' must be a character vector.");
-            endif
-            this.webport = val;
-
         endswitch
         varargin([1:2]) = [];
       endwhile
@@ -280,9 +283,19 @@ classdef DoughnutChart
     endfunction
 
     ## Serve Chart online
-    function webserve (this)
+    function webserve (this, port = 8080)
+
+      ## Check for valid port number
+      if (! (isnumeric (val) && isscalar (val) &&
+             fix (val) == val && val > 0 && val <= 65535))
+        error (strcat (["DoughnutChart.webserve: 'port' must be a"], ...
+                       [" scalar integer value assigning a valid port."]));
+      endif
+
+      ## Build html page and serve it on assigned port
       html = htmlstring (this);
-      webserve (html, this.webport);
+      webserve (html, port);
+
     endfunction
 
     ## Close web service
@@ -293,3 +306,15 @@ classdef DoughnutChart
   endmethods
 
 endclassdef
+
+## Test input validation
+%!error <DoughnutChart: too few input arguments.> DoughnutChart (1)
+%!error <DoughnutChart: DATA must be a numeric matrix.> DoughnutChart ({1}, "A")
+%!error <DoughnutChart: DATA must be a numeric matrix.> DoughnutChart ("1", "A")
+%!error <DoughnutChart: DATA cannot be empty.> DoughnutChart ([], "A")
+%!error <DoughnutChart: LABELS cannot be empty.> DoughnutChart (1, [])
+%!error <DoughnutChart: LABELS must be a vector.> DoughnutChart (ones (2), ones (2))
+%!error <DoughnutChart: LABELS must be numeric, cellstring, or character vector.> ...
+%! DoughnutChart (ones (2), {1, 2})
+%!error <DoughnutChart: LABELS do not match sample size in DATA.> ...
+%! DoughnutChart (ones (2), "A")

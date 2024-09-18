@@ -50,11 +50,14 @@ classdef PieData
     function this = PieData (data)
 
       ## Check data
-      if (! isvector (data))
-        error ("PieData: data must be a vector.");
+      if (nargin < 1)
+        error ("PieData: too few input arguments.");
       endif
       if (isempty (data))
-        error ("PieData: data must not be empty.");
+        error ("PieData: DATA cannot be empty.");
+      endif
+      if (! isvector (data) || ! isnumeric (data))
+        error ("PieData: DATA must be a numeric vector.");
       endif
 
       ## Store data
@@ -86,3 +89,9 @@ classdef PieData
   endmethods
 
 endclassdef
+
+## Test input validation
+%!error <PieData: too few input arguments.> PieData ()
+%!error <PieData: DATA cannot be empty.> PieData ([])
+%!error <PieData: DATA must be a numeric vector.> PieData ("1")
+%!error <PieData: DATA must be a numeric vector.> PieData ({1})

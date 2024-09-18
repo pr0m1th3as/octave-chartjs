@@ -23,7 +23,6 @@ classdef RadarChart
     datasets           = {};
     options            = {};
     chartID            = "radarChart";
-    webport            = 8080;
 
   endproperties
 
@@ -33,25 +32,37 @@ classdef RadarChart
     function this = RadarChart (data, labels, varargin)
 
       ## Check data and labels
+      if (nargin < 2)
+        error ("RadarChart: too few input arguments.");
+      endif
       if (! ismatrix (data) || ! isnumeric (data))
-        error ("RadarChart: data must be a numeric matrix.");
+        error ("RadarChart: DATA must be a numeric matrix.");
       endif
       if (isempty (data))
-        error ("RadarChart: data cannot be empty.");
+        error ("RadarChart: DATA cannot be empty.");
+      endif
+      if (isempty (labels))
+        error ("RadarChart: LABELS cannot be empty.");
       endif
       if (! isvector (labels))
-        error ("RadarChart: labels must be a vector.");
+        error ("RadarChart: LABELS must be a vector.");
       endif
-      if (! isnumeric (labels) && ! iscellstr (labels))
-        error ("RadarChart: labels can be either numeric or cellstring.");
+      if (ischar (labels))
+        labels = cellstr (labels);
+      elseif (! isnumeric (labels) && ! iscellstr (labels))
+        error (strcat (["RadarChart: LABELS must be numeric,"], ...
+                       [" cellstring, or character vector."]));
       endif
-      ## Force row vector to column vector
+
+      ## Force row vectors to column vectors
       if (isvector (data))
         data = data(:);
       endif
+      labels = labels(:);
+
       ## Check for matching sample sizes
       if (numel (labels) != size (data, 1))
-        error ("RadarChart: labels do not match sample size in data.");
+        error ("RadarChart: LABELS do not match sample size in DATA.");
       endif
 
       ## Store labels
@@ -268,14 +279,6 @@ classdef RadarChart
             endif
             this.chartID = val;
 
-          case "webport"
-            val = varargin{2};
-            if (! (isnumeric (val) && isscalar (val) &&
-                   fix (val) == val && val > 0 && val <= 65535))
-              error ("RadarChart: 'webport' must be a character vector.");
-            endif
-            this.webport = val;
-
         endswitch
         varargin([1:2]) = [];
       endwhile
@@ -347,9 +350,19 @@ classdef RadarChart
     endfunction
 
     ## Serve Chart online
-    function webserve (this)
+    function webserve (this, port = 8080)
+
+      ## Check for valid port number
+      if (! (isnumeric (val) && isscalar (val) &&
+             fix (val) == val && val > 0 && val <= 65535))
+        error (strcat (["RadarChart.webserve: 'port' must be a scalar"], ...
+                       [" integer value assigning a valid port."]));
+      endif
+
+      ## Build html page and serve it on assigned port
       html = htmlstring (this);
-      webserve (html, this.webport);
+      webserve (html, port);
+
     endfunction
 
     ## Close web service
@@ -360,3 +373,17 @@ classdef RadarChart
   endmethods
 
 endclassdef
+
+## Test input validation
+%!error <RadarChart: too few input arguments.> RadarChart (1)
+%!error <RadarChart: DATA must be a numeric matrix.> RadarChart ({1}, "A")
+%!error <RadarChart: DATA must be a numeric matrix.> RadarChart ("1", "A")
+%!error <RadarChart: DATA cannot be empty.> RadarChart ([], "A")
+%!error <RadarChart: LABELS cannot be empty.> RadarChart (1, [])
+%!error <RadarChart: LABELS must be a vector.> RadarChart (ones (2), ones (2))
+%!error <RadarChart: LABELS must be numeric, cellstring, or character vector.> ...
+%! RadarChart (ones (2), {1, 2})
+%!error <RadarChart: LABELS do not match sample size in DATA.> ...
+%! RadarChart (ones (2), "A")
+%!error <RadarChart: optional arguments must be in Name,Value pairs.> ...
+%! RadarChart (1, "A", "backgroundColor")

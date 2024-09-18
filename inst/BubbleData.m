@@ -44,14 +44,17 @@ classdef BubbleData
     function this = BubbleData (data)
 
       ## Check data
-      if (! ismatrix (data))
-        error ("BubbleData: data must be a matrix.");
-      endif
-      if (size (data, 2) != 3)
-        error ("BubbleData: data must have three columns for X, Y, and R.");
+      if (nargin < 1)
+        error ("BubbleData: too few input arguments.");
       endif
       if (isempty (data))
-        error ("BubbleData: data must not be empty.");
+        error ("BubbleData: DATA cannot be empty.");
+      endif
+      if (! ismatrix (data) || ! isnumeric (data))
+        error ("BubbleData: DATA must be a numeric matrix.");
+      endif
+      if (size (data, 2) != 3)
+        error ("BubbleData: DATA must have three columns for X, Y, and R.");
       endif
 
       ## Store data
@@ -88,3 +91,11 @@ classdef BubbleData
   endmethods
 
 endclassdef
+
+## Test input validation
+%!error <BubbleData: too few input arguments.> BubbleData ()
+%!error <BubbleData: DATA cannot be empty.> BubbleData ([])
+%!error <BubbleData: DATA must be a numeric matrix.> BubbleData ({1, 2, 3})
+%!error <BubbleData: DATA must be a numeric matrix.> BubbleData ("ASD")
+%!error <BubbleData: DATA must have three columns for X, Y, and R.> ...
+%! BubbleData ([1, 2])
