@@ -103,7 +103,7 @@ classdef WebServer < handle
 
   methods (Static)
 
-    function this = webinstance (varargin)
+    function this = start (varargin)
 
       persistent instance;
       mlock ();
