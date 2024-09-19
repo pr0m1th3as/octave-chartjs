@@ -122,7 +122,7 @@ Serve an html string on a web server instance. \n\
   }
   if (nargin > 2)
   {
-    if (args(2).isstring ())
+    if (args(2).is_string ())
     {
       addr = args(2).string_value ();
     }
