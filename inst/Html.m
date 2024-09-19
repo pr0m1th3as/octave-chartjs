@@ -15,7 +15,32 @@
 ## You should have received a copy of the GNU General Public License along with
 ## this program; if not, see <http://www.gnu.org/licenses/>.
 
-classdef html
+classdef Html
+## -*- texinfo -*-
+## @deftypefn  {chartjs} {@var{obj} =} html ()
+##
+## A parent class for generating HMTL code.
+##
+## Do NOT use this class directly! This class acts as a parent class for
+## inheriting methods to the Chart classes for generating HTML code.
+##
+## If you want to serve your Chart objects online through the Octave
+## environment, use the WebServer class to initialize a web server instance and
+## serve your Chart object directly throught the @qcode{update} method of the
+## @qcode{WebServer} object .
+##
+## @seealso{BarChart, BubbleChart, DoughnutChart, LineChart, PieChart,
+## PolarAreaChart, RadarChart, ScatterChart, WebServer}
+## @end deftypefn
+
+  methods (Access = private)
+
+    ## Void Constructor
+    function this = html ()
+
+    endfunction
+
+  endmethods
 
   methods (Access = public)
 

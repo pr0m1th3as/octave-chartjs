@@ -15,7 +15,7 @@
 ## You should have received a copy of the GNU General Public License along with
 ## this program; if not, see <http://www.gnu.org/licenses/>.
 
-classdef BarChart < html
+classdef BarChart < Html
 ## -*- texinfo -*-
 ## @deftypefn  {chartjs} {@var{obj} =} BarChart (@var{data}, @var{labels})
 ## @deftypefnx {chartjs} {@var{obj} =} BarChart (@dots{}, @var{Name}, @var{Value})
