@@ -33,6 +33,7 @@ classdef BarChart < Html
 ## corresponds to a separate dataset and each row corresponds to an element in
 ## @var{labels}.  If @var{data} is a row vector and its length matches the
 ## number of elements in @var{labels}, then it is transposed to a column vector.
+##
 ## @item
 ## @var{labels} must be a nonempty numerical vector or cellstring array, where
 ## each element corresponds to a row in @var{data}.  If @var{labels} is a
@@ -40,14 +41,14 @@ classdef BarChart < Html
 ## @end itemize
 ##
 ## @code{@var{obj} = BarChart (@dots{}, @var{Name}, @var{Value})} returns a
-## BarChart object with the properties of each dataset specified by a
-## @qcode{Name-Value} pair arguments.  @var{Name} can be any property name of a
-## @qcode{BarData} object and @var{Value} must be a corresponding to the value
-## accepted by that property.  Type @code{help BarData} for more details on the
-## available properties.
+## BarChart object with the properties of each dataset specified by one or more
+## @qcode{@var{Name}, @var{Value}} pair arguments.  @var{Name} can be any
+## property name of a @qcode{BarData} object and @var{Value} must correspond to
+## the data type(s) and values accepted by that property.
+## Type @code{help BarData} for more details on the available properties.
 ##
 ## Specifically for the properties that accept a @qcode{Color} object as their
-## input value, beside the @qcode{Color} object you may also parse to the
+## input value, besides the @qcode{Color} object you may also parse to the
 ## @qcode{BarChart} constructor the same values accepted by the constructor of
 ## the @qcode{Color} object.  However, if you choose to manually modify the
 ## @qcode{BarChart}'s properties using the dot notation syntax, then you must
@@ -75,7 +76,7 @@ classdef BarChart < Html
 ## Chart in the generated html code.
 ##
 ## @item @qcode{datasets} @tab @tab A cell array containing one or more
-## @qcode{DarData} objects corresponding to the @var{data} input.
+## @qcode{BarData} objects corresponding to the @var{data} input.
 ##
 ## @item @qcode{labels} @tab @tab A numeric vector or a cellstring array with
 ## the data labels defined in @var{labels}.
@@ -85,7 +86,12 @@ classdef BarChart < Html
 ##
 ## @end multitable
 ##
-## @seealso{BarData, Color, Fill, WebServer}
+## To directly serve the @qcode{BarChart} object on the web, you can parse it to
+## the @qcode{update} method of a @qcode{WebServer} object.  Alternatively, you
+## can generate and save to file the HTML code of your @qcode{BarChart} object
+## and serve it online through a web server of your choice.
+##
+## @seealso{BarData, Color, Fill, Html, WebServer}
 ## @end deftypefn
 
   properties (Access = public)
