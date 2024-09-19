@@ -275,27 +275,6 @@ classdef PieChart
 
     endfunction
 
-    ## Serve Chart online
-    function webserve (this, port = 8080)
-
-      ## Check for valid port number
-      if (! (isnumeric (port) && isscalar (port) &&
-             fix (port) == port && port > 0 && port <= 65535))
-        error (strcat (["PieChart.webserve: PORT must be a scalar"], ...
-                       [" integer value assigning a valid port."]));
-      endif
-
-      ## Build html page and serve it on assigned port
-      html = htmlstring (this);
-      webserve (html, port);
-
-    endfunction
-
-    ## Close web service
-    function webstop (this)
-        webserve (0);
-    endfunction
-
   endmethods
 
 endclassdef
