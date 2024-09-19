@@ -15,7 +15,7 @@
 ## You should have received a copy of the GNU General Public License along with
 ## this program; if not, see <http://www.gnu.org/licenses/>.
 
-classdef RadarChart
+classdef RadarChart < html
 
   properties (Access = public)
 
@@ -311,37 +311,6 @@ classdef RadarChart
 
     endfunction
 
-    ## Export to html string
-    function html = htmlstring (this)
-
-      ## Initialize html string
-      tmp1 = "<!DOCTYPE html>\n<html>\n";
-      tmp2 = "  <script src=""https://cdn.jsdelivr.net/npm/chart.js"">";
-      tmp3 = "  </script>\n  <body>\n    <div>\n";
-      tmp4 = "    <canvas id=""%s"" style=""width:100%%"">";
-      ## Add chart ID
-      tmp4 = sprintf (tmp4, this.chartID);
-      tmp5 = "</canvas>\n    </div>\n  </body>\n</html>\n";
-      tmp6 = "<script>\n";
-      tmp7 = sprintf ("new Chart('%s', ", this.chartID);
-      ## Get Chart configuration json string
-      json = jsonstring (this);
-      ## Close html string
-      tmp8 = ");\n</script>";
-      html = [tmp1, tmp2, tmp3, tmp4, tmp5, tmp6, tmp7, json, tmp8];
-
-    endfunction
-
-    ## Save to html file
-    function htmlsave (this, filename)
-
-      ## Write html string to file
-      fid = fopen (filename, "w");
-      fprintf (fid, "%s", htmlstring (this));
-      fclose (fid);
-
-    endfunction
-
   endmethods
 
 endclassdef
@@ -359,3 +328,9 @@ endclassdef
 %! RadarChart (ones (2), "A")
 %!error <RadarChart: optional arguments must be in Name,Value pairs.> ...
 %! RadarChart (1, "A", "backgroundColor")
+%!error <RadarChart.htmlsave: too few input arguments.> ...
+%! htmlsave (RadarChart (1, "A"))
+%!error <RadarChart.htmlsave: FILENAME must be a character vector.> ...
+%! htmlsave (RadarChart (1, "A"), 1)
+%!error <RadarChart.htmlsave: FILENAME must be a character vector.> ...
+%! htmlsave (RadarChart (1, "A"), {"radar.html"})

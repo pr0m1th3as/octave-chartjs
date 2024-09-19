@@ -15,7 +15,7 @@
 ## You should have received a copy of the GNU General Public License along with
 ## this program; if not, see <http://www.gnu.org/licenses/>.
 
-classdef ScatterChart
+classdef ScatterChart < html
 
   properties (Access = public)
 
@@ -191,37 +191,6 @@ classdef ScatterChart
 
     endfunction
 
-    ## Export to html string
-    function html = htmlstring (this)
-
-      ## Initialize html string
-      tmp1 = "<!DOCTYPE html>\n<html>\n";
-      tmp2 = "  <script src=""https://cdn.jsdelivr.net/npm/chart.js"">";
-      tmp3 = "  </script>\n  <body>\n    <div>\n";
-      tmp4 = "    <canvas id=""%s"" style=""width:100%%"">";
-      ## Add chart ID
-      tmp4 = sprintf (tmp4, this.chartID);
-      tmp5 = "</canvas>\n    </div>\n  </body>\n</html>\n";
-      tmp6 = "<script>\n";
-      tmp7 = sprintf ("new Chart('%s', ", this.chartID);
-      ## Get Chart configuration json string
-      json = jsonstring (this);
-      ## Close html string
-      tmp8 = ");\n</script>";
-      html = [tmp1, tmp2, tmp3, tmp4, tmp5, tmp6, tmp7, json, tmp8];
-
-    endfunction
-
-    ## Save to html file
-    function htmlsave (this, filename)
-
-      ## Write html string to file
-      fid = fopen (filename, "w");
-      fprintf (fid, "%s", htmlstring (this));
-      fclose (fid);
-
-    endfunction
-
   endmethods
 
 endclassdef
@@ -238,3 +207,9 @@ endclassdef
 %! ScatterChart (ones (2), [1, 2])
 %!error <ScatterChart: optional arguments must be in Name,Value pairs.> ...
 %! ScatterChart (1, 2, "backgroundColor")
+%!error <ScatterChart.htmlsave: too few input arguments.> ...
+%! htmlsave (ScatterChart (1, 2))
+%!error <ScatterChart.htmlsave: FILENAME must be a character vector.> ...
+%! htmlsave (ScatterChart (1, 2), 1)
+%!error <ScatterChart.htmlsave: FILENAME must be a character vector.> ...
+%! htmlsave (ScatterChart (1, 2), {"scatter.html"})

@@ -15,7 +15,7 @@
 ## You should have received a copy of the GNU General Public License along with
 ## this program; if not, see <http://www.gnu.org/licenses/>.
 
-classdef BubbleChart
+classdef BubbleChart < html
 
   properties (Access = public)
 
@@ -175,7 +175,17 @@ classdef BubbleChart
 
     endfunction
 
-    ## Export to json string
+    ## -*- texinfo -*-
+    ## @deftypefn  {BubbleChart} {@var{json} =} jsonstring (@var{obj})
+    ##
+    ## Generate a JSON string with the BubbleChart's context.
+    ##
+    ## @code{jsonstring (@var{obj})} returns a character vector, @var{json},
+    ## describing the context of the BubbleChart function in java script.
+    ##
+    ## @seealso{BubbleChart, BubbleData}
+    ## @end deftypefn
+
     function json = jsonstring (this)
 
       ## Initialize json string
@@ -195,37 +205,6 @@ classdef BubbleChart
       ## Add options and close Chart configuration json string
       options = "  options: {}\n";
       json = [json, options, "}"];
-
-    endfunction
-
-    ## Export to html string
-    function html = htmlstring (this)
-
-      ## Initialize html string
-      tmp1 = "<!DOCTYPE html>\n<html>\n";
-      tmp2 = "  <script src=""https://cdn.jsdelivr.net/npm/chart.js"">";
-      tmp3 = "  </script>\n  <body>\n    <div>\n";
-      tmp4 = "    <canvas id=""%s"" style=""width:100%%"">";
-      ## Add chart ID
-      tmp4 = sprintf (tmp4, this.chartID);
-      tmp5 = "</canvas>\n    </div>\n  </body>\n</html>\n";
-      tmp6 = "<script>\n";
-      tmp7 = sprintf ("new Chart('%s', ", this.chartID);
-      ## Get Chart configuration json string
-      json = jsonstring (this);
-      ## Close html string
-      tmp8 = ");\n</script>";
-      html = [tmp1, tmp2, tmp3, tmp4, tmp5, tmp6, tmp7, json, tmp8];
-
-    endfunction
-
-    ## Save to html file
-    function htmlsave (this, filename)
-
-      ## Write html string to file
-      fid = fopen (filename, "w");
-      fprintf (fid, "%s", htmlstring (this));
-      fclose (fid);
 
     endfunction
 
@@ -249,3 +228,9 @@ endclassdef
 %! BubbleChart (1, ones (2), [1, 2])
 %!error <BubbleChart: optional arguments must be in Name,Value pairs.> ...
 %! BubbleChart (1, 2, 3, "backgroundColor")
+%!error <BubbleChart.htmlsave: too few input arguments.> ...
+%! htmlsave (BubbleChart (1, 2, 3))
+%!error <BubbleChart.htmlsave: FILENAME must be a character vector.> ...
+%! htmlsave (BubbleChart (1, 2, 3), 1)
+%!error <BubbleChart.htmlsave: FILENAME must be a character vector.> ...
+%! htmlsave (BubbleChart (1, 2, 3), {"bubble.html"})

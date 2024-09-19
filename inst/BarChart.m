@@ -15,7 +15,7 @@
 ## You should have received a copy of the GNU General Public License along with
 ## this program; if not, see <http://www.gnu.org/licenses/>.
 
-classdef BarChart
+classdef BarChart < html
 ## -*- texinfo -*-
 ## @deftypefn  {chartjs} {@var{obj} =} BarChart (@var{data}, @var{labels})
 ## @deftypefnx {chartjs} {@var{obj} =} BarChart (@dots{}, @var{Name}, @var{Value})
@@ -85,7 +85,7 @@ classdef BarChart
 ##
 ## @end multitable
 ##
-## @seealso{BarData, Color, Fill}
+## @seealso{BarData, Color, Fill, WebServer}
 ## @end deftypefn
 
   properties (Access = public)
@@ -294,7 +294,17 @@ classdef BarChart
 
     endfunction
 
-    ## Export to json string
+    ## -*- texinfo -*-
+    ## @deftypefn  {BarChart} {@var{json} =} jsonstring (@var{obj})
+    ##
+    ## Generate a JSON string with the BarChart's context.
+    ##
+    ## @code{jsonstring (@var{obj})} returns a character vector, @var{json},
+    ## describing the context of the BarChart function in java script.
+    ##
+    ## @seealso{BarChart, BarData}
+    ## @end deftypefn
+
     function json = jsonstring (this)
 
       ## Initialize json string
@@ -327,37 +337,6 @@ classdef BarChart
 
     endfunction
 
-    ## Export to html string
-    function html = htmlstring (this)
-
-      ## Initialize html string
-      tmp1 = "<!DOCTYPE html>\n<html>\n";
-      tmp2 = "  <script src=""https://cdn.jsdelivr.net/npm/chart.js"">";
-      tmp3 = "  </script>\n  <body>\n    <div>\n";
-      tmp4 = "    <canvas id=""%s"" style=""width:100%%"">";
-      ## Add chart ID
-      tmp4 = sprintf (tmp4, this.chartID);
-      tmp5 = "</canvas>\n    </div>\n  </body>\n</html>\n";
-      tmp6 = "<script>\n";
-      tmp7 = sprintf ("new Chart('%s', ", this.chartID);
-      ## Get Chart configuration json string
-      json = jsonstring (this);
-      ## Close html string
-      tmp8 = ");\n</script>";
-      html = [tmp1, tmp2, tmp3, tmp4, tmp5, tmp6, tmp7, json, tmp8];
-
-    endfunction
-
-    ## Save to html file
-    function htmlsave (this, filename)
-
-      ## Write html string to file
-      fid = fopen (filename, "w");
-      fprintf (fid, "%s", htmlstring (this));
-      fclose (fid);
-
-    endfunction
-
   endmethods
 
 endclassdef
@@ -375,3 +354,9 @@ endclassdef
 %! BarChart (ones (2), "A")
 %!error <BarChart: optional arguments must be in Name,Value pairs.> ...
 %! BarChart (1, "A", "backgroundColor")
+%!error <BarChart.htmlsave: too few input arguments.> ...
+%! htmlsave (BarChart (1, "A"))
+%!error <BarChart.htmlsave: FILENAME must be a character vector.> ...
+%! htmlsave (BarChart (1, "A"), 1)
+%!error <BarChart.htmlsave: FILENAME must be a character vector.> ...
+%! htmlsave (BarChart (1, "A"), {"bar.html"})
