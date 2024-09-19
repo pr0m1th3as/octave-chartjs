@@ -8,4 +8,4 @@ SOCK_LIBS ?= -lws2_32 -lwsock32
 endif
 
 all:
-	$(MKOCTFILE) webserve.cc $(SOCK_LIBS)
+	$(MKOCTFILE) __webserve__.cc $(SOCK_LIBS)
