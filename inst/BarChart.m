@@ -64,8 +64,6 @@ classdef BarChart
 ## values (i.e. either boolean and character vectors), you need to pass a cell
 ## array with each element corresponding to a different dataset.
 ##
-## The properties that accept @qcode{Color} objects, can alternati
-##
 ## A @qcode{BarChart} object, @var{obj}, stores the following properties, which
 ## can be accessed/modified using dot notation syntax similarly to a
 ## @qcode{struct} object:
