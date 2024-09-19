@@ -34,12 +34,15 @@ thread *crow_server = nullptr;
 string served_html;
 
 // Function to run a crow instance
-void run_crow (int port)
+void run_crow (string addr, int port)
 {
   // FIXME: Handle multiple servers on different ports?
 
   // Run app
-  app.loglevel(crow::LogLevel::Warning).port(port).run();
+  app.bindaddr(addr.c_str ())
+  .loglevel(crow::LogLevel::Warning)
+  .port(port)
+  .run();
 }
 
 // Function to stop a crow instance
@@ -72,9 +75,9 @@ void stop_crow ()
   is_routed = false;
 }
 
-DEFMETHOD_DLD(webserve, interp, args, ,
+DEFMETHOD_DLD(__webserve__, interp, args, ,
           "-*- texinfo -*-\n\
- @deftypefn  {octave-chartjs} {} webserve (@var{html}, @var{port})\n\
+ @deftypefn  {octave-chartjs} {} __webserve__ (@var{html}, @var{port}, @var{addr})\n\
 \n\
 \n\
 Serve an html string on a web server instance. \n\
@@ -82,7 +85,8 @@ Serve an html string on a web server instance. \n\
 @end deftypefn")
 {
   // Add defaults
-  string html = "Hello Octave";
+  string addr = "0.0.0.0";
+  string html = "This is an Octave WebServer instance!";
   int port = 8080;
 
   // Parse input arguments
@@ -116,6 +120,17 @@ Serve an html string on a web server instance. \n\
       error ("htmlserve: PORT must be a scalar integer value.");
     }
   }
+  if (nargin > 2)
+  {
+    if (args(2).isstring ())
+    {
+      addr = args(2).string_value ();
+    }
+    else
+    {
+      error ("htmlserve: ADDR must be a character vector.");
+    }
+  }
 
   // Define an endpoint at the root directory
   if (! is_routed)
@@ -131,7 +146,7 @@ Serve an html string on a web server instance. \n\
   // Run crow instance in a separate thread
   if (! crow_server)
   {
-    crow_server = new thread (run_crow, port);
+    crow_server = new thread (run_crow, addr, port);
     crow_server->detach ();
   }
 
