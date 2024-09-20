@@ -109,18 +109,13 @@ classdef Html
 
     ## -*- texinfo -*-
     ## @deftypefn  {chartjs} {} webserve (@var{obj})
-    ## @deftypefn  {chartjs} {} webserve (@var{obj}, @var{html})
     ##
     ## Serve Chart online.
     ##
     ## @code{webserve (@var{obj})} serves the HTML describing the Chart object
-    ## to a web server.
-    ##
-    ## If the web server has not started yet, it is initialized automatically
-    ## with default settings.  If the server should run with non-default
-    ## settings, use the @code{webinitialize} method before calling the
-    ## @code{webserve} method of any of the @obj{*Chart} class objects to
-    ## initialize the server manually.
+    ## to a local web server instance.  If the web server instance has not
+    ## started yet, it is initialized automatically with the default settings
+    ## listening to @qcode{localhost:8080}.
     ##
     ## @seealso{BarChart, BubbleChart, DoughnutChart, LineChart, PieChart,
     ## PolarAreaChart, RadarChart, ScatterChart, WebServer}
@@ -128,7 +123,7 @@ classdef Html
 
     function webserve (this)
 
-      webserver = WebServer ();
+      webserver = WebServer.start ();
 
       webserver.serve (this);
 

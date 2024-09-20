@@ -15,44 +15,108 @@
 ## You should have received a copy of the GNU General Public License along with
 ## this program; if not, see <http://www.gnu.org/licenses/>.
 
-classdef WebServer
+classdef WebServer < handle
 ## -*- texinfo -*-
-## @deftypefn  {chartjs} {@var{obj} =} WebServer ()
+## @deftypefn  {chartjs} {} WebServer ()
 ##
-## Interface to a web server instance
+## Interface to a web server instance.
 ##
-## This class provides methods to initialize a web server and update the
-## HTML content that is served by it.
+## ** THIS IS AT EXPERIMENTAL STAGE. USE WITH CAUTION!! **
 ##
-## @seealso{BarChart, BubbleChart, DoughnutChart, LineChart, PieChart,
-## PolarAreaChart, RadarChart, ScatterChart, WebServer}
+## This class initializes a web server and returns its instance in a
+## @qcode{WebServer} object.  The web instance, once initiated by the class
+## constructor, it remains persistent during the Octave session and it is
+## gracefully terminated upon exit by the class destructor.  The web instance is
+## still valid and active even if the variable holding the instance in Octave's
+## workspace is deleted.
+##
+## The class constructor (i.e. @qcode{WebServer ()}) is private and cannot be
+## run directly.  Use the static method @qcode{WebServer.start ()} to initiate a
+## web server instance or reacquire its handle in case the variable has been
+## accidentally cleared from the workspace.  Use the @qcode{serve ()} public
+## method to update the contents being served by the web server instance.
+##
+## Note that the class destructor (i.e. @qcode{delete (obj)}) is public method.
+## ** NEVER CALL DESTRUCTOR FOR AN OBJECT OF THIS CLASS MANUALLY !!! **
+##
+## The @qcode{WebServer} class utilizes the @qcode{__webserve__} dynamically
+## linked library, which relies relies on the CrowCpp microframework.
+## ** DO NOT use the @qcode{__webserve__} function directly! **
+##
+## @seealso{Html, WebServer}
 ## @end deftypefn
 
   properties (SetAccess = protected)
 
-    html;
-    addr;
-    port;
+    html = "This is a GNU Octave WebServer instance!";
+    addr = "127.0.0.1";
+    port = 8080;
 
   endproperties
 
-  methods (Access = public)
+  methods (Access = private)
+
+    ## Constructor
+    function this = WebServer (varargin)
+
+      ## Handle the optional pair arguments
+      if (mod (numel (varargin), 2) != 0)
+        error ("WebServer: optional arguments must be in Name,Value pairs.");
+      endif
+      while (numel (varargin) > 0)
+        switch (lower (varargin{1}))
+          case "bind-address"
+            if (! ischar (varargin{2}))
+              error ("WebServer: 'bindaddress' must be a character vector.");
+            endif
+            this.addr = varargin{2};
+
+          case "port"
+            port = varargin{2};
+            if (! (isnumeric (port) && isscalar (port) &&
+                   fix (port) == port && port > 0 && port <= 65535))
+              error (strcat (["WebServer: 'port' must be a scalar"], ...
+                             [" integer value assigning a valid port."]));
+            endif
+            this.port = port;
+
+          otherwise
+            error ("WebServer: unknown optional argument.");
+        endswitch
+        varargin([1:2]) = [];
+      endwhile
+
+      ## Initialize web server
+      __webserve__ (this.html, this.port, this.addr);
+
+    endfunction
+
+  endmethods
+
+  methods
+
+    ## Destructor
+    ## NEVER CALL DESTRUCTOR FOR AN OBJECT OF THIS CLASS MANUALLY !!!
+
+    function delete (this)
+
+      ## stop Crow server before exit
+      __webserve__ (0);
+
+    endfunction
 
     ## -*- texinfo -*-
-    ## @deftypefn  {chartjs} {} serve (@var{obj})
-    ## @deftypefn  {chartjs} {} serve (@var{obj}, @var{html})
+    ## @deftypefn  {chartjs} {} serve (@var{obj}, @var{ctx})
     ##
-    ## Serve HTML content.
+    ## Update the WebServer's content.
     ##
-    ## @code{serve (@var{obj}, @var{html})} serves the string @var{html}
-    ## to a web server.
+    ## @code{serve (@var{obj}, @var{ctx})} updates the content being served by
+    ## the WebServer instance, @var{obj}.  @var{ctx} can either be a
+    ## @qcode{*Chart} object or a character vector containing any text/HTML
+    ## string.
     ##
-    ## If the web server has not started yet, it is initialized automatically
-    ## with default settings.  If the server should run with non-default
-    ## settings, use the @code{initialize} method to initialize the server
-    ## manually before calling the @code{serve} method for the first time.
-    ##
-    ## @seealso{WebServer}
+    ## @seealso{BarChart, BubbleChart, DoughnutChart, LineChart, PieChart,
+    ## PolarAreaChart, RadarChart, ScatterChart, WebServer}
     ## @end deftypefn
 
     function serve (this, ctx)
@@ -77,23 +141,27 @@ classdef WebServer
         error ("WebServer.serve: invalid web content.");
       endif
 
-      webserver = WebInstance.instance ();
-
-      webserver.serve (this.html);
+      ## Update content in the Crow server
+      __webserve__ (this.html);
 
     endfunction
 
+  endmethods
+
+  methods (Static)
+
     ## -*- texinfo -*-
-    ## @deftypefn  {chartjs} {} initialize (@var{obj})
-    ## @deftypefnx {chartjs} {} initialize (@var{obj}, @var{Name}, @var{Value}, @dots{})
+    ## @deftypefn  {chartjs} {@var{obj} =} WebServer.start ()
+    ## @deftypefnx {chartjs} {@var{obj} =} WebServer.start (@var{Name}, @var{Value}, @dots{})
     ##
     ## Initialize a WebServer instance.
     ##
-    ## @code{initialize (@var{obj})} initializes a web server instance, which
-    ## by default listens to the @qcode{localhost} on port @qcode{8080}.
+    ## @code{@var{obj} = WebServer.start ()} initializes a web server instance,
+    ## which by default listens to the @qcode{localhost} on port @qcode{8080}
+    ## and returns its handle to the @qcode{WebServer} object, @var{obj}.
     ##
-    ## @code{initialize (@var{obj}, @var{Name}, @var{Value}, @dots{})}
-    ## initializes a web server instance with the settings specified by one or
+    ## @code{@var{obj} = WebServer.start (@dots{}, @var{Name}, @var{Value})}
+    ## initializes a WebServer instance with the settings specified by one or
     ## more of the following @qcode{@var{Name}, @var{Value}} pair arguments.
     ##
     ## @multitable @columnfractions 0.18 0.02 0.80
@@ -109,14 +177,16 @@ classdef WebServer
     ## @seealso{WebServer}
     ## @end deftypefn
 
-    function initialize (this, varargin)
+    function this = start (varargin)
 
-      webserver = WebInstance.instance (varargin{:});
+      persistent instance;
+      mlock ();
 
-      this.html = webserver.html;
-      this.addr = webserver.addr;
-      this.port = webserver.port;
+      if (isempty (instance))
+        instance = WebServer (varargin{:});
+      endif
 
+      this = instance;
     endfunction
 
   endmethods
