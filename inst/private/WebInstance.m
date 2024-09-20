@@ -15,27 +15,27 @@
 ## You should have received a copy of the GNU General Public License along with
 ## this program; if not, see <http://www.gnu.org/licenses/>.
 
-classdef WebServer < handle
+classdef WebInstance < handle
 ## -*- texinfo -*-
-## @deftypefn  {chartjs} {@var{obj} =} html ()
+## @deftypefn  {chartjs} {@var{obj} =} WebInstance ()
 ##
 ## A GNU Octave WebServer instance.
 ##
 ## This class initializes a web server and returns its instance in a
-## @qcode{WebServer} object.  The web instance, once initiated by the class
+## @qcode{WebInstance} object.  The web instance, once initiated by the class
 ## constructor, it remains persistent during the Octave session and it is
 ## gracefully terminated upon exit by the class destructor.  The web instance is
 ## still valid and active even if the variable holding the instance in Octave's
-## workspace is deleted.  Both class constructor (i.e. @qcode{WebServer ()}) and
-## destructor (i.e. @qcode{delete (obj)}) functions are private and cannot be
-## run directly.  Use the static method @qcode{WebServer.start ()} to initiate a
-## web server instance or reacquire its handle in case the variable has been
-## accidentally cleared from the workspace.  Use the @qcode{update ()} public
-## method to update the contents being served by the web server instance.
+## workspace is deleted.  Both class constructor (i.e. @qcode{WebInstance ()})
+## and destructor (i.e. @qcode{delete (obj)}) functions are private and cannot
+## be run directly.  Use the static method @qcode{WebInstance.instance ()} to
+## initiate a web server instance or reacquire its handle.  Use the
+## @qcode{serve ()} method to update the contents that are being served by the
+## web server instance.
 ##
-## The @qcode{WebServer} class utilizes the @qcode{__webserve__} dynamically
+## The @qcode{WebInstance} class utilizes the @qcode{__webserve__} dynamically
 ## linked library, which relies relies on the CrowCpp microframework. Do NOT use
-## the @qcode{__webserve__} function directly!
+## the @qcode{__webserve__} function or the @qcode{WebInstance} class directly!
 ##
 ## @seealso{Html, WebServer}
 ## @end deftypefn
@@ -51,17 +51,17 @@ classdef WebServer < handle
   methods (Access = private)
 
     ## Constructor
-    function this = WebServer (varargin)
+    function this = WebInstance (varargin)
 
       ## Handle the optional pair arguments
       if (mod (numel (varargin), 2) != 0)
-        error ("WebServer: optional arguments must be in Name,Value pairs.");
+        error ("WebInstance: optional arguments must be in Name,Value pairs.");
       endif
       while (numel (varargin) > 0)
         switch (lower (varargin{1}))
           case "bind-address"
             if (! ischar (varargin{2}))
-              error ("WebServer: 'bindaddress' must be a character vector.");
+              error ("WebInstance: 'bindaddress' must be a character vector.");
             endif
             this.addr = varargin{2};
 
@@ -69,13 +69,13 @@ classdef WebServer < handle
             port = varargin{2};
             if (! (isnumeric (port) && isscalar (port) &&
                    fix (port) == port && port > 0 && port <= 65535))
-              error (strcat (["WebServer: 'port' must be a scalar"], ...
+              error (strcat (["WebInstance: 'port' must be a scalar"], ...
                              [" integer value assigning a valid port."]));
             endif
             this.port = port;
 
           otherwise
-            error ("WebServer: unknown optional argument.");
+            error ("WebInstance: unknown optional argument.");
         endswitch
         varargin([1:2]) = [];
       endwhile
@@ -100,19 +100,18 @@ classdef WebServer < handle
     endfunction
 
     ## -*- texinfo -*-
-    ## @deftypefn  {chartjs} {} update (@var{obj}, @var{ctx})
+    ## @deftypefn  {chartjs} {} serve (@var{obj}, @var{ctx})
     ##
     ## Update the WebServer's content.
     ##
-    ## @code{update (@var{obj}, @var{ctx})} updates the content served by a
+    ## @code{serve (@var{obj}, @var{ctx})} updates the content served by a
     ## WebServer instance, @var{obj}.  @var{ctx} can either be a @qcode{*Chart}
     ## object or a character vector containing any text/HTML string.
     ##
-    ## @seealso{BarChart, BubbleChart, DoughnutChart, LineChart, PieChart,
-    ## PolarAreaChart, RadarChart, ScatterChart, WebServer}
+    ## @seealso{WebServer}
     ## @end deftypefn
 
-    function update (this, ctx)
+    function serve (this, ctx)
 
       ## Valid Chart objects
       valid_charts = {"BarChart", "BubbleChart", "DoughnutChart", ...
@@ -144,18 +143,20 @@ classdef WebServer < handle
   methods (Static)
 
     ## -*- texinfo -*-
-    ## @deftypefn  {chartjs} {@var{obj} =} WebServer.start ()
-    ## @deftypefnx {chartjs} {@var{obj} =} WebServer.start (@var{Name}, @var{Value}, @dots{})
+    ## @deftypefn  {chartjs} {@var{obj} =} WebInstance.instance ()
+    ## @deftypefnx {chartjs} {@var{obj} =} WebInstance.instance (@var{Name}, @var{Value}, @dots{})
     ##
-    ## Initialize a WebServer instance.
+    ## Get a WebServer instance.
     ##
-    ## @code{@var{obj} = WebServer.start ()} initializes a web server instance,
-    ## which by default listens to the @qcode{localhost} on port @qcode{8080}
-    ## and returns its handle to the @qcode{WebServer} object, @var{obj}.
+    ## @code{@var{obj} = WebInstance.instance ()} returns a web server instance.
+    ## If the server has not been initialized before it will be opened listening
+    ## on port @qcode{8080} of the @qcode{localhost}.
     ##
-    ## @code{@var{obj} = WebServer.start (@dots{}, @var{Name}, @var{Value})}
-    ## initializes a WebServer instance with the settings specified by one or
+    ## @code{@var{obj} = WebInstance.instance (@dots{}, @var{Name}, @var{Value})}
+    ## initializes a WebInstance instance with the settings specified by one or
     ## more of the following @qcode{@var{Name}, @var{Value}} pair arguments.
+    ## NOTE: This will only take effect if the WebInstance hasn't been
+    ## initialized before in the same Octave session.
     ##
     ## @multitable @columnfractions 0.18 0.02 0.80
     ## @headitem @var{Name} @tab @tab @var{Value}
@@ -167,19 +168,19 @@ classdef WebServer < handle
     ## bind-address of the web server instance.  The default value is
     ## @qcode{"127.0.0.1"}.
     ##
-    ## @seealso{WebServer}
+    ## @seealso{WebInstance}
     ## @end deftypefn
 
-    function this = start (varargin)
+    function this = instance (varargin)
 
-      persistent instance;
+      persistent singleton_instance;
       mlock ();
 
-      if (isempty (instance))
-        instance = WebServer (varargin{:});
+      if (isempty (singleton_instance))
+        singleton_instance = WebInstance (varargin{:});
       endif
 
-      this = instance;
+      this = singleton_instance;
     endfunction
 
   endmethods
