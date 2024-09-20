@@ -109,26 +109,40 @@ classdef Html
 
     ## -*- texinfo -*-
     ## @deftypefn  {chartjs} {} webserve (@var{obj})
+    ## @deftypefn  {chartjs} {} webserve (@var{obj}, @var{html})
     ##
     ## Serve Chart online.
     ##
     ## @code{webserve (@var{obj})} serves the HTML describing the Chart object
-    ## to a web server.  If the web server hasn't started yet, it is initialized
-    ## automatically with default settings.
+    ## to a web server.
     ##
-    ## If the server should run with non-default settings, use the
-    ## @code{webinitialize} method before calling the @code{webserve} method of
-    ## any of the @obj{*Chart} class objects to initialize the server manually.
+    ## @code{webserve (@var{obj}, @var{html})} serves the string @var{html}
+    ## to a web server.  This could be a (modified) version of the string
+    ## returned by the method @code{htmlstring}.
+    ##
+    ## If the web server has not started yet, it is initialized automatically
+    ## with default settings.  If the server should run with non-default
+    ## settings, use the @code{webinitialize} method before calling the
+    ## @code{webserve} method of any of the @obj{*Chart} class objects to
+    ## initialize the server manually.
     ##
     ## @seealso{BarChart, BubbleChart, DoughnutChart, LineChart, PieChart,
     ## PolarAreaChart, RadarChart, ScatterChart, WebServer}
     ## @end deftypefn
 
-    function webserve (this)
+    function webserve (this, html)
+
+      if (nargin > 1 && ! ischar (html))
+        error ("webserve: input argument must be a string")
+      endif
 
       webserver = WebServer.start ();
 
-      webserver.update (this);
+      if (nargin > 1)
+        webserver.update (html);
+      else
+        webserver.update (this);
+      endif
 
     endfunction
 
