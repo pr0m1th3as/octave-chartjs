@@ -114,7 +114,11 @@ classdef Html
     ##
     ## @code{webserve (@var{obj})} serves the HTML describing the Chart object
     ## to a web server.  If the web server hasn't started yet, it is initialized
-    ## with default settings.
+    ## automatically with default settings.
+    ##
+    ## If the server should run with non-default settings, use the
+    ## @code{webinitialize} method before calling the @code{webserve} method of
+    ## any of the @obj{*Chart} class objects to initialize the server manually.
     ##
     ## @seealso{BarChart, BubbleChart, DoughnutChart, LineChart, PieChart,
     ## PolarAreaChart, RadarChart, ScatterChart, WebServer}
@@ -125,6 +129,38 @@ classdef Html
       webserver = WebServer.start ();
 
       webserver.update (this);
+
+    endfunction
+
+    ## -*- texinfo -*-
+    ## @deftypefn  {chartjs} {} webinitialize (@var{obj})
+    ## @deftypefnx {chartjs} {} webinitialize (@var{obj}, @var{Name}, @var{Value}, @dots{})
+    ##
+    ## Initialize a WebServer instance.
+    ##
+    ## @code{webinitialize (@var{obj})} initializes a web server instance,
+    ## which by default listens to the @qcode{localhost} on port @qcode{8080}.
+    ##
+    ## @code{webinitialize (@var{obj}, @var{Name}, @var{Value}, @dots{})}
+    ## initializes a web server instance with the settings specified by one or
+    ## more of the following @qcode{@var{Name}, @var{Value}} pair arguments.
+    ##
+    ## @multitable @columnfractions 0.18 0.02 0.80
+    ## @headitem @var{Name} @tab @tab @var{Value}
+    ##
+    ## @item @qcode{port} @tab @tab A numeric integer value specifying the
+    ## listening port of the web server instance.  The default value is 8080.
+    ##
+    ## @item @qcode{bind-address} @tab @tab A character vector specifying the
+    ## bind-address of the web server instance.  The default value is
+    ## @qcode{"127.0.0.1"}.
+    ##
+    ## @seealso{WebServer}
+    ## @end deftypefn
+
+    function webinitialize (this, varargin)
+
+      WebServer.start (varargin{:});
 
     endfunction
 
