@@ -116,10 +116,6 @@ classdef Html
     ## @code{webserve (@var{obj})} serves the HTML describing the Chart object
     ## to a web server.
     ##
-    ## @code{webserve (@var{obj}, @var{html})} serves the string @var{html}
-    ## to a web server.  This could be a (modified) version of the string
-    ## returned by the method @code{htmlstring}.
-    ##
     ## If the web server has not started yet, it is initialized automatically
     ## with default settings.  If the server should run with non-default
     ## settings, use the @code{webinitialize} method before calling the
@@ -130,51 +126,11 @@ classdef Html
     ## PolarAreaChart, RadarChart, ScatterChart, WebServer}
     ## @end deftypefn
 
-    function webserve (this, html)
-
-      if (nargin > 1 && ! ischar (html))
-        error ("webserve: input argument must be a string")
-      endif
+    function webserve (this)
 
       webserver = WebServer ();
 
-      if (nargin > 1)
-        webserver.serve (html);
-      else
-        webserver.serve (this);
-      endif
-
-    endfunction
-
-    ## -*- texinfo -*-
-    ## @deftypefn  {chartjs} {} webinitialize (@var{obj})
-    ## @deftypefnx {chartjs} {} webinitialize (@var{obj}, @var{Name}, @var{Value}, @dots{})
-    ##
-    ## Initialize a WebServer instance.
-    ##
-    ## @code{webinitialize (@var{obj})} initializes a web server instance,
-    ## which by default listens to the @qcode{localhost} on port @qcode{8080}.
-    ##
-    ## @code{webinitialize (@var{obj}, @var{Name}, @var{Value}, @dots{})}
-    ## initializes a web server instance with the settings specified by one or
-    ## more of the following @qcode{@var{Name}, @var{Value}} pair arguments.
-    ##
-    ## @multitable @columnfractions 0.18 0.02 0.80
-    ## @headitem @var{Name} @tab @tab @var{Value}
-    ##
-    ## @item @qcode{port} @tab @tab A numeric integer value specifying the
-    ## listening port of the web server instance.  The default value is 8080.
-    ##
-    ## @item @qcode{bind-address} @tab @tab A character vector specifying the
-    ## bind-address of the web server instance.  The default value is
-    ## @qcode{"127.0.0.1"}.
-    ##
-    ## @seealso{WebServer}
-    ## @end deftypefn
-
-    function webinitialize (this, varargin)
-
-      WebServer.initialize (varargin{:});
+      webserver.serve (this);
 
     endfunction
 
