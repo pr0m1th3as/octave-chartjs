@@ -16,6 +16,78 @@
 ## this program; if not, see <http://www.gnu.org/licenses/>.
 
 classdef Color
+## -*- texinfo -*-
+## @deftypefn  {chartjs} {@var{obj} =} Color (@var{value})
+##
+## A class for creating Chart.js compatible Color objects.
+##
+## @code{@var{obj} = Color (@var{value})} returns a Color object defined by
+## @var{value}, which can either be a character vector, a cellstring array, a
+## numeric matrix, or a cell matrix containing the following combinations.  Each
+## Color object only applies to a given dataset.  If you want to pass different
+## color patterns to multiple datasets when constructing a Chart object, then
+## you need to pass a Color object array to the Chart's constructor.
+##
+## When @var{value} is character vector, it can define a single color either by
+## using one of the acceptable color names given below or by using hexadecimal
+## string values in the forms @qcode{#FFFFFF} and @qcode{#FFFFFFFF}.  The former
+## defines an @qcode{RGB} color space, whereas the later defines an @qcode{RGBA}
+## color space that includes transparency.
+##
+## Valid color names are:
+## @itemize
+## @item @code{beige}
+## @item @code{black}
+## @item @code{blue}, @code{lightblue}, @code{darkblue}
+## @item @code{brown}
+## @item @code{coral}, @code{lightcoral}
+## @item @code{cyan}, @code{darkcyan}
+## @item @code{green}, @code{lightgreen}, @code{darkgreen}
+## @item @code{gray}, @code{grey}, @code{lightgray}, @code{lightgrey},
+## @code{darkgray}, @code{darkgrey}
+## @item @code{magenta}, @code{darkmagenta}
+## @item @code{pink}
+## @item @code{red}, @code{darkred}
+## @item @code{white}
+## @item @code{yellow}, @code{lightyellow}
+## @end itemize
+##
+## If you want to apply multiple colors to a given dataset, then you can use a
+## cellstring array whose elements follow the requirements for character vector
+## values described above.  The cellstring array must be a vector and its
+## elements can interchangeably contain known color names or hexadecimal color
+## values.
+##
+## If @var{value} is a numeric, it follows Octave's native @qcode{RGB} tripplet
+## syntax.  An @qcode{RGB} triplet is a @math{1x3} vector where each value is
+## between 0 and 1 inclusive.  The first value represents the percentage of Red,
+## the second value the percentage of Green, and the third value the percentage
+## of Blue.  This syntax is also extended to support @qcode{RGBA} quadruplets,
+## in which case the fourth value (also between 0 and 1 inclusive) of the
+## @math{1x4} vector represents the transparency.  If you want to apply multiple
+## colors to a given dataset, then you can pass a numeric matrix of @math{Nx3}
+## or @math{Nx4} size with each row representing a distinct @qcode{RGB} tripplet
+## or @qcode{RGBA} quadruplet, respectively.
+##
+## Alternatively you can define @var{value} as a cell array with two elements or
+## an @math{Nx2} cell matrix in case you need to specify multiple colors in the
+## same dataset.  The first element of each row represents a color space name,
+## which can be any of the four available choices: @code{rgb}, @code{rgba},
+## @code{hsl}, and @code{hsla}.  The second element of each row must be a
+## numeric @math{1x3} vector for @code{rgb} and @code{hsl} color spaces, or a
+## numeric @math{1x4} vector for @code{rgba} and @code{hsla} color spaces.  When
+## assigning color value(s) as a cell array, the @qcode{RGB} values must be
+## between 0 and 255 inclusive, the @qcode{hue} value must be between 0 and 360
+## inclusive, the @qcode{saturation} and @qcode{lightness} values must be
+## percentages between 0 and 100 inclusive, whereas the @qcode{alpha} value must
+## be between 0 and 1 inclusive.  All numeric values except for the transparency
+## are expected to be integer values, otherwise they are rounded to the nearest
+## integer.
+##
+## @seealso{BarChart, BarData, BubbleChart, BubbleData, DoughnutChart,
+## DoughnutData, LineChart, LineData, PieChart, PieData, PolarAreaChart,
+## PolarAreaData, RadarChart, RadarData, ScatterChart, ScatterData}
+## @end deftypefn
 
   properties (SetAccess = protected)
 
@@ -142,7 +214,17 @@ classdef Color
 
     endfunction
 
-    ## Return value to json string
+    ## -*- texinfo -*-
+    ## @deftypefn  {Color} {@var{json} =} jsonstring (@var{obj})
+    ##
+    ## Generate the JSON string of a Color object.
+    ##
+    ## @code{jsonstring (@var{obj})} returns a character vector, @var{json},
+    ## describing the context of the Color object in json format.
+    ##
+    ## @seealso{Color, Fill}
+    ## @end deftypefn
+
     function json = jsonstring (this)
 
       json = this.color;
@@ -159,27 +241,46 @@ function TF = check_hexcolor (value)
 endfunction
 
 function pstr = namespacevector (value)
+  if (numel (value) != 2)
+    error ("Color: mismatched cell size for assigning color space value.");
+  endif
   if (! ischar (value{1}))
     error ("Color: invalid value for color name space.");
   endif
+  cval = value{2};
   if (strcmpi (value{1}, "rgb"))
-    if (numel (value{2}) != 3)
+    if (numel (cval) != 3)
       error ("Color: mismatched vector for 'RGB' value space.");
+    endif
+    if (any (cval < 0) || any (cval > 255))
+      error ("Color: invalid numeric value in 'RGB' value space.");
     endif
     pstr = sprintf ("'rbg(%i, %i, %i)'", value{2});
   elseif (strcmpi (value{1}, "rgba"))
-    if (numel (value{2}) != 4)
+    if (numel (cval) != 4)
       error ("Color: mismatched vector for 'RGBA' value space.");
+    endif
+    if (any (cval([1:3]) < 0) || any (cval([1:3]) > 255)
+                              || cval(4) < 0 || cval(4) > 1)
+      error ("Color: invalid numeric value in 'RGBA' value space.");
     endif
     pstr = sprintf ("'rbga(%i, %i, %i, %d)'", value{2});
   elseif (strcmpi (value{1}, "hsl"))
-    if (numel (value{2}) != 3)
+    if (numel (cval) != 3)
       error ("Color: mismatched vector for 'HSL' value space.");
+    endif
+    if (any (cval([2:3]) < 0) || any (cval([2:3]) > 100)
+                              || cval(1) < 0 || cval(1) > 360)
+      error ("Color: invalid numeric value in 'HSL' value space.");
     endif
     pstr = sprintf ("'hsl(%i, %i%%, %i%%)'", value{2});
   elseif (strcmpi (value{1}, "hsla"))
-    if (numel (value{2}) != 4)
+    if (numel (cval) != 4)
       error ("Color: mismatched vector for 'HSLA' value space.");
+    endif
+    if (any (cval([2:3]) < 0) || any (cval([2:3]) > 100) ||
+        cval(1) < 0 || cval(1) > 360 || cval(4) < 0 || cval(4) > 1)
+      error ("Color: invalid numeric value in 'HSLA' value space.");
     endif
     pstr = sprintf ("'hsl(%i, %i%%, %i%%, %d)'", value{2});
   else
@@ -199,14 +300,52 @@ endfunction
 %!error <Color: invalid size of numeric value vector.> Color ([2, 3])
 %!error <Color: invalid size of numeric value matrix.> Color (ones (2))
 %!error <Color: invalid VALUE input.> Color (true)
+%!error <Color: mismatched cell size for assigning color space value.> ...
+%! Color ({"rgba", [1, 1, 1], 1})
 %!error <Color: invalid value for color name space.> Color ({1, [1, 1, 1]})
 %!error <Color: mismatched vector for 'RGB' value space.> ...
 %! Color ({"rgb", [1, 1, 1, 1]})
+%!error <Color: invalid numeric value in 'RGB' value space.> ...
+%! Color ({"rgb", [-1, 1, 1]})
+%!error <Color: invalid numeric value in 'RGB' value space.> ...
+%! Color ({"rgb", [1, 256, 1]})
+%!error <Color: invalid numeric value in 'RGB' value space.> ...
+%! Color ({"rgb", [1, 255, -0.5]})
 %!error <Color: mismatched vector for 'RGBA' value space.> ...
 %! Color ({"rgba", [1, 1, 1]})
+%!error <Color: invalid numeric value in 'RGBA' value space.> ...
+%! Color ({"rgba", [-1, 1, 1, 1]})
+%!error <Color: invalid numeric value in 'RGBA' value space.> ...
+%! Color ({"rgba", [1, 256, 1, 1]})
+%!error <Color: invalid numeric value in 'RGBA' value space.> ...
+%! Color ({"rgba", [1, 255, -0.5, 1]})
+%!error <Color: invalid numeric value in 'RGBA' value space.> ...
+%! Color ({"rgba", [1, 255, 1, 1.2]})
+%!error <Color: invalid numeric value in 'RGBA' value space.> ...
+%! Color ({"rgba", [1, 255, 1, -0.2]})
 %!error <Color: mismatched vector for 'HSL' value space.> ...
 %! Color ({"hsl", [1, 1, 1, 1]})
+%!error <Color: invalid numeric value in 'HSL' value space.> ...
+%! Color ({"hsl", [-1, 1, 1]})
+%!error <Color: invalid numeric value in 'HSL' value space.> ...
+%! Color ({"hsl", [361, 1, 1]})
+%!error <Color: invalid numeric value in 'HSL' value space.> ...
+%! Color ({"hsl", [1, 101, 1]})
+%!error <Color: invalid numeric value in 'HSL' value space.> ...
+%! Color ({"hsl", [1, 1, -1]})
 %!error <Color: mismatched vector for 'HSLA' value space.> ...
 %! Color ({"hsla", [1, 1, 1]})
+%!error <Color: invalid numeric value in 'HSLA' value space.> ...
+%! Color ({"hsla", [-1, 1, 1, 1]})
+%!error <Color: invalid numeric value in 'HSLA' value space.> ...
+%! Color ({"hsla", [361, 1, 1, 1]})
+%!error <Color: invalid numeric value in 'HSLA' value space.> ...
+%! Color ({"hsla", [1, 101, 1, 1]})
+%!error <Color: invalid numeric value in 'HSLA' value space.> ...
+%! Color ({"hsla", [1, 1, -1, 1]})
+%!error <Color: invalid numeric value in 'HSLA' value space.> ...
+%! Color ({"hsla", [1, 1, 1, 1.2]})
+%!error <Color: invalid numeric value in 'HSLA' value space.> ...
+%! Color ({"hsla", [1, 1, 1, -0.2]})
 %!error <Color: 'ASD' is an invalid color name space.> ...
 %! Color ({"ASD", [1, 1, 1]})
