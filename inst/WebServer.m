@@ -85,14 +85,19 @@ classdef WebServer < handle
 
     endfunction
 
-    ## Destructor
-    function delete (this)
-      __webserve__ (0);
-    endfunction
-
   endmethods
 
   methods
+
+    ## Destructor
+    ## NEVER CALL DESTRUCTOR FOR AN OBJECT OF THIS CLASS MANUALLY !!!
+
+    function delete (this)
+
+      # stop Crow server before exit
+      __webserve__ (0);
+
+    endfunction
 
     ## -*- texinfo -*-
     ## @deftypefn  {chartjs} {} update (@var{obj}, @var{ctx})
