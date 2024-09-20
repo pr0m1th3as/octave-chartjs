@@ -1,6 +1,6 @@
 ## Copyright (C) 2024 Andreas Bertsatos <abertsatos@biol.uoa.gr>
 ##
-## This file is part of the statistics package for GNU Octave.
+## This file is part of the chartjs package for GNU Octave.
 ##
 ## This program is free software; you can redistribute it and/or modify it under
 ## the terms of the GNU General Public License as published by the Free Software
