@@ -22,10 +22,10 @@ classdef BarChart < Html
 ##
 ## Create a @qcode{BarChart} object.
 ##
-## @code{@var{obj} = BarChart (@var{data}, @var{labels})} returns a BarChart
-## object, in which @var{data} contain the bar heights (by default along the
-## @qcode{y-axis}) and @var{labels} contain the bar labels (by default along the
-## @qcode{x-axis}).
+## @code{@var{obj} = BarChart (@var{data}, @var{labels})} returns a
+## @qcode{BarChart} object, in which @var{data} contain the bar heights (by
+## default along the @qcode{y-axis}) and @var{labels} contain the bar labels (by
+## default along the @qcode{x-axis}).
 ##
 ## @itemize
 ## @item
@@ -41,10 +41,10 @@ classdef BarChart < Html
 ## @end itemize
 ##
 ## @code{@var{obj} = BarChart (@dots{}, @var{Name}, @var{Value})} returns a
-## BarChart object with the properties of each dataset specified by one or more
-## @qcode{@var{Name}, @var{Value}} pair arguments.  @var{Name} can be any
-## property name of a @qcode{BarData} object and @var{Value} must correspond to
-## the data type(s) and values accepted by that property.
+## @qcode{BarChart} object with the properties of each dataset specified by one
+## or more @qcode{@var{Name}, @var{Value}} pair arguments.  @var{Name} can be
+## any property name of a @qcode{BarData} object and @var{Value} must correspond
+## to the data type(s) and values accepted by that property.
 ## Type @code{help BarData} for more details on the available properties.
 ##
 ## Specifically for the properties that accept a @qcode{Color} object as their

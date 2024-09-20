@@ -21,11 +21,11 @@ classdef BarData
 ##
 ## Create a @qcode{BarData} object.
 ##
-## @code{@var{obj} = BarData (@var{data})} returns a BarData object, in which
-## @var{data} must be a nonempty numerical vector containing the bar heights of
-## a single dataset.  Constructing a @qcode{BarData} object always assigns the
-## default property values, which can later be modified using dot notation
-## syntax.
+## @code{@var{obj} = BarData (@var{data})} returns a @qcode{BarData} object, in
+## which @var{data} must be a nonempty numerical vector containing the bar
+## heights of a single dataset.  Constructing a @qcode{BarData} object always
+## assigns the default property values, which can later be modified using dot
+## notation syntax.
 ##
 ## A @qcode{BarData} object, @var{obj}, contains the following properties:
 ##

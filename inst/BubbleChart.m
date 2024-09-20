@@ -16,6 +16,87 @@
 ## this program; if not, see <http://www.gnu.org/licenses/>.
 
 classdef BubbleChart < Html
+## -*- texinfo -*-
+## @deftypefn  {chartjs} {@var{obj} =} BubbleChart (@var{X}, @var{Y}, @var{R})
+## @deftypefnx {chartjs} {@var{obj} =} BubbleChart (@dots{}, @var{Name}, @var{Value})
+##
+## Create a @qcode{BubbleChart} object.
+##
+## @code{@var{obj} = BubbleChart (@var{X}, @var{Y}, @var{R})} returns a
+## @qcode{BubbleChart} object, in which @var{X} and @var{Y} define the
+## coordinates along the @qcode{x-axis} and @qcode{y-axis}, respecitvely, and
+## @var{R} defines the radius for each element of the bubble chart.
+##
+## @itemize
+## @item
+## @var{X} must be a nonempty @math{NxP} numeric matrix, where each column
+## corresponds to a separate dataset and each row corresponds to an element of
+## the bubble chart defining its position along the @qcode{x-axis}.
+##
+## @item
+## @var{Y} must be a nonempty @math{NxP} numeric matrix, where each column
+## corresponds to a separate dataset and each row corresponds to an element of
+## the bubble chart defining its position along the @qcode{y-axis}.
+##
+## @item
+## @var{R} must be a nonempty @math{NxP} numeric matrix, where each column
+## corresponds to a separate dataset and each row corresponds to an element of
+## the bubble chart defining its radius.
+## @end itemize
+##
+## @code{@var{obj} = BubbleChart (@dots{}, @var{Name}, @var{Value})} returns a
+## @qcode{BubbleChart} object with the properties of each dataset specified by
+## one or more @qcode{@var{Name}, @var{Value}} pair arguments.  @var{Name} can
+## be any property name of a @qcode{BubbleData} object and @var{Value} must
+## correspond to the data type(s) and values accepted by that property.
+## Type @code{help BubbleData} for more details on the available properties.
+##
+## Specifically for the properties that accept a @qcode{Color} object as their
+## input value, besides the @qcode{Color} object you may also parse to the
+## @qcode{BubbleChart} constructor the same values accepted by the constructor
+## of the @qcode{Color} object.  However, if you choose to manually modify the
+## @qcode{BubbleChart}'s properties using the dot notation syntax, then you must
+## assign a @qcode{Color} object to the chosen property.  Type @code{help Color}
+## for more details on the available syntax.
+##
+## For properties that accept scalar values, you can pass a vector of the same
+## type with each element corresponding to a different dataset.  For properties
+## that accept vectors, you can pass a matrix of the same type with each row
+## corresponding to a different dataset.  Otherwise, the same property value
+## will be assigned to all datasets available in @var{data}.  For properties
+## accepting a character vector, you need to pass a cellstring array for
+## multiple datasets, whereas for properties that can take mixed types of scalar
+## values (i.e. either boolean and character vectors), you need to pass a cell
+## array with each element corresponding to a different dataset.
+##
+## A @qcode{BubbleChart} object, @var{obj}, stores the following properties,
+## which can be accessed/modified using dot notation syntax similarly to a
+## @qcode{struct} object:
+##
+## @multitable @columnfractions 0.23 0.02 0.75
+## @headitem @var{Field} @tab @tab @var{Description}
+##
+## @item @qcode{chartID} @tab @tab A character vector defining the name of the
+## Chart in the generated html code.
+##
+## @item @qcode{datasets} @tab @tab A cell array containing one or more
+## @qcode{BarData} objects corresponding to the @var{data} input.
+##
+## @item @qcode{labels} @tab @tab A numeric vector or a cellstring array with
+## the data labels defined in @var{labels}.
+##
+## @item @qcode{options} @tab @tab A cell array containing one or more
+## @qcode{Option} and @qcode{Plugin} objects.  Not used at the moment.
+##
+## @end multitable
+##
+## To directly serve the @qcode{BubbleChart} object on the web, you can parse it
+## to the @qcode{update} method of a @qcode{WebServer} object.  Alternatively,
+## you can generate and save to file the HTML code of your @qcode{BubbleChart}
+## object and serve it online through a web server of your choice.
+##
+## @seealso{BubbleData, Color, Fill, Html, WebServer}
+## @end deftypefn
 
   properties (Access = public)
 
