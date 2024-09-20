@@ -113,25 +113,11 @@ classdef WebInstance < handle
 
     function serve (this, ctx)
 
-      ## Valid Chart objects
-      valid_charts = {"BarChart", "BubbleChart", "DoughnutChart", ...
-                      "LineChart", "PieChart", "PolarAreaChart", ...
-                      "RadarChart", "ScatterChart"};
-
-      ## Parse input argument
-      if (isobject (ctx))
-        ## Chart objects
-        if (any (isa (ctx, valid_charts)))
-          this.html = htmlstring (ctx);
-        else
-          error ("WebServer.update: unsupported Chart object.");
-        endif
-
-      elseif (ischar (ctx))
-        this.html = ctx;
-      else
-        error ("WebServer.update: invalid web content.");
+      if (! ischar (ctx))
+        error ("WebInstance.serve: invalid web content.");
       endif
+
+      this.html = ctx;
 
       ## Update content
       __webserve__ (this.html);

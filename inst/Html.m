@@ -136,12 +136,12 @@ classdef Html
         error ("webserve: input argument must be a string")
       endif
 
-      webserver = WebServer.start ();
+      webserver = WebServer ();
 
       if (nargin > 1)
-        webserver.update (html);
+        webserver.serve (html);
       else
-        webserver.update (this);
+        webserver.serve (this);
       endif
 
     endfunction
@@ -174,7 +174,7 @@ classdef Html
 
     function webinitialize (this, varargin)
 
-      WebServer.start (varargin{:});
+      WebServer.initialize (varargin{:});
 
     endfunction
 
