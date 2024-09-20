@@ -126,7 +126,7 @@ classdef BarData
 ## value is @qcode{'auto'}, which should work in most cases.
 ##
 ## @item @qcode{label} @tab @tab A character vector defining the label of the
-## dataset which appearrs in the legend and tooltips.
+## dataset which appears in the legend and tooltips.
 ##
 ## @item @qcode{maxBarThickness} @tab @tab A numeric scalar value defining the
 ## maximum thickness of the bars in pixels.
@@ -200,7 +200,17 @@ classdef BarData
 
     endfunction
 
-    ## Export to json string
+    ## -*- texinfo -*-
+    ## @deftypefn  {BarData} {@var{json} =} jsonstring (@var{obj})
+    ##
+    ## Generate the JSON string of a BarData object.
+    ##
+    ## @code{jsonstring (@var{obj})} returns a character vector, @var{json},
+    ## describing the context of the BarData object in json format.
+    ##
+    ## @seealso{BarData, BarChart}
+    ## @end deftypefn
+
     function json = jsonstring (this, mixed = false)
 
       ## Initialize json string
