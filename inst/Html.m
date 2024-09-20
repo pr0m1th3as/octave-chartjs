@@ -107,6 +107,27 @@ classdef Html
 
     endfunction
 
+    ## -*- texinfo -*-
+    ## @deftypefn  {chartjs} {} webserve (@var{obj})
+    ##
+    ## Serve Chart online.
+    ##
+    ## @code{webserve (@var{obj})} serves the HTML describing the Chart object
+    ## to a web server.  If the web server hasn't started yet, it is initialized
+    ## with default settings.
+    ##
+    ## @seealso{BarChart, BubbleChart, DoughnutChart, LineChart, PieChart,
+    ## PolarAreaChart, RadarChart, ScatterChart, WebServer}
+    ## @end deftypefn
+
+    function webserve (this)
+
+      webserver = WebServer.start ();
+
+      webserver.update (this);
+
+    endfunction
+
   endmethods
 
 endclassdef
