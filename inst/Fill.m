@@ -16,6 +16,78 @@
 ## this program; if not, see <http://www.gnu.org/licenses/>.
 
 classdef Fill
+## -*- texinfo -*-
+## @deftypefn  {chartjs} {@var{obj} =} Fill (@var{value})
+## @deftypefnx {chartjs} {@var{obj} =} Fill (@var{value}, @var{toaxis})
+## @deftypefnx {chartjs} {@var{obj} =} Fill (@var{value}, @var{toaxis}, @var{above})
+## @deftypefnx {chartjs} {@var{obj} =} Fill (@var{value}, @var{toaxis}, @var{above}, @var{below})
+##
+## A class for creating Chart.js compatible Fill objects.
+##
+## Both @qcode{LineChart} and @qcode{RadarChart} objects support a fill option
+## on their respective dataset object which can be used to create space between
+## two datasets or a dataset and a boundary.  The created space can be filled
+## with a @qcode{Color} object, essentially transforming line and radar charts
+## into an area chart.
+##
+## @code{@var{obj} = Fill (@var{value})} returns a @qcode{Fill} object defined
+## by @var{value}, which can either be a character vector or a numeric scalar.
+## The following filling modes are supported.
+##
+## @multitable @columnfractions 0.33 0.02 0.65
+## @headitem @var{Mode} @tab @tab @var{Values}
+##
+## @item Absolute dataset index @tab @tab A numeric scalar indexing another
+## dataset as a boundary to constrain the created area.
+##
+## @item Relative dataset index @tab @tab A character vector of the form
+## @qcode{'-1', '-2', '+1', @dots{}} indexing another dataset as a boundary to
+## constrain the created area relative to the position of the referencing
+## dataset.
+##
+## @item Boundary @tab @tab A character vector with acceptable values
+## @qcode{'start'}, @qcode{'end'}, and @qcode{'origin'} which sets the boundary
+## of the created area to the start, the end, or the origin of the data axis,
+## respectively.
+##
+## @item Disabled @tab @tab A boolean scalar value.  When @qcode{true}, it is
+## equivalent to @qcode{'origin'}.  When @qcode{true}, the area is not created.
+##
+## @item Shape @tab @tab A character vector @qcode{'shape'} which creates an
+## area inside the line by connecting its end points.
+##
+## @item Axis value @tab @tab A numeric scalar, which references a value on the
+## data axis to be used as a boundary.  To use this option, the second input
+## argument @var{toaxis} must be set to @qcode{true}.
+## @end multitable
+##
+## @code{@var{obj} = Fill (@var{value}, @var{toaxis})} returns a @qcode{Fill}
+## object using the previously described syntaxes, while @var{toaxis} defines
+## whether the numeric value assigned to @var{value} references an absolute
+## dataset index (default: @qcode{@var{toaxis} = false}) or a value along the
+## data axis (@qcode{@var{toaxis} = true} which sets a line to be used as a
+## boundary.  When @var{toaxis} is set to @qcode{true}, @var{value} must be a
+## numeric scalar.  Passing an empty matrix to @var{toaxis}, results to the
+## default value (@qcode{@var{toaxis} = false}).
+##
+## @code{@var{obj} = Fill (@var{value}, @var{toaxis}, @var{above})} returns a
+## @qcode{Fill} object with an area created according to any of the previous
+## syntaxes, which is filled with the color defined in @var{above}.  @var{above}
+## can be a @qcode{Color} object defining a single color.  Alternatively, the
+## input value to the @qcode{Color} object can be passed directly to the
+## @var{above} input argument.
+##
+## @code{@var{obj} = Fill (@var{value}, @var{toaxis}, @var{above}, @var{below})}
+## returns a @qcode{Fill} object with an area created according to any of the
+## previous syntaxes, and the area below the target value (as defined by the
+## @var{value} and @var{toaxis} arguments) is filled with the color defined in
+## @var{below}.  Similarly to @var{above}, @var{below} can be a @qcode{Color}
+## object defining a single color.  Alternatively, the input value to the
+## @qcode{Color} object can be passed directly to the @var{below} input
+## argument.
+##
+## @seealso{LineChart, LineData, RadarChart, RadarData}
+## @end deftypefn
 
   properties (SetAccess = protected)
 
@@ -42,6 +114,9 @@ classdef Fill
       endif
 
       ## Check toaxis
+      if (isempty (toaxis))
+        toaxis = false;
+      endif
       if (! isbool (toaxis) || ! isscalar (toaxis))
         error ("Fill: TOAXIS must be a boolean scalar.");
       endif
@@ -112,7 +187,17 @@ classdef Fill
 
     endfunction
 
-    ## Export to json string
+    ## -*- texinfo -*-
+    ## @deftypefn  {Fill} {@var{json} =} jsonstring (@var{obj})
+    ##
+    ## Generate the JSON string of a Fill object.
+    ##
+    ## @code{jsonstring (@var{obj})} returns a character vector, @var{json},
+    ## describing the context of the Color object in json format.
+    ##
+    ## @seealso{Color, Fill}
+    ## @end deftypefn
+
     function json = jsonstring (this)
 
       ## Only target

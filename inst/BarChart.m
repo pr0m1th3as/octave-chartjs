@@ -86,10 +86,11 @@ classdef BarChart < Html
 ##
 ## @end multitable
 ##
-## To directly serve the @qcode{BarChart} object on the web, you can parse it to
-## the @qcode{update} method of a @qcode{WebServer} object.  Alternatively, you
-## can generate and save to file the HTML code of your @qcode{BarChart} object
-## and serve it online through a web server of your choice.
+## To directly serve the @qcode{BarChart} object on a local web server instance,
+## you can use the object's @qcode{webserve ()} method.  Alternatively, you can
+## generate and/or save to a file the corresponding HTML code with the
+## @qcode{htmlstring ()} and @qcode{htmlsave ()} methods and serve it online
+## through a web server of your choice.
 ##
 ## @seealso{BarData, Color, Fill, Html, WebServer}
 ## @end deftypefn

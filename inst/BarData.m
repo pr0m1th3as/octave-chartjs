@@ -72,12 +72,12 @@ classdef BarData
 ## valid on stacked bars, in which case the borders between stacked bars are
 ## skipped.
 ##
-## @item @qcode{borderWidth} @tab @tab A numeric scalar value defining the width
-## of the each bar's borders in pixels.  Omitted borders as defined by the
-## @qcode{borderSkipped} property are unaffected.
-##
 ## @item @qcode{borderRadius} @tab @tab A numeric scalar value defining the
 ## corner radius of the each bar in pixels.  Omitted borders as defined by the
+## @qcode{borderSkipped} property are unaffected.
+##
+## @item @qcode{borderWidth} @tab @tab A numeric scalar value defining the width
+## of the each bar's borders in pixels.  Omitted borders as defined by the
 ## @qcode{borderSkipped} property are unaffected.
 ##
 ## @item @qcode{categoryPercentage} @tab @tab A numeric scalar value, which
@@ -203,10 +203,10 @@ classdef BarData
     ## -*- texinfo -*-
     ## @deftypefn  {BarData} {@var{json} =} jsonstring (@var{obj})
     ##
-    ## Generate the JSON string of a BarData object.
+    ## Generate the JSON string from a @qcode{BarData} object.
     ##
     ## @code{jsonstring (@var{obj})} returns a character vector, @var{json},
-    ## describing the context of the BarData object in json format.
+    ## describing the context of a BarData dataset in json format.
     ##
     ## @seealso{BarData, BarChart}
     ## @end deftypefn

@@ -88,11 +88,11 @@ classdef BubbleData
 ## is @code{circle}.  As a boolean value, @qcode{true} defaults to @code{circle}
 ## and @qcode{true} defaults to @code{none}.
 ##
-## @item @qcode{rotation} @tab @tab A numeric scalar defining the bubble
-## rotation in degrees.
-##
 ## @item @qcode{radius} @tab @tab A numeric scalar defining the bubble radius
 ## for the entire dataset.
+##
+## @item @qcode{rotation} @tab @tab A numeric scalar defining the bubble
+## rotation in degrees.
 ##
 ## @end multitable
 ##
@@ -147,10 +147,10 @@ classdef BubbleData
     ## -*- texinfo -*-
     ## @deftypefn  {BubbleData} {@var{json} =} jsonstring (@var{obj})
     ##
-    ## Generate the JSON string of a BubbleData object.
+    ## Generate the JSON string from a @qcode{BubbleData} object.
     ##
     ## @code{jsonstring (@var{obj})} returns a character vector, @var{json},
-    ## describing the context of the BubbleData object in json format.
+    ## describing the context of the BubbleData dataset in json format.
     ##
     ## @seealso{BubbleData, BubbleChart}
     ## @end deftypefn
