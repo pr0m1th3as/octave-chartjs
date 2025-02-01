@@ -9,3 +9,4 @@ Categories: Data Visualization
 Depends: octave (>= 8.1.0)
 License: GPLv3+
 Url: https://github.com/pr0m1th3as/octave-chartjs
+Tracker: https://github.com/pr0m1th3as/octave-chartjs/issues
