@@ -21,8 +21,8 @@ function json = parseDataProperties (json, obj)
   if (! ischar (json) || ! isvector (json))
     error ("utils.parseprops: JSON must be a character vector.");
   endif
-  valid_class = {"BarData", "BubbleData", "PieData", "LineData", ...
-                 "PolarData", "RadarData", "ScatterData"};
+  valid_class = {"BarData", "BubbleData", "PieData", "DoughnutData", ...
+                 "LineData", "PolarData", "RadarData", "ScatterData"};
   if (! any (strcmp (class (obj), valid_class)))
     error ("utils.parseprops: OBJ is not a valid Chart Data class.");
   endif
@@ -502,8 +502,17 @@ function json = parseDataProperties (json, obj)
 
   ## Line, Radar
   if (isprop (obj, "spanGaps"))
-    if (obj.spanGaps)
-      json = [json, newp, "spanGaps: true"];
+    if (! isempty (obj.spanGaps))
+      if (isbool (obj.spanGaps))
+        if (obj.spanGaps)
+          json = [json, newp, "spanGaps: true"];
+        else
+          json = [json, newp, "spanGaps: false"];
+        endif
+      else
+        pstr = sprintf ("spanGaps: %f", obj.spanGaps);
+        json = [json, newp, pstr];
+      endif
     endif
   endif
 

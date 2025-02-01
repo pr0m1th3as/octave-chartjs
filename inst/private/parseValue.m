@@ -73,6 +73,9 @@ function obj = parseValue (obj, pname, value, validstr, type)
   elseif (strcmp (type, "string"))
     ## Character vector for each dataset
     if (ischar (value))
+      if (! isvector (value))
+        error ("%s: mismatched size for '%s' property.", class (obj), pname);
+      endif
       if (! any (strcmpi (value, validstr)))
         error ("%s: invalid value for '%s' property.", class (obj), pname);
       endif
@@ -84,6 +87,9 @@ function obj = parseValue (obj, pname, value, validstr, type)
         value = repmat (value, nsets, 1);
       endif
       for i = 1:nsets
+        if (! isvector (value{i}))
+          error ("%s: mismatched size for '%s' property.", class (obj), pname);
+        endif
         if (! any (strcmpi (value{i}, validstr)))
           error ("%s: invalid value for '%s' property.", class (obj), pname);
         endif
@@ -110,9 +116,63 @@ function obj = parseValue (obj, pname, value, validstr, type)
       error ("%s: mismatched size for '%s' property.", class (obj), pname);
     endif
 
+  elseif (strcmp (type, "boolnumber"))
+    ## Boolean or numeric scalar for each dataset
+    if (isbool (value))
+      if (isscalar (value))
+        for i = 1:nsets
+          obj.datasets{i}.(pname) = value;
+        endfor
+      elseif (numel (value) == nsets)
+        for i = 1:nsets
+          obj.datasets{i}.(pname) = value(i);
+        endfor
+      else
+        error ("%s: mismatched size for '%s' property.", class (obj), pname);
+      endif
+    elseif (isnumeric (value))
+      if (! isfinite (value) || ! isvector (value))
+        error ("%s: invalid value for '%s' property.", class (obj), pname);
+      endif
+      if (isscalar (value))
+        for i = 1:nsets
+          obj.datasets{i}.(pname) = value;
+        endfor
+      elseif (numel (value) == nsets)
+        for i = 1:nsets
+          obj.datasets{i}.(pname) = value(i);
+        endfor
+      else
+        error ("%s: mismatched size for '%s' property.", class (obj), pname);
+      endif
+    elseif (iscell (value))
+      if (isscalar (value))
+        value = repmat (value, nsets, 1);
+      elseif (numel (value) != nsets)
+        error ("%s: mismatched size for '%s' property.", class (obj), pname);
+      endif
+      for i = 1:nsets
+        if (isbool (value{i}))
+          obj.datasets{i}.(pname) = value{i};
+        elseif (isnumeric (value{i}))
+          if (! isfinite (value{i}) || ! isscalar (value{i}))
+            error ("%s: invalid value for '%s' property.", class (obj), pname);
+          endif
+          obj.datasets{i}.(pname) = value{i};
+        else
+          error ("%s: invalid value for '%s' property.", class (obj), pname);
+        endif
+      endfor
+    else
+      error ("%s: invalid value for '%s' property.", class (obj), pname);
+    endif
+
   elseif (strcmp (type, "boolstring"))
     ## Boolean or character vector for each dataset
     if (ischar (value))
+      if (! isvector (value))
+        error ("%s: mismatched size for '%s' property.", class (obj), pname);
+      endif
       if (! any (strcmp (value, validstr)))
         error ("%s: invalid value for '%s' property.", class (obj), pname);
       endif
@@ -131,6 +191,9 @@ function obj = parseValue (obj, pname, value, validstr, type)
         if (isbool (value{i}))
           obj.datasets{i}.(pname) = value{i};
         elseif (ischar (value{i}))
+          if (! isvector (value{i}))
+            error ("%s: mismatched size for '%s' property.", class (obj), pname);
+          endif
           if (! any (strcmp (value{i}, validstr)))
             error ("%s: invalid value for '%s' property.", class (obj), pname);
           endif
@@ -146,6 +209,9 @@ function obj = parseValue (obj, pname, value, validstr, type)
   elseif (strcmp (type, "numstring"))
     ## Numeric or character vector for each dataset
     if (ischar (value))
+      if (! isvector (value))
+        error ("%s: mismatched size for '%s' property.", class (obj), pname);
+      endif
       if (! any (strcmp (value, validstr)))
         error ("%s: invalid value for '%s' property.", class (obj), pname);
       endif
@@ -153,20 +219,34 @@ function obj = parseValue (obj, pname, value, validstr, type)
         obj.datasets{i}.(pname) = value;
       endfor
     elseif (isnumeric (value))
-      if (isscalar (value))
-        value = repmat (value, nsets, 1);
+      if (! isfinite (value) || ! isvector (value))
+        error ("%s: invalid value for '%s' property.", class (obj), pname);
       endif
-      for i = 1:nsets
-        obj.datasets{i}.(pname) = value(i);
-      endfor
+      if (isscalar (value))
+        for i = 1:nsets
+          obj.datasets{i}.(pname) = value;
+        endfor
+      elseif (numel (value) == nsets)
+        for i = 1:nsets
+          obj.datasets{i}.(pname) = value(i);
+        endfor
+      else
+        error ("%s: mismatched size for '%s' property.", class (obj), pname);
+      endif
     elseif (iscellstr (value) || iscell (value))
       if (isscalar (value))
         value = repmat (value, nsets, 1);
       endif
       for i = 1:nsets
         if (isnumeric (value{i}))
+          if (! isfinite (value{i}) || ! isscalar (value{i}))
+            error ("%s: invalid value for '%s' property.", class (obj), pname);
+          endif
           obj.datasets{i}.(pname) = value{i};
         elseif (ischar (value{i}))
+          if (! isvector (value{i}))
+            error ("%s: mismatched size for '%s' property.", class (obj), pname);
+          endif
           if (! any (strcmp (value{i}, validstr)))
             error ("%s: invalid value for '%s' property.", class (obj), pname);
           endif
