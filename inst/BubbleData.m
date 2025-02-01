@@ -82,11 +82,12 @@ classdef BubbleData
 ##
 ## @item @qcode{pointStyle} @tab @tab A character vector or a boolean value
 ## defining the shape of the bubbles of the dataset.  As a character vector, it
-## can be any of the following values: @code{circle}, @code{cross},
-## @code{crossRot}, @code{dash}, @code{line}, @code{rect}, @code{rectRounded},
-## @code{rectRot}, @code{star}, @code{triangle}, and @code{none}.  By default it
-## is @code{circle}.  As a boolean value, @qcode{true} defaults to @code{circle}
-## and @qcode{true} defaults to @code{none}.
+## can be any of the following values: @qcode{'circle'}, @qcode{'cross'},
+## @qcode{'crossRot'}, @qcode{'dash'}, @qcode{'line'}, @qcode{'rect'},
+## @qcode{'rectRounded'}, @qcode{'rectRot'}, @qcode{'star'}, @qcode{'triangle'},
+## and @qcode{'none'}.  By default it is @qcode{'circle}.  As a boolean value,
+## @qcode{true} defaults to @qcode{'circle'} and @qcode{false} defaults to
+## @qcode{'none'}.
 ##
 ## @item @qcode{radius} @tab @tab A numeric scalar defining the bubble radius
 ## for the entire dataset.

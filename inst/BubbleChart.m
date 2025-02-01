@@ -24,7 +24,7 @@ classdef BubbleChart < Html
 ##
 ## @code{@var{obj} = BubbleChart (@var{X}, @var{Y}, @var{R})} returns a
 ## @qcode{BubbleChart} object, in which @var{X} and @var{Y} define the
-## coordinates along the @qcode{x-axis} and @qcode{y-axis}, respecitvely, and
+## coordinates along the @qcode{x-axis} and @qcode{y-axis}, respectively, and
 ## @var{R} defines the radius for each element of the bubble chart.
 ##
 ## @itemize
