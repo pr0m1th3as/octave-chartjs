@@ -1,19 +1,6 @@
  Initial release of octave-chartjs 0.1.0:
 -------------------------------------------------------------------
 
- New functions:
- ==============
-
- ** utils.parseColor
-
- ** utils.parseDataProperties
-
- ** utils.parseStyle
-
- ** utils.parseValue
-
- ** webserve
-
  New classdefs:
  ==============
 
@@ -52,3 +39,5 @@
  ** ScatterChart
 
  ** ScatterData
+
+ ** WebServer
