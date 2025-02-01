@@ -117,7 +117,7 @@ classdef PieData
 ##
 ## @end multitable
 ##
-## @seealso{DoughnutChart, Color, Fill}
+## @seealso{PieChart, Color, Fill}
 ## @end deftypefn
 
   properties (Access = public)
