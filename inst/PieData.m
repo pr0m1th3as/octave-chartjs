@@ -81,15 +81,15 @@ classdef PieData
 ## Default is empty, in which case the color is the same as in
 ## @qcode{borderColor}.
 ##
-## @item @qcode{hoverborderDash} @tab @tab A numeric vector defining the length
+## @item @qcode{hoverBorderDash} @tab @tab A numeric vector defining the length
 ## and spacing of dashes drawn at the borders of the arc segment, when the
 ## mouse hovers over it.
 ##
-## @item @qcode{hoverborderDashOffset} @tab @tab A numeric scalar defining the
+## @item @qcode{hoverBorderDashOffset} @tab @tab A numeric scalar defining the
 ## offset of dashes drawn at the borders of the arc segment, when the mouse
 ## hovers over it.
 ##
-## @item @qcode{hoverborderJoinStyle} @tab @tab A character vector defining the
+## @item @qcode{hoverBorderJoinStyle} @tab @tab A character vector defining the
 ## arc border join style, when the mouse hovers over it.  It can be either
 ## @qcode{'round'}, @qcode{'bevel'}, or @qcode{'miter'}.
 ##
