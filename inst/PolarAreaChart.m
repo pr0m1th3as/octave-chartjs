@@ -43,9 +43,9 @@ classdef PolarAreaChart < Html
 ## @code{@var{obj} = PolarAreaChart (@dots{}, @var{Name}, @var{Value})} returns
 ## a @qcode{PolarAreaChart} object with the properties of each dataset specified
 ## by one or more @qcode{@var{Name}, @var{Value}} pair arguments.  @var{Name}
-## can be any property name of a @qcode{PieData} object and @var{Value} must
-## correspond to the data type(s) and values accepted by that property.
-## Type @code{help PieData} for more details on the available properties.
+## can be any property name of a @qcode{PolarAreaData} object and @var{Value}
+## must correspond to the data type(s) and values accepted by that property.
+## Type @code{help PolarAreaData} for more details on the available properties.
 ##
 ## Specifically for the properties that accept a @qcode{Color} object as their
 ## input value, besides the @qcode{Color} object you may also parse to the
@@ -76,7 +76,7 @@ classdef PolarAreaChart < Html
 ## Chart in the generated html code.
 ##
 ## @item @qcode{datasets} @tab @tab A cell array containing one or more
-## @qcode{PieData} objects corresponding to the @var{data} input.
+## @qcode{PolarAreaData} objects corresponding to the @var{data} input.
 ##
 ## @item @qcode{labels} @tab @tab A numeric vector or a cellstring array with
 ## the data labels defined in @var{labels}.

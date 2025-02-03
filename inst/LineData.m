@@ -23,7 +23,7 @@ classdef LineData
 ##
 ## @code{@var{obj} = LineData (@var{data})} returns a @qcode{LineData}
 ## object, in which @var{data} must be a nonempty numerical vector containing
-## the proportional arc segments of a single dataset.  Constructing a
+## the data points of a single dataset to be plotted on a line.  Constructing a
 ## @qcode{LineData} object always assigns the default property values, which
 ## can later be modified using dot notation syntax.
 ##
