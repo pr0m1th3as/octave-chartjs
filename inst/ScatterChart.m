@@ -1,4 +1,4 @@
-## Copyright (C) 2024 Andreas Bertsatos <abertsatos@biol.uoa.gr>
+## Copyright (C) 2024-2025 Andreas Bertsatos <abertsatos@biol.uoa.gr>
 ##
 ## This file is part of the chartjs package for GNU Octave.
 ##
@@ -16,6 +16,82 @@
 ## this program; if not, see <http://www.gnu.org/licenses/>.
 
 classdef ScatterChart < Html
+## -*- texinfo -*-
+## @deftypefn  {chartjs} {@var{obj} =} ScatterChart (@var{X}, @var{Y})
+## @deftypefnx {chartjs} {@var{obj} =} ScatterChart (@dots{}, @var{Name}, @var{Value})
+##
+## Create a @qcode{ScatterChart} object.
+##
+## @code{@var{obj} = ScatterChart (@var{X}, @var{Y})} returns a
+## @qcode{ScatterChart} object, in which @var{X} and @var{Y} define the
+## coordinates along the @qcode{x-axis} and @qcode{y-axis}, respectively.
+##
+## @itemize
+## @item
+## @var{X} must be a nonempty @math{NxP} numeric matrix, where each column
+## corresponds to a separate dataset and each row corresponds to an element of
+## the bubble chart defining its position along the @qcode{x-axis}.
+##
+## @item
+## @var{Y} must be a nonempty @math{NxP} numeric matrix, where each column
+## corresponds to a separate dataset and each row corresponds to an element of
+## the bubble chart defining its position along the @qcode{y-axis}.
+## @end itemize
+##
+## @code{@var{obj} = ScatterChart (@dots{}, @var{Name}, @var{Value})} returns a
+## @qcode{ScatterChart} object with the properties of each dataset specified by
+## one or more @qcode{@var{Name}, @var{Value}} pair arguments.  @var{Name} can
+## be any property name of a @qcode{ScatterData} object and @var{Value} must
+## correspond to the data type(s) and values accepted by that property.
+## Type @code{help ScatterData} for more details on the available properties.
+##
+## Specifically for the properties that accept a @qcode{Color} object as their
+## input value, besides the @qcode{Color} object you may also parse to the
+## @qcode{ScatterChart} constructor the same values accepted by the constructor
+## of the @qcode{Color} object.  However, if you choose to manually modify the
+## @qcode{ScatterChart}'s properties using the dot notation syntax, then you must
+## assign a @qcode{Color} object to the chosen property.  Type @code{help Color}
+## for more details on the available syntax.
+##
+## For properties that accept scalar values, you can pass a vector of the same
+## type with each element corresponding to a different dataset.  For properties
+## that accept vectors, you can pass a matrix of the same type with each row
+## corresponding to a different dataset.  Otherwise, the same property value
+## will be assigned to all datasets available in @var{data}.  For properties
+## accepting a character vector, you need to pass a cellstring array for
+## multiple datasets, whereas for properties that can take mixed types of scalar
+## values (i.e. either boolean and character vectors), you need to pass a cell
+## array with each element corresponding to a different dataset.
+##
+## A @qcode{ScatterChart} object, @var{obj}, stores the following properties,
+## which can be accessed/modified using dot notation syntax similarly to a
+## @qcode{struct} object:
+##
+## @multitable @columnfractions 0.23 0.02 0.75
+## @headitem @var{Field} @tab @tab @var{Description}
+##
+## @item @qcode{chartID} @tab @tab A character vector defining the name of the
+## Chart in the generated html code.
+##
+## @item @qcode{datasets} @tab @tab A cell array containing one or more
+## @qcode{BarData} objects corresponding to the @var{data} input.
+##
+## @item @qcode{labels} @tab @tab A numeric vector or a cellstring array with
+## the data labels defined in @var{labels}.
+##
+## @item @qcode{options} @tab @tab A cell array containing one or more
+## @qcode{Option} and @qcode{Plugin} objects.  Not used at the moment.
+##
+## @end multitable
+##
+## To directly serve the @qcode{BarChart} object on a local web server instance,
+## you can use the object's @qcode{webserve ()} method.  Alternatively, you can
+## generate and/or save to a file the corresponding HTML code with the
+## @qcode{htmlstring ()} and @qcode{htmlsave ()} methods and serve it online
+## through a web server of your choice.
+##
+## @seealso{ScatterData, Color, Fill, Html, WebServer}
+## @end deftypefn
 
   properties (Access = public)
 

@@ -1,4 +1,4 @@
-## Copyright (C) 2024 Andreas Bertsatos <abertsatos@biol.uoa.gr>
+## Copyright (C) 2024-2025 Andreas Bertsatos <abertsatos@biol.uoa.gr>
 ##
 ## This file is part of the chartjs package for GNU Octave.
 ##
@@ -24,9 +24,9 @@ classdef BubbleData
 ## @code{@var{obj} = BubbleData (@var{data})} returns a @qcode{BubbleData}
 ## object, in which @var{data} must be an @math{Nx3} numeric matrix with each
 ## column defining the @qcode{x-axis}, the @qcode{y-axis}, and the radius of
-## each element of a single dataset.  Constructing a @qcode{BubbleData} object
-## always assigns the default property values, which can later be modified using
-## dot notation syntax.
+## each element of a single dataset, respectively.  Constructing a
+## @qcode{BubbleData} object always assigns the default property values, which
+## can later be modified using dot notation syntax.
 ##
 ## A @qcode{BubbleData} object, @var{obj}, contains the following properties:
 ##
