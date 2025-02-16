@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ChartJS interface for GNU Octave: Color</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <script type="text/javascript" async
+      src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+    </script>
+    <script type="text/javascript">
+      window.addEventListener("load", () => {
+        for (let i of document.querySelectorAll(".collapse ul")) {
+          let tog = document.createElement("div");
+          tog.innerHTML = i.previousSibling.textContent;
+          tog.className = "toggle";
+          tog.onclick = () => tog.classList.toggle("show");
+          i.parentElement.removeChild(i.previousSibling);
+          i.parentElement.insertBefore(tog, i);
+        }
+      });
+    </script>
+    <style>
+    h6:hover {
+      color: gray;
+    }
+    var {
+      font-style: italics;
+      font-weight: bold;
+    }
+    td {
+      vertical-align: top;
+    }
+    [id^="togList"],                        /* HIDE CHECKBOX */
+    [id^="togList"] ~ .list,                /* HIDE LIST */
+    [id^="togList"] + label  span + span,   /* HIDE "Collapse" */
+    [id^="togList"]:checked + label span{   /* HIDE "Expand" (IF CHECKED) */
+      display:none;
+    }
+    [id^="togList"]:checked + label span + span{
+      display:inline-block;                 /* SHOW "Collapse" (IF CHECKED) */
+    }
+    [id^="togList"]:checked ~ .list{
+      display:block;                        /* SHOW LIST (IF CHECKED) */
+    }
+    </style>
+  </head>
+  <body>
+    <div class="bg-dark">
+      <div class="container-xl">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div class="container-fluid">
+            <a class="navbar-brand" href=index.html>
+              <img src="assets/chartjs.png" alt="chartjs" class="d-inline-block align-top" width="25" height="25">
+              ChartJS interface for GNU Octave
+            </a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="index.html#Parameter Classes">
+                    <i class="fas fa-list-alt"></i>
+                    Parameter Classes
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="https://gnu-octave.github.io/packages/">
+                  <img src="assets/octave-logo.svg" alt="GNU Octave logo" class="d-inline-block align-top" width="25" height="25">
+                    Octave Packages
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="https://www.octave.org">
+                    <i class="fas fa-home"></i>
+                    GNU Octave website
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <div class="container-xl my-4">
+      <div class="row flex-nowrap" style="min-height:0">
+        <div class="col-md-2 bg-light" style="overflow-y: scroll; width: 250px;">
+          <div class="p-2" style="text-align: center;">
+            <h3>Categories &</h3>
+            <h4 style="color: blue">Functions List</h4>
+          </div>
+			<div class="row">
+				<input id="togList1" type="checkbox">
+				<label for="togList1">
+					<span><h6>Chart Classes</h6></span>
+					<span><h6>Chart Classes</h6></span>
+				</label>
+				<div class="list">
+				<ul style="list-style-type: none; padding-left: 20px;">
+					<li><a href="BarChart.html" class="text-decoration-none font-monospace"><small>BarChart</small></a></li>
+					<li><a href="BubbleChart.html" class="text-decoration-none font-monospace"><small>BubbleChart</small></a></li>
+					<li><a href="DoughnutChart.html" class="text-decoration-none font-monospace"><small>DoughnutChart</small></a></li>
+					<li><a href="LineChart.html" class="text-decoration-none font-monospace"><small>LineChart</small></a></li>
+					<li><a href="PieChart.html" class="text-decoration-none font-monospace"><small>PieChart</small></a></li>
+					<li><a href="PolarAreaChart.html" class="text-decoration-none font-monospace"><small>PolarAreaChart</small></a></li>
+					<li><a href="RadarChart.html" class="text-decoration-none font-monospace"><small>RadarChart</small></a></li>
+					<li><a href="ScatterChart.html" class="text-decoration-none font-monospace"><small>ScatterChart</small></a></li>
+				</ul>
+				</div>
+			</div>
+			<div class="row">
+				<input id="togList2" type="checkbox">
+				<label for="togList2">
+					<span><h6>Data Classes</h6></span>
+					<span><h6>Data Classes</h6></span>
+				</label>
+				<div class="list">
+				<ul style="list-style-type: none; padding-left: 20px;">
+					<li><a href="BarData.html" class="text-decoration-none font-monospace"><small>BarData</small></a></li>
+					<li><a href="BubbleData.html" class="text-decoration-none font-monospace"><small>BubbleData</small></a></li>
+					<li><a href="DoughnutData.html" class="text-decoration-none font-monospace"><small>DoughnutData</small></a></li>
+					<li><a href="LineData.html" class="text-decoration-none font-monospace"><small>LineData</small></a></li>
+					<li><a href="PieData.html" class="text-decoration-none font-monospace"><small>PieData</small></a></li>
+					<li><a href="PolarAreaData.html" class="text-decoration-none font-monospace"><small>PolarAreaData</small></a></li>
+					<li><a href="RadarData.html" class="text-decoration-none font-monospace"><small>RadarData</small></a></li>
+					<li><a href="ScatterData.html" class="text-decoration-none font-monospace"><small>ScatterData</small></a></li>
+				</ul>
+				</div>
+			</div>
+			<div class="row">
+				<input id="togList3" type="checkbox" checked>
+				<label for="togList3">
+					<span><h6>Parameter Classes</h6></span>
+					<span><h6>Parameter Classes</h6></span>
+				</label>
+				<div class="list">
+				<ul style="list-style-type: none; padding-left: 20px;">
+					<li><a href="Color.html" class="text-decoration-none font-monospace fw-bolder"><small>Color</small></a></li>
+					<li><a href="Fill.html" class="text-decoration-none font-monospace"><small>Fill</small></a></li>
+				</ul>
+				</div>
+			</div>
+			<div class="row">
+				<input id="togList4" type="checkbox">
+				<label for="togList4">
+					<span><h6>Web Classes</h6></span>
+					<span><h6>Web Classes</h6></span>
+				</label>
+				<div class="list">
+				<ul style="list-style-type: none; padding-left: 20px;">
+					<li><a href="Html.html" class="text-decoration-none font-monospace"><small>Html</small></a></li>
+					<li><a href="WebServer.html" class="text-decoration-none font-monospace"><small>WebServer</small></a></li>
+				</ul>
+				</div>
+			</div>
+
+			  </div>
+			  <div class="col-md-10">
+          <div class="card rounded">
+            <div class="card-header card-header-mod">
+              <div class="row d-flex flex-wrap align-items-center">
+                <h3 class="d-inline-block mr-2">
+                Class&nbsp;Definition: <b><code>Color</code></b>
+                </h3>
+              </div>
+            </div>
+            <div class="card-body">
+<dl>
+<dt><u>chartjs:</u> <var>obj</var> = <b>Color</b><i> (<var>value</var>)</i></dt>
+</dl>
+
+<p> A class for creating Chart.js compatible Color objects.
+</p>
+<div class="ms-5">
+<p> <code><var>obj</var> = Color (<var>value</var>)</code> returns a Color object defined by
+ <var>value</var>, which can either be a character vector, a cellstring array, a
+ numeric matrix, or a cell matrix containing the following combinations.  Each
+ Color object only applies to a given dataset.  If you want to pass different
+ color patterns to multiple datasets when constructing a Chart object, then
+ you need to pass a Color object array to the Chart&rsquo;s constructor.
+</p>
+<p> When <var>value</var> is character vector, it can define a single color either by
+ using one of the acceptable color names given below or by using hexadecimal
+ string values in the forms <code>#FFFFFF</code> and <code>#FFFFFFFF</code>.  The former
+ defines an <code>RGB</code> color space, whereas the later defines an <code>RGBA</code>
+ color space that includes transparency.
+</p>
+<p> Valid color names are:
+ </p><ul>
+<li> <code>beige</code>
+ </li><li> <code>black</code>
+ </li><li> <code>blue</code>, <code>lightblue</code>, <code>darkblue</code>
+ </li><li> <code>brown</code>
+ </li><li> <code>coral</code>, <code>lightcoral</code>
+ </li><li> <code>cyan</code>, <code>darkcyan</code>
+ </li><li> <code>green</code>, <code>lightgreen</code>, <code>darkgreen</code>
+ </li><li> <code>gray</code>, <code>grey</code>, <code>lightgray</code>, <code>lightgrey</code>,
+ <code>darkgray</code>, <code>darkgrey</code>
+ </li><li> <code>magenta</code>, <code>darkmagenta</code>
+ </li><li> <code>pink</code>
+ </li><li> <code>red</code>, <code>darkred</code>
+ </li><li> <code>white</code>
+ </li><li> <code>yellow</code>, <code>lightyellow</code>
+ </li></ul>
+
+<p> If you want to apply multiple colors to a given dataset, then you can use a
+ cellstring array whose elements follow the requirements for character vector
+ values described above.  The cellstring array must be a vector and its
+ elements can interchangeably contain known color names or hexadecimal color
+ values.
+</p>
+<p> If <var>value</var> is a numeric, it follows Octave&rsquo;s native <code>RGB</code> tripplet
+ syntax.  An <code>RGB</code> triplet is a <math>1&times;3</math> vector where each value is
+ between 0 and 1 inclusive.  The first value represents the percentage of Red,
+ the second value the percentage of Green, and the third value the percentage
+ of Blue.  This syntax is also extended to support <code>RGBA</code> quadruplets,
+ in which case the fourth value (also between 0 and 1 inclusive) of the
+ <math>1&times;4</math> vector represents the transparency.  If you want to apply multiple
+ colors to a given dataset, then you can pass a numeric matrix of <math>N&times;3</math>
+ or <math>N&times;4</math> size with each row representing a distinct <code>RGB</code> tripplet
+ or <code>RGBA</code> quadruplet, respectively.
+</p>
+<p> Alternatively you can define <var>value</var> as a cell array with two elements or
+ an <math>N&times;2</math> cell matrix in case you need to specify multiple colors in the
+ same dataset.  The first element of each row represents a color space name,
+ which can be any of the four available choices: <code>rgb</code>, <code>rgba</code>,
+ <code>hsl</code>, and <code>hsla</code>.  The second element of each row must be a
+ numeric <math>1&times;3</math> vector for <code>rgb</code> and <code>hsl</code> color spaces, or a
+ numeric <math>1&times;4</math> vector for <code>rgba</code> and <code>hsla</code> color spaces.  When
+ assigning color value(s) as a cell array, the <code>RGB</code> values must be
+ between 0 and 255 inclusive, the <code>hue</code> value must be between 0 and 360
+ inclusive, the <code>saturation</code> and <code>lightness</code> values must be
+ percentages between 0 and 100 inclusive, whereas the <code>alpha</code> value must
+ be between 0 and 1 inclusive.  All numeric values except for the transparency
+ are expected to be integer values, otherwise they are rounded to the nearest
+ integer.
+</p>
+<p> <strong>See also: </strong>
+  <a href="BarChart.html">BarChart</a>, 
+  <a href="BarData.html">BarData</a>, 
+  <a href="BubbleChart.html">BubbleChart</a>, 
+  <a href="BubbleData.html">BubbleData</a>, 
+  <a href="DoughnutChart.html">DoughnutChart</a>, 
+  <a href="DoughnutData.html">DoughnutData</a>, 
+  <a href="LineChart.html">LineChart</a>, 
+  <a href="LineData.html">LineData</a>, 
+  <a href="PieChart.html">PieChart</a>, 
+  <a href="PieData.html">PieData</a>, 
+  <a href="PolarAreaChart.html">PolarAreaChart</a>, 
+  <a href="PolarAreaData.html">PolarAreaData</a>, 
+  <a href="RadarChart.html">RadarChart</a>, 
+  <a href="RadarData.html">RadarData</a>, 
+  <a href="ScatterChart.html">ScatterChart</a>, 
+  <a href="ScatterData.html">ScatterData</a>
+</p>
+<p><strong>Source Code: </strong>
+  <a href="https://github.com/pr0m1th3as/octave-chartjs/tree/main/inst/Color.m">Color</a>
+</div>
+        <div class="container-xl my-4">
+          <div class="card rounded">
+            <div class="card-header card-header-mod">
+              <div class="row d-flex flex-wrap align-items-center">
+                <div class="col-sm-3 col-md-5 mb-2 mb-sm-0">
+                  <h3 class="d-inline-block mr-2">
+                  Method: <b><code>jsonstring</code></b>
+                  </h3>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+<dl>
+<dt><u>Color:</u> <var>json</var> = <b>jsonstring</b><i> (<var>obj</var>)</i></dt>
+</dl>
+
+<p> Generate the JSON string of a Color object.
+</p>
+<div class="ms-5">
+<p> <code>jsonstring (<var>obj</var>)</code> returns a character vector, <var>json</var>,
+ describing the context of the Color object in json format.
+</p>
+<p> <strong>See also: </strong>
+  <a href="Color.html">Color</a>, 
+  <a href="Fill.html">Fill</a>
+</p>
+</div>
+            </div>
+          </div>
+        </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

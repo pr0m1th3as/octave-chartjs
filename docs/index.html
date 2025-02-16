@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ChartJS interface for GNU Octave</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <script type="text/javascript" async
+      src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+    </script>
+    <script type="text/javascript">
+      window.addEventListener("load", () => {
+        for (let i of document.querySelectorAll(".collapse ul")) {
+          let tog = document.createElement("div");
+          tog.innerHTML = i.previousSibling.textContent;
+          tog.className = "toggle";
+          tog.onclick = () => tog.classList.toggle("show");
+          i.parentElement.removeChild(i.previousSibling);
+          i.parentElement.insertBefore(tog, i);
+        }
+      });
+    </script>
+    <style>
+    h6:hover {
+      color: gray;
+    }
+    var {
+      font-style: italics;
+      font-weight: bold;
+    }
+    td {
+      vertical-align: top;
+    }
+    [id^="togList"],                        /* HIDE CHECKBOX */
+    [id^="togList"] ~ .list,                /* HIDE LIST */
+    [id^="togList"] + label  span + span,   /* HIDE "Collapse" */
+    [id^="togList"]:checked + label span{   /* HIDE "Expand" (IF CHECKED) */
+      display:none;
+    }
+    [id^="togList"]:checked + label span + span{
+      display:inline-block;                 /* SHOW "Collapse" (IF CHECKED) */
+    }
+    [id^="togList"]:checked ~ .list{
+      display:block;                        /* SHOW LIST (IF CHECKED) */
+    }
+    </style>
+  </head>
+  <body>
+    <div class="bg-dark">
+      <div class="container-xl">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div class="container-fluid">
+            <a class="navbar-brand" href=https://gnu-octave.github.io/packages/chartjs>
+              <img src="assets/chartjs.png" alt="chartjs" class="d-inline-block align-top" width="25" height="25">
+              ChartJS interface for GNU Octave
+            </a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="https://gnu-octave.github.io/packages/">
+                  <img src="assets/octave-logo.svg" alt="GNU Octave logo" class="d-inline-block align-top" width="25" height="25">
+                    Octave Packages
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="https://www.octave.org">
+                    <i class="fas fa-home"></i>
+                    GNU Octave website
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <div class="container-xl my-4">
+      <div class="card rounded">
+        <div class="card-header card-header-mod">
+          <div class="row d-flex flex-wrap align-items-center">
+            <div class="col-sm-3 col-md-2 mb-2 mb-sm-0">
+              <img src="assets/chartjs.png" class="d-block m-auto" alt="chartjs">
+            </div>
+            <div class="col-sm-9 col-md-10">
+              <h3 class="d-inline-block mr-2">chartjs</h3>
+              <b>0.1.0&nbsp;2025-02-17</b>
+              <p class="indent">
+                ChartJS interface for GNU Octave.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+           <p>Select Category:
+             <select name="cat" onchange="location = this.options[this.selectedIndex].value;">
+             <option value="#Data Classes">Data Classes</option>
+             <option value="#Chart Classes">Chart Classes</option>
+             <option value="#Parameter Classes">Parameter Classes</option>
+             <option value="#Web Classes">Web Classes</option>
+             </select>
+           <p>
+
+           <h3 class="category">
+             <a name="Data Classes">Data Classes</a>
+           </h3>
+           <table class="table table-striped">
+             <tbody>
+               <tr>
+                 <td>
+                   <b><code>
+                   <a href="BarData.html">BarData</a>
+                   </code></b>
+                 </td>
+                 <td>Create a BarData object.</td>
+               </tr>
+               <tr>
+                 <td>
+                   <b><code>
+                   <a href="BubbleData.html">BubbleData</a>
+                   </code></b>
+                 </td>
+                 <td>Create a BubbleData object.</td>
+               </tr>
+               <tr>
+                 <td>
+                   <b><code>
+                   <a href="DoughnutData.html">DoughnutData</a>
+                   </code></b>
+                 </td>
+                 <td>Create a DoughnutData object.</td>
+               </tr>
+               <tr>
+                 <td>
+                   <b><code>
+                   <a href="LineData.html">LineData</a>
+                   </code></b>
+                 </td>
+                 <td>Create a LineData object.</td>
+               </tr>
+               <tr>
+                 <td>
+                   <b><code>
+                   <a href="PieData.html">PieData</a>
+                   </code></b>
+                 </td>
+                 <td>Create a PieData object.</td>
+               </tr>
+               <tr>
+                 <td>
+                   <b><code>
+                   <a href="PolarAreaData.html">PolarAreaData</a>
+                   </code></b>
+                 </td>
+                 <td>Create a PolarAreaData object.</td>
+               </tr>
+               <tr>
+                 <td>
+                   <b><code>
+                   <a href="RadarData.html">RadarData</a>
+                   </code></b>
+                 </td>
+                 <td>Create a RadarData object.</td>
+               </tr>
+               <tr>
+                 <td>
+                   <b><code>
+                   <a href="ScatterData.html">ScatterData</a>
+                   </code></b>
+                 </td>
+                 <td>Create a ScatterData object.</td>
+               </tr>
+             </tbody>
+           </table>
+           <h3 class="category">
+             <a name="Chart Classes">Chart Classes</a>
+           </h3>
+           <table class="table table-striped">
+             <tbody>
+               <tr>
+                 <td>
+                   <b><code>
+                   <a href="BarChart.html">BarChart</a>
+                   </code></b>
+                 </td>
+                 <td>Create a BarChart object.</td>
+               </tr>
+               <tr>
+                 <td>
+                   <b><code>
+                   <a href="BubbleChart.html">BubbleChart</a>
+                   </code></b>
+                 </td>
+                 <td>Create a BubbleChart object.</td>
+               </tr>
+               <tr>
+                 <td>
+                   <b><code>
+                   <a href="DoughnutChart.html">DoughnutChart</a>
+                   </code></b>
+                 </td>
+                 <td>Create a DoughnutChart object.</td>
+               </tr>
+               <tr>
+                 <td>
+                   <b><code>
+                   <a href="LineChart.html">LineChart</a>
+                   </code></b>
+                 </td>
+                 <td>Create a LineChart object.</td>
+               </tr>
+               <tr>
+                 <td>
+                   <b><code>
+                   <a href="PieChart.html">PieChart</a>
+                   </code></b>
+                 </td>
+                 <td>Create a PieChart object.</td>
+               </tr>
+               <tr>
+                 <td>
+                   <b><code>
+                   <a href="PolarAreaChart.html">PolarAreaChart</a>
+                   </code></b>
+                 </td>
+                 <td>Create a PolarAreaChart object.</td>
+               </tr>
+               <tr>
+                 <td>
+                   <b><code>
+                   <a href="RadarChart.html">RadarChart</a>
+                   </code></b>
+                 </td>
+                 <td>Create a RadarChart object.</td>
+               </tr>
+               <tr>
+                 <td>
+                   <b><code>
+                   <a href="ScatterChart.html">ScatterChart</a>
+                   </code></b>
+                 </td>
+                 <td>Create a ScatterChart object.</td>
+               </tr>
+             </tbody>
+           </table>
+           <h3 class="category">
+             <a name="Parameter Classes">Parameter Classes</a>
+           </h3>
+           <table class="table table-striped">
+             <tbody>
+               <tr>
+                 <td>
+                   <b><code>
+                   <a href="Color.html">Color</a>
+                   </code></b>
+                 </td>
+                 <td>A class for creating Chart.js compatible Color objects.</td>
+               </tr>
+               <tr>
+                 <td>
+                   <b><code>
+                   <a href="Fill.html">Fill</a>
+                   </code></b>
+                 </td>
+                 <td>A class for creating Chart.js compatible Fill objects.</td>
+               </tr>
+             </tbody>
+           </table>
+           <h3 class="category">
+             <a name="Web Classes">Web Classes</a>
+           </h3>
+           <table class="table table-striped">
+             <tbody>
+               <tr>
+                 <td>
+                   <b><code>
+                   <a href="Html.html">Html</a>
+                   </code></b>
+                 </td>
+                 <td>A parent class for generating HMTL code.</td>
+               </tr>
+               <tr>
+                 <td>
+                   <b><code>
+                   <a href="WebServer.html">WebServer</a>
+                   </code></b>
+                 </td>
+                 <td>Interface to a web server instance.</td>
+               </tr>
+             </tbody>
+           </table>
+
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

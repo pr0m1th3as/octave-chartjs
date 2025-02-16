@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ChartJS interface for GNU Octave: Fill</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <script type="text/javascript" async
+      src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+    </script>
+    <script type="text/javascript">
+      window.addEventListener("load", () => {
+        for (let i of document.querySelectorAll(".collapse ul")) {
+          let tog = document.createElement("div");
+          tog.innerHTML = i.previousSibling.textContent;
+          tog.className = "toggle";
+          tog.onclick = () => tog.classList.toggle("show");
+          i.parentElement.removeChild(i.previousSibling);
+          i.parentElement.insertBefore(tog, i);
+        }
+      });
+    </script>
+    <style>
+    h6:hover {
+      color: gray;
+    }
+    var {
+      font-style: italics;
+      font-weight: bold;
+    }
+    td {
+      vertical-align: top;
+    }
+    [id^="togList"],                        /* HIDE CHECKBOX */
+    [id^="togList"] ~ .list,                /* HIDE LIST */
+    [id^="togList"] + label  span + span,   /* HIDE "Collapse" */
+    [id^="togList"]:checked + label span{   /* HIDE "Expand" (IF CHECKED) */
+      display:none;
+    }
+    [id^="togList"]:checked + label span + span{
+      display:inline-block;                 /* SHOW "Collapse" (IF CHECKED) */
+    }
+    [id^="togList"]:checked ~ .list{
+      display:block;                        /* SHOW LIST (IF CHECKED) */
+    }
+    </style>
+  </head>
+  <body>
+    <div class="bg-dark">
+      <div class="container-xl">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div class="container-fluid">
+            <a class="navbar-brand" href=index.html>
+              <img src="assets/chartjs.png" alt="chartjs" class="d-inline-block align-top" width="25" height="25">
+              ChartJS interface for GNU Octave
+            </a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="index.html#Parameter Classes">
+                    <i class="fas fa-list-alt"></i>
+                    Parameter Classes
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="https://gnu-octave.github.io/packages/">
+                  <img src="assets/octave-logo.svg" alt="GNU Octave logo" class="d-inline-block align-top" width="25" height="25">
+                    Octave Packages
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="https://www.octave.org">
+                    <i class="fas fa-home"></i>
+                    GNU Octave website
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <div class="container-xl my-4">
+      <div class="row flex-nowrap" style="min-height:0">
+        <div class="col-md-2 bg-light" style="overflow-y: scroll; width: 250px;">
+          <div class="p-2" style="text-align: center;">
+            <h3>Categories &</h3>
+            <h4 style="color: blue">Functions List</h4>
+          </div>
+			<div class="row">
+				<input id="togList1" type="checkbox">
+				<label for="togList1">
+					<span><h6>Chart Classes</h6></span>
+					<span><h6>Chart Classes</h6></span>
+				</label>
+				<div class="list">
+				<ul style="list-style-type: none; padding-left: 20px;">
+					<li><a href="BarChart.html" class="text-decoration-none font-monospace"><small>BarChart</small></a></li>
+					<li><a href="BubbleChart.html" class="text-decoration-none font-monospace"><small>BubbleChart</small></a></li>
+					<li><a href="DoughnutChart.html" class="text-decoration-none font-monospace"><small>DoughnutChart</small></a></li>
+					<li><a href="LineChart.html" class="text-decoration-none font-monospace"><small>LineChart</small></a></li>
+					<li><a href="PieChart.html" class="text-decoration-none font-monospace"><small>PieChart</small></a></li>
+					<li><a href="PolarAreaChart.html" class="text-decoration-none font-monospace"><small>PolarAreaChart</small></a></li>
+					<li><a href="RadarChart.html" class="text-decoration-none font-monospace"><small>RadarChart</small></a></li>
+					<li><a href="ScatterChart.html" class="text-decoration-none font-monospace"><small>ScatterChart</small></a></li>
+				</ul>
+				</div>
+			</div>
+			<div class="row">
+				<input id="togList2" type="checkbox">
+				<label for="togList2">
+					<span><h6>Data Classes</h6></span>
+					<span><h6>Data Classes</h6></span>
+				</label>
+				<div class="list">
+				<ul style="list-style-type: none; padding-left: 20px;">
+					<li><a href="BarData.html" class="text-decoration-none font-monospace"><small>BarData</small></a></li>
+					<li><a href="BubbleData.html" class="text-decoration-none font-monospace"><small>BubbleData</small></a></li>
+					<li><a href="DoughnutData.html" class="text-decoration-none font-monospace"><small>DoughnutData</small></a></li>
+					<li><a href="LineData.html" class="text-decoration-none font-monospace"><small>LineData</small></a></li>
+					<li><a href="PieData.html" class="text-decoration-none font-monospace"><small>PieData</small></a></li>
+					<li><a href="PolarAreaData.html" class="text-decoration-none font-monospace"><small>PolarAreaData</small></a></li>
+					<li><a href="RadarData.html" class="text-decoration-none font-monospace"><small>RadarData</small></a></li>
+					<li><a href="ScatterData.html" class="text-decoration-none font-monospace"><small>ScatterData</small></a></li>
+				</ul>
+				</div>
+			</div>
+			<div class="row">
+				<input id="togList3" type="checkbox" checked>
+				<label for="togList3">
+					<span><h6>Parameter Classes</h6></span>
+					<span><h6>Parameter Classes</h6></span>
+				</label>
+				<div class="list">
+				<ul style="list-style-type: none; padding-left: 20px;">
+					<li><a href="Color.html" class="text-decoration-none font-monospace"><small>Color</small></a></li>
+					<li><a href="Fill.html" class="text-decoration-none font-monospace fw-bolder"><small>Fill</small></a></li>
+				</ul>
+				</div>
+			</div>
+			<div class="row">
+				<input id="togList4" type="checkbox">
+				<label for="togList4">
+					<span><h6>Web Classes</h6></span>
+					<span><h6>Web Classes</h6></span>
+				</label>
+				<div class="list">
+				<ul style="list-style-type: none; padding-left: 20px;">
+					<li><a href="Html.html" class="text-decoration-none font-monospace"><small>Html</small></a></li>
+					<li><a href="WebServer.html" class="text-decoration-none font-monospace"><small>WebServer</small></a></li>
+				</ul>
+				</div>
+			</div>
+
+			  </div>
+			  <div class="col-md-10">
+          <div class="card rounded">
+            <div class="card-header card-header-mod">
+              <div class="row d-flex flex-wrap align-items-center">
+                <h3 class="d-inline-block mr-2">
+                Class&nbsp;Definition: <b><code>Fill</code></b>
+                </h3>
+              </div>
+            </div>
+            <div class="card-body">
+<dl>
+<dt><u>chartjs:</u> <var>obj</var> = <b>Fill</b><i> (<var>value</var>)</i></dt>
+<dt><u>chartjs:</u> <var>obj</var> = <b>Fill</b><i> (<var>value</var>, <var>toaxis</var>)</i></dt>
+<dt><u>chartjs:</u> <var>obj</var> = <b>Fill</b><i> (<var>value</var>, <var>toaxis</var>, <var>above</var>)</i></dt>
+<dt><u>chartjs:</u> <var>obj</var> = <b>Fill</b><i> (<var>value</var>, <var>toaxis</var>, <var>above</var>, <var>below</var>)</i></dt>
+</dl>
+
+<p> A class for creating Chart.js compatible Fill objects.
+</p>
+<div class="ms-5">
+<p> Both <code>LineChart</code> and <code>RadarChart</code> objects support a fill option
+ on their respective dataset object which can be used to create space between
+ two datasets or a dataset and a boundary.  The created space can be filled
+ with a <code>Color</code> object, essentially transforming line and radar charts
+ into an area chart.
+</p>
+<p> <code><var>obj</var> = Fill (<var>value</var>)</code> returns a <code>Fill</code> object defined
+ by <var>value</var>, which can either be a character vector or a numeric scalar.
+ The following filling modes are supported.
+</p>
+ <table>
+<thead><tr><th width="33%"><var>Mode</var></th><th width="2%"></th><th width="65%"><var>Values</var></th></tr></thead>
+<tr><td width="33%">Absolute dataset index</td><td width="2%"></td><td width="65%">A numeric scalar indexing another
+ dataset as a boundary to constrain the created area.</td></tr>
+<tr><td width="33%">Relative dataset index</td><td width="2%"></td><td width="65%">A character vector of the form
+ <code>'-1', '-2', '+1', &hellip;</code> indexing another dataset as a boundary to
+ constrain the created area relative to the position of the referencing
+ dataset.</td></tr>
+<tr><td width="33%">Boundary</td><td width="2%"></td><td width="65%">A character vector with acceptable values
+ <code>'start'</code>, <code>'end'</code>, and <code>'origin'</code> which sets the boundary
+ of the created area to the start, the end, or the origin of the data axis,
+ respectively.</td></tr>
+<tr><td width="33%">Disabled</td><td width="2%"></td><td width="65%">A boolean scalar value.  When <code>true</code>, it is
+ equivalent to <code>'origin'</code>.  When <code>true</code>, the area is not created.</td></tr>
+<tr><td width="33%">Shape</td><td width="2%"></td><td width="65%">A character vector <code>'shape'</code> which creates an
+ area inside the line by connecting its end points.</td></tr>
+<tr><td width="33%">Axis value</td><td width="2%"></td><td width="65%">A numeric scalar, which references a value on the
+ data axis to be used as a boundary.  To use this option, the second input
+ argument <var>toaxis</var> must be set to <code>true</code>.</td></tr>
+</table>
+
+<p> <code><var>obj</var> = Fill (<var>value</var>, <var>toaxis</var>)</code> returns a <code>Fill</code>
+ object using the previously described syntaxes, while <var>toaxis</var> defines
+ whether the numeric value assigned to <var>value</var> references an absolute
+ dataset index (default: <code><var>toaxis</var> = false</code>) or a value along the
+ data axis (<code><var>toaxis</var> = true</code> which sets a line to be used as a
+ boundary.  When <var>toaxis</var> is set to <code>true</code>, <var>value</var> must be a
+ numeric scalar.  Passing an empty matrix to <var>toaxis</var>, results to the
+ default value (<code><var>toaxis</var> = false</code>).
+</p>
+<p> <code><var>obj</var> = Fill (<var>value</var>, <var>toaxis</var>, <var>above</var>)</code> returns a
+ <code>Fill</code> object with an area created according to any of the previous
+ syntaxes, which is filled with the color defined in <var>above</var>.  <var>above</var>
+ can be a <code>Color</code> object defining a single color.  Alternatively, the
+ input value to the <code>Color</code> object can be passed directly to the
+ <var>above</var> input argument.
+</p>
+<p> <code><var>obj</var> = Fill (<var>value</var>, <var>toaxis</var>, <var>above</var>, <var>below</var>)</code>
+ returns a <code>Fill</code> object with an area created according to any of the
+ previous syntaxes, and the area below the target value (as defined by the
+ <var>value</var> and <var>toaxis</var> arguments) is filled with the color defined in
+ <var>below</var>.  Similarly to <var>above</var>, <var>below</var> can be a <code>Color</code>
+ object defining a single color.  Alternatively, the input value to the
+ <code>Color</code> object can be passed directly to the <var>below</var> input
+ argument.
+</p>
+<p> <strong>See also: </strong>
+  <a href="LineChart.html">LineChart</a>, 
+  <a href="LineData.html">LineData</a>, 
+  <a href="RadarChart.html">RadarChart</a>, 
+  <a href="RadarData.html">RadarData</a>
+</p>
+<p><strong>Source Code: </strong>
+  <a href="https://github.com/pr0m1th3as/octave-chartjs/tree/main/inst/Fill.m">Fill</a>
+</div>
+        <div class="container-xl my-4">
+          <div class="card rounded">
+            <div class="card-header card-header-mod">
+              <div class="row d-flex flex-wrap align-items-center">
+                <div class="col-sm-3 col-md-5 mb-2 mb-sm-0">
+                  <h3 class="d-inline-block mr-2">
+                  Method: <b><code>jsonstring</code></b>
+                  </h3>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+<dl>
+<dt><u>Fill:</u> <var>json</var> = <b>jsonstring</b><i> (<var>obj</var>)</i></dt>
+</dl>
+
+<p> Generate the JSON string of a Fill object.
+</p>
+<div class="ms-5">
+<p> <code>jsonstring (<var>obj</var>)</code> returns a character vector, <var>json</var>,
+ describing the context of the Color object in json format.
+</p>
+<p> <strong>See also: </strong>
+  <a href="Color.html">Color</a>, 
+  <a href="Fill.html">Fill</a>
+</p>
+</div>
+            </div>
+          </div>
+        </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ChartJS interface for GNU Octave: RadarData</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <script type="text/javascript" async
+      src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+    </script>
+    <script type="text/javascript">
+      window.addEventListener("load", () => {
+        for (let i of document.querySelectorAll(".collapse ul")) {
+          let tog = document.createElement("div");
+          tog.innerHTML = i.previousSibling.textContent;
+          tog.className = "toggle";
+          tog.onclick = () => tog.classList.toggle("show");
+          i.parentElement.removeChild(i.previousSibling);
+          i.parentElement.insertBefore(tog, i);
+        }
+      });
+    </script>
+    <style>
+    h6:hover {
+      color: gray;
+    }
+    var {
+      font-style: italics;
+      font-weight: bold;
+    }
+    td {
+      vertical-align: top;
+    }
+    [id^="togList"],                        /* HIDE CHECKBOX */
+    [id^="togList"] ~ .list,                /* HIDE LIST */
+    [id^="togList"] + label  span + span,   /* HIDE "Collapse" */
+    [id^="togList"]:checked + label span{   /* HIDE "Expand" (IF CHECKED) */
+      display:none;
+    }
+    [id^="togList"]:checked + label span + span{
+      display:inline-block;                 /* SHOW "Collapse" (IF CHECKED) */
+    }
+    [id^="togList"]:checked ~ .list{
+      display:block;                        /* SHOW LIST (IF CHECKED) */
+    }
+    </style>
+  </head>
+  <body>
+    <div class="bg-dark">
+      <div class="container-xl">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div class="container-fluid">
+            <a class="navbar-brand" href=index.html>
+              <img src="assets/chartjs.png" alt="chartjs" class="d-inline-block align-top" width="25" height="25">
+              ChartJS interface for GNU Octave
+            </a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="index.html#Data Classes">
+                    <i class="fas fa-list-alt"></i>
+                    Data Classes
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="https://gnu-octave.github.io/packages/">
+                  <img src="assets/octave-logo.svg" alt="GNU Octave logo" class="d-inline-block align-top" width="25" height="25">
+                    Octave Packages
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="https://www.octave.org">
+                    <i class="fas fa-home"></i>
+                    GNU Octave website
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <div class="container-xl my-4">
+      <div class="row flex-nowrap" style="min-height:0">
+        <div class="col-md-2 bg-light" style="overflow-y: scroll; width: 250px;">
+          <div class="p-2" style="text-align: center;">
+            <h3>Categories &</h3>
+            <h4 style="color: blue">Functions List</h4>
+          </div>
+			<div class="row">
+				<input id="togList1" type="checkbox">
+				<label for="togList1">
+					<span><h6>Chart Classes</h6></span>
+					<span><h6>Chart Classes</h6></span>
+				</label>
+				<div class="list">
+				<ul style="list-style-type: none; padding-left: 20px;">
+					<li><a href="BarChart.html" class="text-decoration-none font-monospace"><small>BarChart</small></a></li>
+					<li><a href="BubbleChart.html" class="text-decoration-none font-monospace"><small>BubbleChart</small></a></li>
+					<li><a href="DoughnutChart.html" class="text-decoration-none font-monospace"><small>DoughnutChart</small></a></li>
+					<li><a href="LineChart.html" class="text-decoration-none font-monospace"><small>LineChart</small></a></li>
+					<li><a href="PieChart.html" class="text-decoration-none font-monospace"><small>PieChart</small></a></li>
+					<li><a href="PolarAreaChart.html" class="text-decoration-none font-monospace"><small>PolarAreaChart</small></a></li>
+					<li><a href="RadarChart.html" class="text-decoration-none font-monospace"><small>RadarChart</small></a></li>
+					<li><a href="ScatterChart.html" class="text-decoration-none font-monospace"><small>ScatterChart</small></a></li>
+				</ul>
+				</div>
+			</div>
+			<div class="row">
+				<input id="togList2" type="checkbox" checked>
+				<label for="togList2">
+					<span><h6>Data Classes</h6></span>
+					<span><h6>Data Classes</h6></span>
+				</label>
+				<div class="list">
+				<ul style="list-style-type: none; padding-left: 20px;">
+					<li><a href="BarData.html" class="text-decoration-none font-monospace"><small>BarData</small></a></li>
+					<li><a href="BubbleData.html" class="text-decoration-none font-monospace"><small>BubbleData</small></a></li>
+					<li><a href="DoughnutData.html" class="text-decoration-none font-monospace"><small>DoughnutData</small></a></li>
+					<li><a href="LineData.html" class="text-decoration-none font-monospace"><small>LineData</small></a></li>
+					<li><a href="PieData.html" class="text-decoration-none font-monospace"><small>PieData</small></a></li>
+					<li><a href="PolarAreaData.html" class="text-decoration-none font-monospace"><small>PolarAreaData</small></a></li>
+					<li><a href="RadarData.html" class="text-decoration-none font-monospace fw-bolder"><small>RadarData</small></a></li>
+					<li><a href="ScatterData.html" class="text-decoration-none font-monospace"><small>ScatterData</small></a></li>
+				</ul>
+				</div>
+			</div>
+			<div class="row">
+				<input id="togList3" type="checkbox">
+				<label for="togList3">
+					<span><h6>Parameter Classes</h6></span>
+					<span><h6>Parameter Classes</h6></span>
+				</label>
+				<div class="list">
+				<ul style="list-style-type: none; padding-left: 20px;">
+					<li><a href="Color.html" class="text-decoration-none font-monospace"><small>Color</small></a></li>
+					<li><a href="Fill.html" class="text-decoration-none font-monospace"><small>Fill</small></a></li>
+				</ul>
+				</div>
+			</div>
+			<div class="row">
+				<input id="togList4" type="checkbox">
+				<label for="togList4">
+					<span><h6>Web Classes</h6></span>
+					<span><h6>Web Classes</h6></span>
+				</label>
+				<div class="list">
+				<ul style="list-style-type: none; padding-left: 20px;">
+					<li><a href="Html.html" class="text-decoration-none font-monospace"><small>Html</small></a></li>
+					<li><a href="WebServer.html" class="text-decoration-none font-monospace"><small>WebServer</small></a></li>
+				</ul>
+				</div>
+			</div>
+
+			  </div>
+			  <div class="col-md-10">
+          <div class="card rounded">
+            <div class="card-header card-header-mod">
+              <div class="row d-flex flex-wrap align-items-center">
+                <h3 class="d-inline-block mr-2">
+                Class&nbsp;Definition: <b><code>RadarData</code></b>
+                </h3>
+              </div>
+            </div>
+            <div class="card-body">
+<dl>
+<dt><u>chartjs:</u> <var>obj</var> = <b>RadarData</b><i> (<var>data</var>)</i></dt>
+</dl>
+
+<p> Create a <code>RadarData</code> object.
+</p>
+<div class="ms-5">
+<p> <code><var>obj</var> = RadarData (<var>data</var>)</code> returns a <code>RadarData</code>
+ object, in which <var>data</var> must be a nonempty numerical vector containing
+ the data points of a single dataset of a radar chart.  Constructing a
+ <code>RadarData</code> object always assigns the default property values, which
+ can later be modified using dot notation syntax.
+</p>
+<p> A <code>RadarData</code> object, <var>obj</var>, contains the following properties:
+</p>
+ <table>
+<thead><tr><th width="23%"><var>Field</var></th><th width="2%"></th><th width="75%"><var>Description</var></th></tr></thead>
+<tr><td width="23%"><code>backgroundColor</code></td><td width="2%"></td><td width="75%">A <code>Color</code> object defining the
+ fill color of the lines between data points.  Default is empty, in which case
+ a color is assigned automatically by the Chart.js library.</td></tr>
+<tr><td width="23%"><code>borderCapStyle</code></td><td width="2%"></td><td width="75%">A character vector, which can be
+ either <code>'butt'</code> (default), <code>'round'</code>, or <code>'square'</code>.  When
+ <code>'butt'</code>, the ends of lines are squared off at the endpoints.  When
+ <code>'round'</code>, the ends of lines are rounded.  When <code>'square'</code> is
+ set, the ends of lines are squared off by adding a box with an equal width
+ and half the height of the line&rsquo;s thickness.</td></tr>
+<tr><td width="23%"><code>borderColor</code></td><td width="2%"></td><td width="75%">A <code>Color</code> object defining the color
+ of the lines between data points.  Default is empty, in which case a
+ color is assigned automatically by the Chart.js library.</td></tr>
+<tr><td width="23%"><code>borderDash</code></td><td width="2%"></td><td width="75%">A numeric vector defining the length and
+ spacing of dashes drawn instead of a line.</td></tr>
+<tr><td width="23%"><code>borderDashOffset</code></td><td width="2%"></td><td width="75%">A numeric scalar defining the offset
+ of dashes and spacing drawn instead of a line.  Default is 0.</td></tr>
+<tr><td width="23%"><code>borderJoinStyle</code></td><td width="2%"></td><td width="75%">A character vector defining the line
+ border join style.  It can be either <code>'round'</code>, <code>'bevel'</code>, or
+ <code>'miter'</code>.</td></tr>
+<tr><td width="23%"><code>borderWidth</code></td><td width="2%"></td><td width="75%">A numeric scalar value defining the width
+ of the line in pixels.  Default is 3.</td></tr>
+<tr><td width="23%"><code>clip</code></td><td width="2%"></td><td width="75%">A numeric scalar value defining the pixels to
+ clip relative to the chart&rsquo;s area.  Positive value allows overflow, negative
+ value clips that many pixels inside chartArea.  Defaults to zero pixels.</td></tr>
+<tr><td width="23%"><code>data</code></td><td width="2%"></td><td width="75%">A numeric vector assigned at construction of the
+ <code>RadarData</code> object.  It cannot be empty.</td></tr>
+<tr><td width="23%"><code>fill</code></td><td width="2%"></td><td width="75%">A <code>Fill</code> object defining how to fill the
+ area under the line.  Type <code>help Fill</code> for more details on the available
+ filling modes.  By default, no filling is applied.</td></tr>
+<tr><td width="23%"><code>hoverBackgroundColor</code></td><td width="2%"></td><td width="75%">A <code>Color</code> object defining
+ the fill color of the lines between data points, when the mouse hovers over
+ it.  Default is empty, in which case the color is the same as in
+ <code>backgroundColor</code>.</td></tr>
+<tr><td width="23%"><code>hoverBorderCapStyle</code></td><td width="2%"></td><td width="75%">A character vector, which can be
+ either <code>'butt'</code>, <code>'round'</code>, or <code>'square'</code>, defining the cap
+ style of the line when the mouse hovers over it.  Default is empty, in which
+ case the cap style is the same as in <code>borderCapStyle</code>.</td></tr>
+<tr><td width="23%"><code>hoverBorderColor</code></td><td width="2%"></td><td width="75%">A <code>Color</code> object defining the
+ color of the lines between data points, when the mouse hovers over it.
+ Default is empty, in which case the color is the same as in
+ <code>borderColor</code>.</td></tr>
+<tr><td width="23%"><code>hoverBorderDash</code></td><td width="2%"></td><td width="75%">A numeric vector defining the length
+ and spacing of dashes drawn instead of a line, when the mouse hovers over
+ them.  Default is empty, in which case the length and spacing of the dashes
+ are the same as in <code>borderDash</code>.</td></tr>
+<tr><td width="23%"><code>hoverborderDashOffset</code></td><td width="2%"></td><td width="75%">A numeric scalar defining the
+ offset of dashes drawn instead of a line, when the mouse hovers over them.
+ Default is empty, in which case the offset is the same as in
+ <code>borderDashOffset</code></td></tr>
+<tr><td width="23%"><code>hoverBorderJoinStyle</code></td><td width="2%"></td><td width="75%">A character vector defining the
+ line border join style, when the mouse hovers over it.  Default is empty, in
+ which case the line border join style is the same as in
+ <code>borderJoinStyle</code></td></tr>
+<tr><td width="23%"><code>hoverBorderWidth</code></td><td width="2%"></td><td width="75%">A numeric scalar value defining the
+ width of the line in pixels, when the mouse hovers over it.  Default is
+ empty, in which case the width is the same as in <code>borderWidth</code>.</td></tr>
+<tr><td width="23%"><code>indexAxis</code></td><td width="2%"></td><td width="75%">A character scalar defining the base axis
+ of the dataset.  It can be either <code>'x'</code> for horizontal lines or
+ <code>'y'</code> for horizontal lines.  Default is <code>'x'</code>.</td></tr>
+<tr><td width="23%"><code>labels</code></td><td width="2%"></td><td width="75%">A character vector defining the label for the
+ dataset which appears in the legend and tooltips.  Default is empty.</td></tr>
+<tr><td width="23%"><code>order</code></td><td width="2%"></td><td width="75%">A numeric scalar defining the drawing order of
+ the dataset.  It also affects order for stacking, tooltip and legend.
+ Default is 0.</td></tr>
+<tr><td width="23%"><code>pointBackgroundColor</code></td><td width="2%"></td><td width="75%">A <code>Color</code> object defining
+ the fill color for the data points.  Default is empty, in which case
+ a color is assigned automatically by the Chart.js library.</td></tr>
+<tr><td width="23%"><code>pointBorderColor</code></td><td width="2%"></td><td width="75%">A <code>Color</code> object defining
+ the border color for the data points.  Default is empty, in which case
+ a color is assigned automatically by the Chart.js library.</td></tr>
+<tr><td width="23%"><code>pointBorderWidth</code></td><td width="2%"></td><td width="75%">A numeric scalar value defining the
+ width of the data point border in pixels.  Default is 1.</td></tr>
+<tr><td width="23%"><code>pointHitRadius</code></td><td width="2%"></td><td width="75%">A numeric scalar value defining the
+ pixel size of the non-displayed point that reacts to mouse events.  Default
+ is 1.</td></tr>
+<tr><td width="23%"><code>pointHoverBackgroundColor</code></td><td width="2%"></td><td width="75%">A <code>Color</code> object
+ defining the fill color for the data points, when the mouse hovers over them.
+ Default is empty, in which case the fill color is the same as in
+ <code>pointBackgroundColor</code>.</td></tr>
+<tr><td width="23%"><code>pointHoverBorderColor</code></td><td width="2%"></td><td width="75%">A <code>Color</code> object
+ defining the border color for the data point, when the mouse hovers over it.
+ Default is empty, in which case the border color is the same as in
+ <code>pointBorderColor</code>.</td></tr>
+<tr><td width="23%"><code>pointHoverBorderWidth</code></td><td width="2%"></td><td width="75%">A numeric scalar value defining
+ the width of the data point border in pixels, when the mouse hovers over it.
+ Default is 1.</td></tr>
+<tr><td width="23%"><code>pointHoverRadius</code></td><td width="2%"></td><td width="75%">A numeric scalar value defining
+ the radius of the data point border in pixels, when the mouse hovers over it.
+ Default is 4.</td></tr>
+<tr><td width="23%"><code>pointRadius</code></td><td width="2%"></td><td width="75%">A numeric scalar value defining the
+ radius of the data point border in pixels.  Default is 3.</td></tr>
+<tr><td width="23%"><code>pointRotation</code></td><td width="2%"></td><td width="75%">A numeric scalar value defining the
+ rotation of the data point border in degrees.  Default is 0.</td></tr>
+<tr><td width="23%"><code>pointStyle</code></td><td width="2%"></td><td width="75%">A character vector or a boolean value
+ defining the shape of the points of the dataset.  As a character vector, it
+ can be any of the following values: <code>'circle'</code>, <code>'cross'</code>,
+ <code>'crossRot'</code>, <code>'dash'</code>, <code>'line'</code>, <code>'rect'</code>,
+ <code>'rectRounded'</code>, <code>'rectRot'</code>, <code>'star'</code>, <code>'triangle'</code>,
+ and <code>'none'</code>.  By default it is <code>'circle</code>.  As a boolean value,
+ <code>true</code> defaults to <code>'circle'</code> and <code>false</code> defaults to
+ <code>'none'</code>.</td></tr>
+<tr><td width="23%"><code>spanGaps</code></td><td width="2%"></td><td width="75%">A boolean scalar or a numeric scalar
+ defining whether to create a break in the line for <code>null</code> data.  When
+ <code>true</code>, lines will be drawn between points with no or null data.  When
+ <code>false</code>, points with null data will create a break in the line.  It can
+ also be a number specifying the maximum gap length to span.  The unit of the
+ value depends on the scale used.</td></tr>
+<tr><td width="23%"><code>tension</code></td><td width="2%"></td><td width="75%">A numeric scalar value defining the Bezier
+ curve tension of the line.  By default it is 0, which corresponds to drawing
+ straight lines between data points.  This option is ignored if monotone cubic
+ interpolation is used.</td></tr>
+</table>
+
+<p> <strong>See also: </strong>
+  <a href="RadarData.html">RadarData</a>, 
+  <a href="Color.html">Color</a>, 
+  <a href="Fill.html">Fill</a>
+</p>
+<p><strong>Source Code: </strong>
+  <a href="https://github.com/pr0m1th3as/octave-chartjs/tree/main/inst/RadarData.m">RadarData</a>
+</div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

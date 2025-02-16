@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ChartJS interface for GNU Octave: BarChart</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <script type="text/javascript" async
+      src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+    </script>
+    <script type="text/javascript">
+      window.addEventListener("load", () => {
+        for (let i of document.querySelectorAll(".collapse ul")) {
+          let tog = document.createElement("div");
+          tog.innerHTML = i.previousSibling.textContent;
+          tog.className = "toggle";
+          tog.onclick = () => tog.classList.toggle("show");
+          i.parentElement.removeChild(i.previousSibling);
+          i.parentElement.insertBefore(tog, i);
+        }
+      });
+    </script>
+    <style>
+    h6:hover {
+      color: gray;
+    }
+    var {
+      font-style: italics;
+      font-weight: bold;
+    }
+    td {
+      vertical-align: top;
+    }
+    [id^="togList"],                        /* HIDE CHECKBOX */
+    [id^="togList"] ~ .list,                /* HIDE LIST */
+    [id^="togList"] + label  span + span,   /* HIDE "Collapse" */
+    [id^="togList"]:checked + label span{   /* HIDE "Expand" (IF CHECKED) */
+      display:none;
+    }
+    [id^="togList"]:checked + label span + span{
+      display:inline-block;                 /* SHOW "Collapse" (IF CHECKED) */
+    }
+    [id^="togList"]:checked ~ .list{
+      display:block;                        /* SHOW LIST (IF CHECKED) */
+    }
+    </style>
+  </head>
+  <body>
+    <div class="bg-dark">
+      <div class="container-xl">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div class="container-fluid">
+            <a class="navbar-brand" href=index.html>
+              <img src="assets/chartjs.png" alt="chartjs" class="d-inline-block align-top" width="25" height="25">
+              ChartJS interface for GNU Octave
+            </a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="index.html#Chart Classes">
+                    <i class="fas fa-list-alt"></i>
+                    Chart Classes
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="https://gnu-octave.github.io/packages/">
+                  <img src="assets/octave-logo.svg" alt="GNU Octave logo" class="d-inline-block align-top" width="25" height="25">
+                    Octave Packages
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="https://www.octave.org">
+                    <i class="fas fa-home"></i>
+                    GNU Octave website
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <div class="container-xl my-4">
+      <div class="row flex-nowrap" style="min-height:0">
+        <div class="col-md-2 bg-light" style="overflow-y: scroll; width: 250px;">
+          <div class="p-2" style="text-align: center;">
+            <h3>Categories &</h3>
+            <h4 style="color: blue">Functions List</h4>
+          </div>
+			<div class="row">
+				<input id="togList1" type="checkbox" checked>
+				<label for="togList1">
+					<span><h6>Chart Classes</h6></span>
+					<span><h6>Chart Classes</h6></span>
+				</label>
+				<div class="list">
+				<ul style="list-style-type: none; padding-left: 20px;">
+					<li><a href="BarChart.html" class="text-decoration-none font-monospace fw-bolder"><small>BarChart</small></a></li>
+					<li><a href="BubbleChart.html" class="text-decoration-none font-monospace"><small>BubbleChart</small></a></li>
+					<li><a href="DoughnutChart.html" class="text-decoration-none font-monospace"><small>DoughnutChart</small></a></li>
+					<li><a href="LineChart.html" class="text-decoration-none font-monospace"><small>LineChart</small></a></li>
+					<li><a href="PieChart.html" class="text-decoration-none font-monospace"><small>PieChart</small></a></li>
+					<li><a href="PolarAreaChart.html" class="text-decoration-none font-monospace"><small>PolarAreaChart</small></a></li>
+					<li><a href="RadarChart.html" class="text-decoration-none font-monospace"><small>RadarChart</small></a></li>
+					<li><a href="ScatterChart.html" class="text-decoration-none font-monospace"><small>ScatterChart</small></a></li>
+				</ul>
+				</div>
+			</div>
+			<div class="row">
+				<input id="togList2" type="checkbox">
+				<label for="togList2">
+					<span><h6>Data Classes</h6></span>
+					<span><h6>Data Classes</h6></span>
+				</label>
+				<div class="list">
+				<ul style="list-style-type: none; padding-left: 20px;">
+					<li><a href="BarData.html" class="text-decoration-none font-monospace"><small>BarData</small></a></li>
+					<li><a href="BubbleData.html" class="text-decoration-none font-monospace"><small>BubbleData</small></a></li>
+					<li><a href="DoughnutData.html" class="text-decoration-none font-monospace"><small>DoughnutData</small></a></li>
+					<li><a href="LineData.html" class="text-decoration-none font-monospace"><small>LineData</small></a></li>
+					<li><a href="PieData.html" class="text-decoration-none font-monospace"><small>PieData</small></a></li>
+					<li><a href="PolarAreaData.html" class="text-decoration-none font-monospace"><small>PolarAreaData</small></a></li>
+					<li><a href="RadarData.html" class="text-decoration-none font-monospace"><small>RadarData</small></a></li>
+					<li><a href="ScatterData.html" class="text-decoration-none font-monospace"><small>ScatterData</small></a></li>
+				</ul>
+				</div>
+			</div>
+			<div class="row">
+				<input id="togList3" type="checkbox">
+				<label for="togList3">
+					<span><h6>Parameter Classes</h6></span>
+					<span><h6>Parameter Classes</h6></span>
+				</label>
+				<div class="list">
+				<ul style="list-style-type: none; padding-left: 20px;">
+					<li><a href="Color.html" class="text-decoration-none font-monospace"><small>Color</small></a></li>
+					<li><a href="Fill.html" class="text-decoration-none font-monospace"><small>Fill</small></a></li>
+				</ul>
+				</div>
+			</div>
+			<div class="row">
+				<input id="togList4" type="checkbox">
+				<label for="togList4">
+					<span><h6>Web Classes</h6></span>
+					<span><h6>Web Classes</h6></span>
+				</label>
+				<div class="list">
+				<ul style="list-style-type: none; padding-left: 20px;">
+					<li><a href="Html.html" class="text-decoration-none font-monospace"><small>Html</small></a></li>
+					<li><a href="WebServer.html" class="text-decoration-none font-monospace"><small>WebServer</small></a></li>
+				</ul>
+				</div>
+			</div>
+
+			  </div>
+			  <div class="col-md-10">
+          <div class="card rounded">
+            <div class="card-header card-header-mod">
+              <div class="row d-flex flex-wrap align-items-center">
+                <h3 class="d-inline-block mr-2">
+                Class&nbsp;Definition: <b><code>BarChart</code></b>
+                </h3>
+              </div>
+            </div>
+            <div class="card-body">
+<dl>
+<dt><u>chartjs:</u> <var>obj</var> = <b>BarChart</b><i> (<var>data</var>, <var>labels</var>)</i></dt>
+<dt><u>chartjs:</u> <var>obj</var> = <b>BarChart</b><i> (&hellip;, <var>Name</var>, <var>Value</var>)</i></dt>
+</dl>
+
+<p> Create a <code>BarChart</code> object.
+</p>
+<div class="ms-5">
+<p> <code><var>obj</var> = BarChart (<var>data</var>, <var>labels</var>)</code> returns a
+ <code>BarChart</code> object, in which <var>data</var> contain the bar heights (by
+ default along the <code>y-axis</code>) and <var>labels</var> contain the bar labels (by
+ default along the <code>x-axis</code>).
+</p>
+ <ul>
+<li>
+ <var>data</var> must be a nonempty <math>N&times;P</math> numeric matrix, where each column
+ corresponds to a separate dataset and each row corresponds to an element in
+ <var>labels</var>.  If <var>data</var> is a row vector and its length matches the
+ number of elements in <var>labels</var>, then it is transposed to a column vector.
+
+ </li><li>
+ <var>labels</var> must be a nonempty numerical vector or cellstring array, where
+ each element corresponds to a row in <var>data</var>.  If <var>labels</var> is a
+ character vector, then it is converted to a cellstring scalar.
+ </li></ul>
+
+<p> <code><var>obj</var> = BarChart (&hellip;, <var>Name</var>, <var>Value</var>)</code> returns a
+ <code>BarChart</code> object with the properties of each dataset specified by one
+ or more <code><var>Name</var>, <var>Value</var></code> pair arguments.  <var>Name</var> can be
+ any property name of a <code>BarData</code> object and <var>Value</var> must correspond
+ to the data type(s) and values accepted by that property.
+ Type <code>help BarData</code> for more details on the available properties.
+</p>
+<p> Specifically for the properties that accept a <code>Color</code> object as their
+ input value, besides the <code>Color</code> object you may also parse to the
+ <code>BarChart</code> constructor the same values accepted by the constructor of
+ the <code>Color</code> object.  However, if you choose to manually modify the
+ <code>BarChart</code>&rsquo;s properties using the dot notation syntax, then you must
+ assign a <code>Color</code> object to the chosen property.  Type <code>help Color</code>
+ for more details on the available syntax.
+</p>
+<p> For properties that accept scalar values, you can pass a vector of the same
+ type with each element corresponding to a different dataset.  For properties
+ that accept vectors, you can pass a matrix of the same type with each row
+ corresponding to a different dataset.  Otherwise, the same property value
+ will be assigned to all datasets available in <var>data</var>.  For properties
+ accepting a character vector, you need to pass a cellstring array for
+ multiple datasets, whereas for properties that can take mixed types of scalar
+ values (i.e. either boolean and character vectors), you need to pass a cell
+ array with each element corresponding to a different dataset.
+</p>
+<p> A <code>BarChart</code> object, <var>obj</var>, stores the following properties, which
+ can be accessed/modified using dot notation syntax similarly to a
+ <code>struct</code> object:
+</p>
+ <table>
+<thead><tr><th width="23%"><var>Field</var></th><th width="2%"></th><th width="75%"><var>Description</var></th></tr></thead>
+<tr><td width="23%"><code>chartID</code></td><td width="2%"></td><td width="75%">A character vector defining the name of the
+ Chart in the generated html code.</td></tr>
+<tr><td width="23%"><code>datasets</code></td><td width="2%"></td><td width="75%">A cell array containing one or more
+ <code>BarData</code> objects corresponding to the <var>data</var> input.</td></tr>
+<tr><td width="23%"><code>labels</code></td><td width="2%"></td><td width="75%">A numeric vector or a cellstring array with
+ the data labels defined in <var>labels</var>.</td></tr>
+<tr><td width="23%"><code>options</code></td><td width="2%"></td><td width="75%">A cell array containing one or more
+ <code>Option</code> and <code>Plugin</code> objects.  Not used at the moment.</td></tr>
+</table>
+
+<p> To directly serve the <code>BarChart</code> object on a local web server instance,
+ you can use the object&rsquo;s <code>webserve ()</code> method.  Alternatively, you can
+ generate and/or save to a file the corresponding HTML code with the
+ <code>htmlstring ()</code> and <code>htmlsave ()</code> methods and serve it online
+ through a web server of your choice.
+</p>
+<p> <strong>See also: </strong>
+  <a href="BarData.html">BarData</a>, 
+  <a href="Color.html">Color</a>, 
+  <a href="Fill.html">Fill</a>, 
+  <a href="Html.html">Html</a>, 
+  <a href="WebServer.html">WebServer</a>
+</p>
+<p><strong>Source Code: </strong>
+  <a href="https://github.com/pr0m1th3as/octave-chartjs/tree/main/inst/BarChart.m">BarChart</a>
+</div>
+
+
+        <div class="container-xl my-4">
+          <div class="card rounded">
+            <div class="card-header card-header-mod">
+              <div class="row d-flex flex-wrap align-items-center">
+                <div class="col-sm-3 col-md-5 mb-2 mb-sm-0">
+                  <h3 class="d-inline-block mr-2">
+                  Method: <b><code>jsonstring</code></b>
+                  </h3>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+<dl>
+<dt><u>BarChart:</u> <var>json</var> = <b>jsonstring</b><i> (<var>obj</var>)</i></dt>
+</dl>
+
+<p> Generate a JSON string with the BarChart&rsquo;s context.
+</p>
+<div class="ms-5">
+<p> <code>jsonstring (<var>obj</var>)</code> returns a character vector, <var>json</var>,
+ describing the context of the BarChart function in java script.
+</p>
+<p> <strong>See also: </strong>
+  <a href="BarChart.html">BarChart</a>, 
+  <a href="BarData.html">BarData</a>
+</p>
+</div>
+            </div>
+          </div>
+        </div>
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
