@@ -26,7 +26,7 @@ help Html.htmlstring
 help Html.htmlsave
 help Html.webserve
 ```
-You can also find the entire documentation of the **chartjs** package along with its classdef index at [https://pr0m1th3as.github.io/octave-chartjs/]([octave-chartjs](https://pr0m1th3as.github.io/octave-chartjs/)). Alternatively, you can build the online documentation locally using the [`pkg-octave-doc`](https://github.com/gnu-octave/pkg-octave-doc) package. Assuming both packages are installed and loaded, browse to any directory of your choice with *write* permission and run:
+You can also find the entire documentation of the **chartjs** package along with its classdef index at [https://pr0m1th3as.github.io/octave-chartjs/](https://pr0m1th3as.github.io/octave-chartjs/). Alternatively, you can build the online documentation locally using the [`pkg-octave-doc`](https://github.com/gnu-octave/pkg-octave-doc) package. Assuming both packages are installed and loaded, browse to any directory of your choice with *write* permission and run:
 ```
 package_texi2html ("chartjs")
 ```
