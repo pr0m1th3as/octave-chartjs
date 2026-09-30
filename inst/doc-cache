@@ -1,0 +1,8129 @@
+# doc-cache created by Octave 11.3.0
+# name: cache
+# type: cell
+# rows: 3
+# columns: 276
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 8
+BarChart
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 503
+chartjs: BarChart
+Bar chart drawn by the Chart.js library.
+
+Each dataset of a BarChart is a BarData object in its
+datasets property.
+
+To view the BarChart object in your web browser, use its
+webserve () method. Alternatively, you can generate and/or save to
+a file the corresponding HTML code with the htmlstring () and
+htmlsave () methods and serve it online through a web server of
+your choice.
+
+Each property is documented on its own, as in help BarChart.labels.
+
+See also:
+BarData,
+Color,
+Fill,
+Html
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 40
+Bar chart drawn by the Chart.js library.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 17
+BarChart.BarChart
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 2199
+BarChart: obj = BarChart (data, labels)
+BarChart: obj = BarChart (..., Name, Value)
+Create a BarChart object.
+
+obj = BarChart (data, labels) returns a
+BarChart object, in which data contain the bar heights (by
+default along the y-axis) and labels contain the bar labels
+(by default along the x-axis).
+
+data must be a nonempty NxP numeric matrix, where each
+column corresponds to a separate dataset and each row corresponds to an
+element in labels. If data is a row vector and its length
+matches the number of elements in labels, then it is transposed to
+a column vector.
+
+labels must be a nonempty numerical vector or cellstring array,
+where each element corresponds to a row in data. If labels
+is a character vector, then it is converted to a cellstring scalar.
+
+obj = BarChart (..., Name, Value) returns a
+BarChart object with the properties of each dataset specified by
+one or more Name, Value pair arguments. Name
+can be any property name of a BarData object and Value must
+correspond to the data type(s) and values accepted by that property. Type
+help BarData for more details on the available properties.
+
+Specifically for the properties that accept a Color object as
+their input value, besides the Color object you may also parse to
+the BarChart constructor the same values accepted by the
+constructor of the Color object. However, if you choose to
+manually modify the BarChart's properties using the dot notation
+syntax, then you must assign a Color object to the chosen
+property. Type help Color for more details on the available
+syntax.
+
+For properties that accept scalar values, you can pass a vector of the
+same type with each element corresponding to a different dataset. For
+properties that accept vectors, you can pass a matrix of the same type
+with each row corresponding to a different dataset. Otherwise, the same
+property value will be assigned to all datasets available in data.
+For properties accepting a character vector, you need to pass a
+cellstring array for multiple datasets, whereas for properties that can
+take mixed types of scalar values (i.e. either boolean and character
+vectors), you need to pass a cell array with each element corresponding
+to a different dataset.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 25
+Create a BarChart object.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 16
+BarChart.chartID
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 123
+BarChart: property chartID
+Name of the chart
+
+A character vector defining the name of the Chart in the generated html
+code.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 17
+Name of the chart
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 17
+BarChart.datasets
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 135
+BarChart: property datasets
+Datasets of the chart
+
+A cell array containing one or more BarData objects corresponding
+to the data input.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+Datasets of the chart
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 15
+BarChart.labels
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 117
+BarChart: property labels
+Data labels
+
+A numeric vector or a cellstring array with the data labels defined in
+labels.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+Data labels
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 16
+BarChart.options
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 128
+BarChart: property options
+Chart options
+
+A cell array containing one or more Option and Plugin
+objects. Not used at the moment.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 13
+Chart options
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 7
+BarData
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 248
+chartjs: BarData
+One dataset of a bar chart.
+
+A BarChart holds a BarData object for each of its datasets,
+whose properties set how Chart.js draws it.
+
+Each property is documented on its own, as in help BarData.data.
+
+See also:
+BarChart,
+Color,
+Fill
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 27
+One dataset of a bar chart.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 15
+BarData.BarData
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 329
+BarData: obj = BarData (data)
+Create a BarData object.
+
+obj = BarData (data) returns a BarData object,
+in which data must be a nonempty numerical vector containing the
+bar heights of a single dataset. Constructing a BarData object
+always assigns the default property values, which can later be modified
+using dot notation syntax.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 24
+Create a BarData object.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 23
+BarData.backgroundColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 199
+BarData: property backgroundColor
+Fill color
+
+A Color object defining the color of the face of the bars.
+Default is empty, in which case and a color is assigned automatically by
+the Chart.js library.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 10
+Fill color
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+BarData.barPercentage
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 297
+BarData: property barPercentage
+Bar width within its category
+
+A numeric scalar value. It defines the percent, in the range
+[0-1], of the available width each bar should be within the
+category width. barPercentage = 1.0 will take the whole category
+width and put the bars right next to each other.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 29
+Bar width within its category
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 20
+BarData.barThickness
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 867
+BarData: property barThickness
+Bar thickness
+
+Either a numeric scalar or a character vector. When numeric, it defines
+the width of each bar in pixels, in which case barPercentage and
+categoryPercentage properties are ignored. If set to
+'flex', the base sample widths are calculated automatically based
+on the previous and following samples so that they take the full
+available widths without overlap. Then, bars are sized using the
+barPercentage and categoryPercentage properties. There
+is no gap when the percentage options are 1. This mode generates bars
+with different widths when data are not evenly spaced. By default it is
+empty, in which case the base sample widths are calculated using the
+smallest interval that prevents bar overlapping, and bars are sized using
+barPercentage and categoryPercentage properties. This
+mode always generates bars equally sized.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 13
+Bar thickness
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+BarData.base
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 168
+BarData: property base
+Base value of the bars
+
+A numeric scalar value. It defines the base value for the bar in data
+units along the value axis (the y-axis by default).
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 22
+Base value of the bars
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 19
+BarData.borderColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 200
+BarData: property borderColor
+Border color
+
+A Color object defining the color of the border line of the bars.
+Default is empty, in which case a color is assigned automatically by the
+Chart.js library.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+Border color
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 20
+BarData.borderRadius
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 195
+BarData: property borderRadius
+Corner radius
+
+A numeric scalar value defining the corner radius of the each bar in
+pixels. Omitted borders as defined by the borderSkipped property
+are unaffected.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 13
+Corner radius
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+BarData.borderSkipped
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 477
+BarData: property borderSkipped
+Borders left undrawn
+
+A boolean scalar or a character vector. This setting is used to avoid
+drawing any given border of each bar. As a boolean value, false
+does not skip any borders and true skips drawing all borders. As
+a character vector, it can take any of the following values:
+'start', 'end', 'middle', 'bottom',
+'left', 'top', and 'right'. 'middle' is
+only valid on stacked bars, in which case the borders between stacked
+bars are skipped.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 20
+Borders left undrawn
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 19
+BarData.borderWidth
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 195
+BarData: property borderWidth
+Border width
+
+A numeric scalar value defining the width of the each bar's borders in
+pixels. Omitted borders as defined by the borderSkipped property
+are unaffected.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+Border width
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 26
+BarData.categoryPercentage
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 195
+BarData: property categoryPercentage
+Category width
+
+A numeric scalar value, which defines the percent, in the range
+[0-1], of the available width each category should be within the
+sample width.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 14
+Category width
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+BarData.clip
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 253
+BarData: property clip
+Clipping relative to the chart area
+
+A numeric scalar value defining the pixels to clip relative to the
+chart's area. Positive value allows overflow, negative value clips that
+many pixels inside chartArea. Defaults to zero pixels.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 35
+Clipping relative to the chart area
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+BarData.data
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 120
+BarData: property data
+Data points
+
+A numeric vector assigned at construction of the BarData object.
+It cannot be empty.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+Data points
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 15
+BarData.grouped
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 317
+BarData: property grouped
+Grouping of the bars
+
+A boolean scalar defining how the bars are grouped on the index axis (the
+x-axis by default). When true, all the datasets at same
+index value will be placed next to each other centering on that index
+value. When false, each bar is placed on its actual index-axis
+value.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 20
+Grouping of the bars
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 28
+BarData.hoverBackgroundColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 226
+BarData: property hoverBackgroundColor
+Fill color on hover
+
+A Color object defining the color of the face of each bar, when
+the mouse hovers over it. Default is empty, in which case the color is
+the same as in backgroundColor.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 19
+Fill color on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 24
+BarData.hoverBorderColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 223
+BarData: property hoverBorderColor
+Border color on hover
+
+A Color object defining the color of the borders of each bar,
+when the mouse hovers over it. Default is empty, in which case the color
+is the same as in borderColor.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+Border color on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 25
+BarData.hoverBorderRadius
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 240
+BarData: property hoverBorderRadius
+Corner radius on hover
+
+A numeric scalar value defining the corner radius of the each bar in
+pixels, when the mouse hovers over it. Omitted borders as defined by the
+borderSkipped property are unaffected.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 22
+Corner radius on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 24
+BarData.hoverBorderWidth
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 240
+BarData: property hoverBorderWidth
+Border width on hover
+
+A numeric scalar value defining the width of the each bar's borders in
+pixels, when the mouse hovers over it. Omitted borders as defined by the
+borderSkipped property are unaffected.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+Border width on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 17
+BarData.indexAxis
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 178
+BarData: property indexAxis
+Base axis
+
+A character vector defining the base axis of the dataset. 'x'
+defines a vertical bar chart (default) and 'y' defines a
+horizontal bar chart
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 9
+Base axis
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+BarData.inflateAmount
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 344
+BarData: property inflateAmount
+Inflation of the bars
+
+Either a numeric scalar or a character vector. When numeric, it defines
+the amount to inflate the rectangulars used to draw the bars. This is
+useful for hiding artifacts between bars when barPercentage
+x categoryPercentage = 1. The default value is 'auto',
+which should work in most cases.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+Inflation of the bars
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 18
+BarData.jsonstring
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 362
+BarData: json = jsonstring (obj)
+BarData: json = jsonstring (obj, mixed)
+Generate the JSON string of a BarData dataset.
+
+jsonstring (obj) returns a character vector, json,
+holding the dataset in JSON, as Chart.js reads it in the datasets
+of a chart.
+
+jsonstring (obj, mixed) also writes the dataset's
+chart type when mixed is true, as a chart mixing types
+needs.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 46
+Generate the JSON string of a BarData dataset.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 13
+BarData.label
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 295
+BarData: property label
+Label of the dataset
+
+A character vector defining the label of the dataset which appears in the
+legend and tooltips. A chart shows no legend when none of its datasets
+has a label, and names a dataset without one by its position, such as
+"Dataset 2", when another has one.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 20
+Label of the dataset
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 23
+BarData.maxBarThickness
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 133
+BarData: property maxBarThickness
+Maximum bar thickness
+
+A numeric scalar value defining the maximum thickness of the bars in
+pixels.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+Maximum bar thickness
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 20
+BarData.minBarLength
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 124
+BarData: property minBarLength
+Minimum bar length
+
+A numeric scalar value defining the minimum height of the bars in pixels.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 18
+Minimum bar length
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 13
+BarData.order
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 144
+BarData: property order
+Drawing order
+
+A numeric scalar defining the order of the dataset, which affects order
+for stacking, tooltip and legend.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 13
+Drawing order
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 16
+BarData.skipNull
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 199
+BarData: property skipNull
+Null values skipped
+
+A boolean scalar. If true or empty (default), the null or
+undefined values in data will not be used for spacing calculations
+when determining bar size.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 19
+Null values skipped
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 13
+BarData.stack
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 167
+BarData: property stack
+Stack group
+
+A character vector defining the ID of the group which this dataset
+belongs to (when stacked, each group will be a separate stack).
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+Stack group
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+BubbleChart
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 524
+chartjs: BubbleChart
+Bubble chart drawn by the Chart.js library.
+
+Each dataset of a BubbleChart is a BubbleData object in its
+datasets property.
+
+To view the BubbleChart object in your web browser, use its
+webserve () method. Alternatively, you can generate and/or save to
+a file the corresponding HTML code with the htmlstring () and
+htmlsave () methods and serve it online through a web server of
+your choice.
+
+Each property is documented on its own, as in help
+BubbleChart.labels.
+
+See also:
+BubbleData,
+Color,
+Fill,
+Html
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 43
+Bubble chart drawn by the Chart.js library.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 23
+BubbleChart.BubbleChart
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 2339
+BubbleChart: obj = BubbleChart (X, Y, R)
+BubbleChart: obj = BubbleChart (..., Name, Value)
+Create a BubbleChart object.
+
+obj = BubbleChart (X, Y, R) returns a
+BubbleChart object, in which X and Y define the
+coordinates along the x-axis and y-axis, respectively,
+and R defines the radius for each element of the bubble chart.
+
+X must be a nonempty NxP numeric matrix, where each column
+corresponds to a separate dataset and each row corresponds to an element
+of the bubble chart defining its position along the x-axis.
+
+Y must be a nonempty NxP numeric matrix, where each column
+corresponds to a separate dataset and each row corresponds to an element
+of the bubble chart defining its position along the y-axis.
+
+R must be a nonempty NxP numeric matrix, where each column
+corresponds to a separate dataset and each row corresponds to an element
+of the bubble chart defining its radius.
+
+obj = BubbleChart (..., Name, Value) returns
+a BubbleChart object with the properties of each dataset
+specified by one or more Name, Value pair arguments.
+Name can be any property name of a BubbleData object and
+Value must correspond to the data type(s) and values accepted by
+that property. Type help BubbleData for more details on the
+available properties.
+
+Specifically for the properties that accept a Color object as
+their input value, besides the Color object you may also parse to
+the BubbleChart constructor the same values accepted by the
+constructor of the Color object. However, if you choose to
+manually modify the BubbleChart's properties using the dot
+notation syntax, then you must assign a Color object to the
+chosen property. Type help Color for more details on the
+available syntax.
+
+For properties that accept scalar values, you can pass a vector of the
+same type with each element corresponding to a different dataset. For
+properties that accept vectors, you can pass a matrix of the same type
+with each row corresponding to a different dataset. Otherwise, the same
+property value will be assigned to all datasets available in data.
+For properties accepting a character vector, you need to pass a
+cellstring array for multiple datasets, whereas for properties that can
+take mixed types of scalar values (i.e. either boolean and character
+vectors), you need to pass a cell array with each element corresponding
+to a different dataset.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 28
+Create a BubbleChart object.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 19
+BubbleChart.chartID
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 126
+BubbleChart: property chartID
+Name of the chart
+
+A character vector defining the name of the Chart in the generated html
+code.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 17
+Name of the chart
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 20
+BubbleChart.datasets
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 138
+BubbleChart: property datasets
+Datasets of the chart
+
+A cell array containing one or more BarData objects corresponding
+to the data input.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+Datasets of the chart
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 18
+BubbleChart.labels
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 120
+BubbleChart: property labels
+Data labels
+
+A numeric vector or a cellstring array with the data labels defined in
+labels.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+Data labels
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 19
+BubbleChart.options
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 131
+BubbleChart: property options
+Chart options
+
+A cell array containing one or more Option and Plugin
+objects. Not used at the moment.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 13
+Chart options
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 10
+BubbleData
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 266
+chartjs: BubbleData
+One dataset of a bubble chart.
+
+A BubbleChart holds a BubbleData object for each of its
+datasets, whose properties set how Chart.js draws it.
+
+Each property is documented on its own, as in help BubbleData.data.
+
+See also:
+BubbleChart,
+Color,
+Fill
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 30
+One dataset of a bubble chart.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+BubbleData.BubbleData
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 409
+BubbleData: obj = BubbleData (data)
+Create a BubbleData object.
+
+obj = BubbleData (data) returns a BubbleData
+object, in which data must be an Nx3 numeric matrix with
+each column defining the x-axis, the y-axis, and the
+radius of each element of a single dataset, respectively. Constructing a
+BubbleData object always assigns the default property values,
+which can later be modified using dot notation syntax.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 27
+Create a BubbleData object.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 26
+BubbleData.backgroundColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 205
+BubbleData: property backgroundColor
+Fill color
+
+A Color object defining the color of the face of the bubbles.
+Default is empty, in which case and a color is assigned automatically by
+the Chart.js library.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 10
+Fill color
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 22
+BubbleData.borderColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 208
+BubbleData: property borderColor
+Border color
+
+A Color object defining the color of the border circle of the
+bubbles. Default is empty, in which case a color is assigned
+automatically by the Chart.js library.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+Border color
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 22
+BubbleData.borderWidth
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 137
+BubbleData: property borderWidth
+Border width
+
+A numeric scalar value defining the width of the bubble's borders in
+pixels. Default is 3.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+Border width
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 15
+BubbleData.clip
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 256
+BubbleData: property clip
+Clipping relative to the chart area
+
+A numeric scalar value defining the pixels to clip relative to the
+chart's area. Positive value allows overflow, negative value clips that
+many pixels inside chartArea. Defaults to zero pixels.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 35
+Clipping relative to the chart area
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 15
+BubbleData.data
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 126
+BubbleData: property data
+Data points
+
+A numeric matrix assigned at construction of the BubbleData
+object. It cannot be empty.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+Data points
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 34
+BubbleData.drawActiveElementsOnTop
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 210
+BubbleData: property drawActiveElementsOnTop
+Active elements drawn on top
+
+A boolean scalar defining whether to draw the active bubbles of a dataset
+over the other bubbles of the dataset. It is true by default.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 28
+Active elements drawn on top
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 20
+BubbleData.hitRadius
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 149
+BubbleData: property hitRadius
+Hit detection radius
+
+A numeric scalar value defining the additional radius for hit detection
+in pixels. Default is 1.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 20
+Hit detection radius
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 31
+BubbleData.hoverBackgroundColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 224
+BubbleData: property hoverBackgroundColor
+Fill color on hover
+
+A Color object defining the color of the bubble face, when the
+mouse hovers over it. Default is empty, in which case the color is the
+same as in backgroundColor.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 19
+Fill color on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 27
+BubbleData.hoverBorderColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 229
+BubbleData: property hoverBorderColor
+Border color on hover
+
+A Color object defining the color of the borders of each bubble,
+when the mouse hovers over it. Empty by default, in which case the color
+is the same as in borderColor.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+Border color on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 27
+BubbleData.hoverBorderWidth
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 187
+BubbleData: property hoverBorderWidth
+Border width on hover
+
+A numeric scalar value defining the width of the each bubble's borders in
+pixels, when the mouse hovers over it. Default is 1.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+Border width on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 22
+BubbleData.hoverRadius
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 167
+BubbleData: property hoverRadius
+Radius on hover
+
+A numeric scalar value defining the radius of the each bubble in pixels,
+when the mouse hovers over it. Default is 4.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 15
+Radius on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+BubbleData.jsonstring
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 371
+BubbleData: json = jsonstring (obj)
+BubbleData: json = jsonstring (obj, mixed)
+Generate the JSON string of a BubbleData dataset.
+
+jsonstring (obj) returns a character vector, json,
+holding the dataset in JSON, as Chart.js reads it in the datasets
+of a chart.
+
+jsonstring (obj, mixed) also writes the dataset's
+chart type when mixed is true, as a chart mixing types
+needs.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 49
+Generate the JSON string of a BubbleData dataset.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 16
+BubbleData.label
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 298
+BubbleData: property label
+Label of the dataset
+
+A character vector defining the label of the dataset which appears in the
+legend and tooltips. A chart shows no legend when none of its datasets
+has a label, and names a dataset without one by its position, such as
+"Dataset 2", when another has one.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 20
+Label of the dataset
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 16
+BubbleData.order
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 147
+BubbleData: property order
+Drawing order
+
+A numeric scalar defining the order of the dataset, which affects order
+for stacking, tooltip and legend.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 13
+Drawing order
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+BubbleData.pointStyle
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 409
+BubbleData: property pointStyle
+Point style
+
+A character vector or a boolean value defining the shape of the bubbles
+of the dataset. As a character vector, it can be any of the following
+values: 'circle', 'cross', 'crossRot',
+'dash', 'line', 'rect', 'rectRounded',
+'rectRot', 'star', 'triangle', and
+'none'. By default it is 'circle. As a boolean value,
+true defaults to 'circle' and false defaults to
+'none'.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+Point style
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 17
+BubbleData.radius
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 103
+BubbleData: property radius
+Radius
+
+A numeric scalar defining the bubble radius for the entire dataset.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 6
+Radius
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 19
+BubbleData.rotation
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 97
+BubbleData: property rotation
+Rotation
+
+A numeric scalar defining the bubble rotation in degrees.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 8
+Rotation
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 5
+Color
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 359
+chartjs: Color
+A color or a list of colors for a Chart.js chart.
+
+Every dataset property that takes a color, such as backgroundColor,
+holds a Color object.
+
+See also:
+BarChart,
+BarData,
+BubbleChart,
+BubbleData,
+DoughnutChart,
+DoughnutData,
+LineChart,
+LineData,
+PieChart,
+PieData,
+PolarAreaChart,
+PolarAreaData,
+RadarChart,
+RadarData,
+ScatterChart,
+ScatterData
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 49
+A color or a list of colors for a Chart.js chart.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+Color.Color
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 2827
+Color: obj = Color (value)
+obj = Color (value) returns a Color object defined by
+value, which can either be a character vector, a cellstring array,
+a numeric matrix, or a cell matrix containing the following combinations.
+Each Color object only applies to a given dataset. If you want to pass
+different color patterns to multiple datasets when constructing a Chart
+object, then you need to pass a Color object array to the Chart's
+constructor.
+
+When value is character vector, it can define a single color either
+by using one of the acceptable color names given below or by using
+hexadecimal string values in the forms #FFFFFF and
+#FFFFFFFF. The former defines an RGB color space,
+whereas the later defines an RGBA color space that includes
+transparency.
+
+Valid color names are:
+
+beige
+black
+blue, lightblue, darkblue
+brown
+coral, lightcoral
+cyan, darkcyan
+green, lightgreen, darkgreen
+gray, grey, lightgray, lightgrey,
+darkgray, darkgrey
+magenta, darkmagenta
+pink
+red, darkred
+white
+yellow, lightyellow
+
+If you want to apply multiple colors to a given dataset, then you can use
+a cellstring array whose elements follow the requirements for character
+vector values described above. The cellstring array must be a vector and
+its elements can interchangeably contain known color names or hexadecimal
+color values.
+
+If value is a numeric, it follows Octave's native RGB
+tripplet syntax. An RGB triplet is a 1x3 vector where
+each value is between 0 and 1 inclusive. The first value represents the
+percentage of Red, the second value the percentage of Green, and the
+third value the percentage of Blue. This syntax is also extended to
+support RGBA quadruplets, in which case the fourth value (also
+between 0 and 1 inclusive) of the 1x4 vector represents the
+transparency. If you want to apply multiple colors to a given dataset,
+then you can pass a numeric matrix of Nx3 or Nx4 size with
+each row representing a distinct RGB tripplet or RGBA
+quadruplet, respectively.
+
+Alternatively you can define value as a cell array with two
+elements or an Nx2 cell matrix in case you need to specify
+multiple colors in the same dataset. The first element of each row
+represents a color space name, which can be any of the four available
+choices: rgb, rgba, hsl, and hsla. The
+second element of each row must be a numeric 1x3 vector for
+rgb and hsl color spaces, or a numeric 1x4 vector
+for rgba and hsla color spaces. When assigning color
+value(s) as a cell array, the RGB values must be between 0 and
+255 inclusive, the hue value must be between 0 and 360 inclusive,
+the saturation and lightness values must be percentages
+between 0 and 100 inclusive, whereas the alpha value must be
+between 0 and 1 inclusive. All numeric values except for the
+transparency are expected to be integer values, otherwise they are
+rounded to the nearest integer.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 194
+obj = Color (value) returns a Color object defined by value, which can either be a character vector, a cellstring array, a numeric matrix, or a cell matrix containing the following combinations.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 16
+Color.jsonstring
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 270
+Color: json = jsonstring (obj)
+Generate the JSON string of a Color object.
+
+jsonstring (obj) returns a character vector, json,
+holding the color in JSON: a string for a single color and an array of
+strings for a list of colors, even a list of one.
+
+See also:
+Color,
+Fill
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 43
+Generate the JSON string of a Color object.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+Color.value
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 241
+Color: property value
+Value given to the constructor
+
+The value passed to the Color constructor, unchanged: a
+color name or hexadecimal code, a cellstring array of them, an RGB or
+RGBA matrix, or a cell array of color space names and values.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 30
+Value given to the constructor
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 13
+DoughnutChart
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 538
+chartjs: DoughnutChart
+Doughnut chart drawn by the Chart.js library.
+
+Each dataset of a DoughnutChart is a DoughnutData object in
+its datasets property.
+
+To view the DoughnutChart object in your web browser, use its
+webserve () method. Alternatively, you can generate and/or save to
+a file the corresponding HTML code with the htmlstring () and
+htmlsave () methods and serve it online through a web server of
+your choice.
+
+Each property is documented on its own, as in help
+DoughnutChart.labels.
+
+See also:
+DoughnutData,
+Color,
+Fill,
+Html
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 45
+Doughnut chart drawn by the Chart.js library.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 27
+DoughnutChart.DoughnutChart
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 2231
+DoughnutChart: obj = DoughnutChart (data, labels)
+DoughnutChart: obj = DoughnutChart (..., Name, Value)
+Create a DoughnutChart object.
+
+obj = DoughnutChart (data, labels) returns a
+DoughnutChart object, in which data contains the
+proportional arc segments and labels contain the labels of each
+segment.
+
+data must be a nonempty NxP numeric matrix, where each
+column corresponds to a separate dataset and each row corresponds to an
+element in labels. If data is a row vector and its length
+matches the number of elements in labels, then it is transposed to
+a column vector.
+
+labels must be a nonempty numerical vector or cellstring array,
+where each element corresponds to a row in data. If labels
+is a character vector, then it is converted to a cellstring scalar.
+
+obj = DoughnutChart (..., Name, Value)
+returns a DoughnutChart object with the properties of each
+dataset specified by one or more Name, Value pair
+arguments. Name can be any property name of a DoughnutData
+object and Value must correspond to the data type(s) and values
+accepted by that property. Type help DoughnutData for more details
+on the available properties.
+
+Specifically for the properties that accept a Color object as
+their input value, besides the Color object you may also parse to
+the DoughnutChart constructor the same values accepted by the
+constructor of the Color object. However, if you choose to
+manually modify the DoughnutChart's properties using the dot
+notation syntax, then you must assign a Color object to the
+chosen property. Type help Color for more details on the available
+syntax.
+
+For properties that accept scalar values, you can pass a vector of the
+same type with each element corresponding to a different dataset. For
+properties that accept vectors, you can pass a matrix of the same type
+with each row corresponding to a different dataset. Otherwise, the same
+property value will be assigned to all datasets available in data.
+For properties accepting a character vector, you need to pass a
+cellstring array for multiple datasets, whereas for properties that can
+take mixed types of scalar values (i.e. either boolean and character
+vectors), you need to pass a cell array with each element corresponding
+to a different dataset.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 30
+Create a DoughnutChart object.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+DoughnutChart.chartID
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 128
+DoughnutChart: property chartID
+Name of the chart
+
+A character vector defining the name of the Chart in the generated html
+code.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 17
+Name of the chart
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 22
+DoughnutChart.datasets
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 145
+DoughnutChart: property datasets
+Datasets of the chart
+
+A cell array containing one or more DoughnutData objects
+corresponding to the data input.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+Datasets of the chart
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 20
+DoughnutChart.labels
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 122
+DoughnutChart: property labels
+Data labels
+
+A numeric vector or a cellstring array with the data labels defined in
+labels.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+Data labels
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+DoughnutChart.options
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 133
+DoughnutChart: property options
+Chart options
+
+A cell array containing one or more Option and Plugin
+objects. Not used at the moment.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 13
+Chart options
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+DoughnutData
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 278
+chartjs: DoughnutData
+One dataset of a doughnut chart.
+
+A DoughnutChart holds a DoughnutData object for each of its
+datasets, whose properties set how Chart.js draws it.
+
+Each property is documented on its own, as in help
+DoughnutData.data.
+
+See also:
+DoughnutChart,
+Color,
+Fill
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 32
+One dataset of a doughnut chart.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 25
+DoughnutData.DoughnutData
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 373
+DoughnutData: obj = DoughnutData (data)
+Create a DoughnutData object.
+
+obj = DoughnutData (data) returns a
+DoughnutData object, in which data must be a nonempty
+numerical vector containing the proportional arc segments of a single
+dataset. Constructing a DoughnutData object always assigns the
+default property values, which can later be modified using dot notation
+syntax.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 29
+Create a DoughnutData object.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 28
+DoughnutData.backgroundColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 212
+DoughnutData: property backgroundColor
+Fill color
+
+A Color object defining the color of the face of the arc
+segments. Default is empty, in which case and a color is assigned
+automatically by the Chart.js library.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 10
+Fill color
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 24
+DoughnutData.borderAlign
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 271
+DoughnutData: property borderAlign
+Border alignment
+
+A character vector, which can be either 'center' (default) or
+'inner'. When 'center' is set, the borders of arcs next
+to each other will overlap. When 'inner' is set, it is
+guaranteed that all borders will not overlap.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 16
+Border alignment
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 24
+DoughnutData.borderColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 213
+DoughnutData: property borderColor
+Border color
+
+A Color object defining the color of the border line of the arc
+segments. Default is empty, in which case a color is assigned
+automatically by the Chart.js library.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+Border color
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 23
+DoughnutData.borderDash
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 148
+DoughnutData: property borderDash
+Dash pattern
+
+A numeric vector defining the length and spacing of dashes drawn at the
+borders of the arc segments.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+Dash pattern
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 29
+DoughnutData.borderDashOffset
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 155
+DoughnutData: property borderDashOffset
+Dash offset
+
+A numeric scalar defining the offset of dashes drawn at the borders of
+the arc segments. Default is 0.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+Dash offset
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 28
+DoughnutData.borderJoinStyle
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 157
+DoughnutData: property borderJoinStyle
+Line join style
+
+A character vector defining the arc border join style. It can be either
+'round', 'bevel', or 'miter'.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 15
+Line join style
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 25
+DoughnutData.borderRadius
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 149
+DoughnutData: property borderRadius
+Corner radius
+
+A numeric scalar value defining the corner radius of the each arc segment
+in pixels. Default is 0.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 13
+Corner radius
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 24
+DoughnutData.borderWidth
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 149
+DoughnutData: property borderWidth
+Border width
+
+A numeric scalar value defining the width of the each arc segment's
+borders in pixels. Default is 2.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+Border width
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 26
+DoughnutData.circumference
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 153
+DoughnutData: property circumference
+Sweep of the arcs
+
+A numeric scalar value, which defines the per-dataset override for the
+sweep that the arcs cover.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 17
+Sweep of the arcs
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 17
+DoughnutData.clip
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 258
+DoughnutData: property clip
+Clipping relative to the chart area
+
+A numeric scalar value defining the pixels to clip relative to the
+chart's area. Positive value allows overflow, negative value clips that
+many pixels inside chartArea. Defaults to zero pixels.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 35
+Clipping relative to the chart area
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 17
+DoughnutData.data
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 130
+DoughnutData: property data
+Data points
+
+A numeric vector assigned at construction of the DoughnutData
+object. It cannot be empty.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+Data points
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 33
+DoughnutData.hoverBackgroundColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 239
+DoughnutData: property hoverBackgroundColor
+Fill color on hover
+
+A Color object defining the color of the face of each arc
+segment, when the mouse hovers over it. Default is empty, in which case
+the color is the same as in backgroundColor.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 19
+Fill color on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 29
+DoughnutData.hoverBorderColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 236
+DoughnutData: property hoverBorderColor
+Border color on hover
+
+A Color object defining the color of the borders of each arc
+segment, when the mouse hovers over it. Default is empty, in which case
+the color is the same as in borderColor.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+Border color on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 28
+DoughnutData.hoverBorderDash
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 192
+DoughnutData: property hoverBorderDash
+Dash pattern on hover
+
+A numeric vector defining the length and spacing of dashes drawn at the
+borders of the arc segment, when the mouse hovers over it.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+Dash pattern on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 34
+DoughnutData.hoverBorderDashOffset
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 185
+DoughnutData: property hoverBorderDashOffset
+Dash offset on hover
+
+A numeric scalar defining the offset of dashes drawn at the borders of
+the arc segment, when the mouse hovers over it.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 20
+Dash offset on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 33
+DoughnutData.hoverBorderJoinStyle
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 202
+DoughnutData: property hoverBorderJoinStyle
+Line join style on hover
+
+A character vector defining the arc border join style, when the mouse
+hovers over it. It can be either 'round', 'bevel', or
+'miter'.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 24
+Line join style on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 29
+DoughnutData.hoverBorderWidth
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 180
+DoughnutData: property hoverBorderWidth
+Border width on hover
+
+A numeric scalar value defining the width of the each arc segment's
+borders in pixels, when the mouse hovers over it.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+Border width on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 24
+DoughnutData.hoverOffset
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 148
+DoughnutData: property hoverOffset
+Arc offset on hover
+
+A numeric scalar value defining the arc offset, when the mouse hovers
+over it. Default is 0.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 19
+Arc offset on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 23
+DoughnutData.jsonstring
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 219
+DoughnutData: json = jsonstring (obj)
+Generate the JSON string of a DoughnutData dataset.
+
+jsonstring (obj) returns a character vector, json,
+holding the dataset in JSON, as Chart.js reads it in the datasets
+of a chart.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 51
+Generate the JSON string of a DoughnutData dataset.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 19
+DoughnutData.offset
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 107
+DoughnutData: property offset
+Arc offset
+
+A numeric scalar defining the arc offset in pixels. Default is 0.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 10
+Arc offset
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+DoughnutData.rotation
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 119
+DoughnutData: property rotation
+Rotation
+
+A numeric scalar defining the starting angle to draw arcs from. Default
+is 0.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 8
+Rotation
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 20
+DoughnutData.spacing
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 171
+DoughnutData: property spacing
+Fixed arc offset
+
+A numeric scalar defining a fixed arc offset in pixels. Default is 0.
+It is similar to offset, but it applies to all arcs.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 16
+Fixed arc offset
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 19
+DoughnutData.weight
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 264
+DoughnutData: property weight
+Relative thickness
+
+A numeric scalar value defining the relative thickness of the dataset.
+Providing a value for weight will cause the doughnut dataset to be drawn
+with a thickness relative to the sum of all the dataset weight values.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 18
+Relative thickness
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 4
+Fill
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 411
+chartjs: Fill
+The filled area of a line or radar dataset.
+
+Both LineChart and RadarChart objects support a fill option
+on their respective dataset object which can be used to create space
+between two datasets or a dataset and a boundary. The created space can be
+filled with a Color object, essentially transforming line and radar
+charts into an area chart.
+
+See also:
+LineChart,
+LineData,
+RadarChart,
+RadarData
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 43
+The filled area of a line or radar dataset.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 9
+Fill.Fill
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 2409
+Fill: obj = Fill (value)
+Fill: obj = Fill (value, toaxis)
+Fill: obj = Fill (value, toaxis, above)
+Fill: obj = Fill (value, toaxis, above, below)
+obj = Fill (value) returns a Fill object
+defined by value, which can either be a character vector or a
+numeric scalar. The following filling modes are supported.
+
+Mode Values
+Absolute dataset index A numeric scalar indexing another
+dataset as a boundary to constrain the created area.
+Relative dataset index A character vector of the form
+'-1', '-2', '+1', ... indexing another dataset as a boundary
+to constrain the created area relative to the position of the referencing
+dataset.
+Boundary A character vector with acceptable values
+'start', 'end', and 'origin' which sets the
+boundary of the created area to the start, the end, or the origin of the
+data axis, respectively.
+Disabled A boolean scalar value. When true, it
+is equivalent to 'origin'. When true, the area is not
+created.
+Shape A character vector 'shape' which creates an
+area inside the line by connecting its end points.
+Axis value A numeric scalar, which references a value on
+the data axis to be used as a boundary. To use this option, the second
+input argument toaxis must be set to true.
+
+obj = Fill (value, toaxis) returns a
+Fill object using the previously described syntaxes, while
+toaxis defines whether the numeric value assigned to value
+references an absolute dataset index (default: toaxis =
+false) or a value along the data axis (toaxis = true which
+sets a line to be used as a boundary. When toaxis is set to
+true, value must be a numeric scalar. Passing an empty
+matrix to toaxis, results to the default value (toaxis
+= false).
+
+obj = Fill (value, toaxis, above) returns
+a Fill object with an area created according to any of the
+previous syntaxes, which is filled with the color defined in above.
+above can be a Color object defining a single color.
+Alternatively, the input value to the Color object can be passed
+directly to the above input argument.
+
+obj = Fill (value, toaxis, above,
+below) returns a Fill object with an area created
+according to any of the previous syntaxes, and the area below the target
+value (as defined by the value and toaxis arguments) is
+filled with the color defined in below. Similarly to above,
+below can be a Color object defining a single color.
+Alternatively, the input value to the Color object can be passed
+directly to the below input argument.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 118
+obj = Fill (value) returns a Fill object defined by value, which can either be a character vector or a numeric scalar.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 10
+Fill.above
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 171
+Fill: property above
+Fill color above the target
+
+The color filling the area above the target, as Chart.js reads it, such
+as 'red' or 'rgb(0, 0, 255)'. Empty when not set.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 27
+Fill color above the target
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 10
+Fill.below
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 171
+Fill: property below
+Fill color below the target
+
+The color filling the area below the target, as Chart.js reads it, such
+as 'red' or 'rgb(0, 0, 255)'. Empty when not set.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 27
+Fill color below the target
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 15
+Fill.jsonstring
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 291
+Fill: json = jsonstring (obj)
+Generate the JSON string of a Fill object.
+
+jsonstring (obj) returns a character vector, json,
+holding the value of a dataset's fill option in JSON: the
+target alone, or an object with the target and its colors when
+above or below is set.
+
+See also:
+Color,
+Fill
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 42
+Generate the JSON string of a Fill object.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+Fill.target
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 273
+Fill: property target
+Fill target
+
+The boundary the area is filled to, as given to the constructor: a
+dataset index, a character vector such as 'origin' or
+'-1', or a logical scalar. When toaxis is true, a
+structure holding the value along the data axis in its field
+value.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+Fill target
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 4
+Html
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 381
+chartjs: obj = html ()
+A parent class for generating HMTL code.
+
+Do NOT use this class directly! This class acts as a parent class for
+inheriting methods to the Chart classes for generating HTML code.
+
+To view a Chart object in your web browser, use its webserve
+method.
+
+See also:
+BarChart,
+BubbleChart,
+DoughnutChart,
+LineChart,
+PieChart,
+PolarAreaChart,
+RadarChart,
+ScatterChart
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 40
+A parent class for generating HMTL code.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 13
+Html.htmlsave
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 445
+chartjs: htmlsave (obj, filename)
+chartjs: htmlsave (obj, filename, source)
+Save a Chart object's HTML code to a file.
+
+htmlsave (obj, filename) saves the HTML code
+describing a Chart object to a file. The HTML code is identical to that
+generated by the htmlstring method, and source sets where
+it loads Chart.js from in the same way.
+
+See also:
+BarChart,
+BubbleChart,
+DoughnutChart,
+LineChart,
+PieChart,
+PolarAreaChart,
+RadarChart,
+ScatterChart
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 42
+Save a Chart object's HTML code to a file.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 15
+Html.htmlstring
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 917
+chartjs: html = htmlstring (obj)
+chartjs: html = htmlstring (obj, source)
+Generate an HTML string from a Chart object.
+
+htmlstring (obj) returns a character vector defining the
+HTML code to display a Chart object on a web browser. Use the
+webserve method to view it in your web browser.
+
+htmlstring (obj, source) also sets where the page
+loads the Chart.js library from, as one of the following.
+
+source Chart.js is loaded
+"inline" from a copy written into the page, the
+default. The page opens without a network connection and never changes.
+"cdn" from the jsDelivr CDN, pinned to the
+release bundled with the package and checked against its hash, so that
+the browser runs nothing else.
+a URL from source, such as
+"/static/chart.umd.min.js" on a server that hosts the file. A
+URL holds a / or ends in .js.
+
+See also:
+BarChart,
+BubbleChart,
+DoughnutChart,
+LineChart,
+PieChart,
+PolarAreaChart,
+RadarChart,
+ScatterChart
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 44
+Generate an HTML string from a Chart object.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 15
+Html.jsonstring
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 301
+chartjs: json = jsonstring (obj)
+Generate the JSON string of a Chart object.
+
+jsonstring (obj) returns a character vector, json,
+holding the Chart.js configuration of a Chart object in JSON.
+
+See also:
+BarChart,
+BubbleChart,
+DoughnutChart,
+LineChart,
+PieChart,
+PolarAreaChart,
+RadarChart,
+ScatterChart
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 43
+Generate the JSON string of a Chart object.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 13
+Html.webserve
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 790
+chartjs: webserve (obj)
+chartjs: webserve (obj, filename)
+chartjs: webserve (obj, filename, source)
+View a Chart object in your web browser.
+
+webserve (obj) saves the HTML code describing the Chart
+object to a temporary file and opens it in your system's web browser.
+No web server is involved: the page is opened from the file.
+
+webserve (obj, filename) saves the HTML code to
+filename instead, so that the page can be kept and opened again.
+Calling it again with the same filename and reloading the page in
+the browser shows the updated chart. An empty filename uses a
+temporary file.
+
+webserve (obj, filename, source) sets where the
+page loads Chart.js from, as in htmlstring.
+
+See also:
+BarChart,
+BubbleChart,
+DoughnutChart,
+LineChart,
+PieChart,
+PolarAreaChart,
+RadarChart,
+ScatterChart
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 40
+View a Chart object in your web browser.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 9
+LineChart
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 510
+chartjs: LineChart
+Line chart drawn by the Chart.js library.
+
+Each dataset of a LineChart is a LineData object in its
+datasets property.
+
+To view the LineChart object in your web browser, use its
+webserve () method. Alternatively, you can generate and/or save to
+a file the corresponding HTML code with the htmlstring () and
+htmlsave () methods and serve it online through a web server of
+your choice.
+
+Each property is documented on its own, as in help LineChart.labels.
+
+See also:
+LineData,
+Color,
+Fill,
+Html
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 41
+Line chart drawn by the Chart.js library.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 19
+LineChart.LineChart
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 2242
+LineChart: obj = LineChart (data, labels)
+LineChart: obj = LineChart (..., Name, Value)
+Create a LineChart object.
+
+obj = LineChart (data, labels) returns a
+LineChart object, in which data contain the data point
+locations (by default along the y-axis) and labels contain
+the corresponding data point labels (by default along the
+x-axis).
+
+data must be a nonempty NxP numeric matrix, where each
+column corresponds to a separate dataset and each row corresponds to an
+element in labels. If data is a row vector and its length
+matches the number of elements in labels, then it is transposed to
+a column vector.
+
+labels must be a nonempty numerical vector or cellstring array,
+where each element corresponds to a row in data. If labels
+is a character vector, then it is converted to a cellstring scalar.
+
+obj = LineChart (..., Name, Value) returns a
+LineChart object with the properties of each dataset specified by
+one or more Name, Value pair arguments. Name
+can be any property name of a LineData object and Value
+must correspond to the data type(s) and values accepted by that property.
+Type help LineData for more details on the available properties.
+
+Specifically for the properties that accept a Color object as
+their input value, besides the Color object you may also parse to
+the LineChart constructor the same values accepted by the
+constructor of the Color object. However, if you choose to
+manually modify the LineChart's properties using the dot notation
+syntax, then you must assign a Color object to the chosen
+property. Type help Color for more details on the available
+syntax.
+
+For properties that accept scalar values, you can pass a vector of the
+same type with each element corresponding to a different dataset. For
+properties that accept vectors, you can pass a matrix of the same type
+with each row corresponding to a different dataset. Otherwise, the same
+property value will be assigned to all datasets available in data.
+For properties accepting a character vector, you need to pass a
+cellstring array for multiple datasets, whereas for properties that can
+take mixed types of scalar values (i.e. either boolean and character
+vectors), you need to pass a cell array with each element corresponding
+to a different dataset.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 26
+Create a LineChart object.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 17
+LineChart.chartID
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 124
+LineChart: property chartID
+Name of the chart
+
+A character vector defining the name of the Chart in the generated html
+code.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 17
+Name of the chart
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 18
+LineChart.datasets
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 137
+LineChart: property datasets
+Datasets of the chart
+
+A cell array containing one or more LineData objects
+corresponding to the data input.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+Datasets of the chart
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 16
+LineChart.labels
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 118
+LineChart: property labels
+Data labels
+
+A numeric vector or a cellstring array with the data labels defined in
+labels.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+Data labels
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 17
+LineChart.options
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 129
+LineChart: property options
+Chart options
+
+A cell array containing one or more Option and Plugin
+objects. Not used at the moment.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 13
+Chart options
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 8
+LineData
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 254
+chartjs: LineData
+One dataset of a line chart.
+
+A LineChart holds a LineData object for each of its
+datasets, whose properties set how Chart.js draws it.
+
+Each property is documented on its own, as in help LineData.data.
+
+See also:
+LineChart,
+Color,
+Fill
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 28
+One dataset of a line chart.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 17
+LineData.LineData
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 359
+LineData: obj = LineData (data)
+Create a LineData object.
+
+obj = LineData (data) returns a LineData
+object, in which data must be a nonempty numerical vector
+containing the data points of a single dataset to be plotted on a line.
+Constructing a LineData object always assigns the default
+property values, which can later be modified using dot notation syntax.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 25
+Create a LineData object.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 24
+LineData.backgroundColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 210
+LineData: property backgroundColor
+Fill color
+
+A Color object defining the fill color of the lines between data
+points. Default is empty, in which case a color is assigned
+automatically by the Chart.js library.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 10
+Fill color
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 23
+LineData.borderCapStyle
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 376
+LineData: property borderCapStyle
+Line end style
+
+A character vector, which can be either 'butt' (default),
+'round', or 'square'. When 'butt', the ends of
+lines are squared off at the endpoints. When 'round', the ends
+of lines are rounded. When 'square' is set, the ends of lines
+are squared off by adding a box with an equal width and half the height
+of the line's thickness.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 14
+Line end style
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 20
+LineData.borderColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 203
+LineData: property borderColor
+Border color
+
+A Color object defining the color of the lines between data
+points. Default is empty, in which case a color is assigned
+automatically by the Chart.js library.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+Border color
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 19
+LineData.borderDash
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 127
+LineData: property borderDash
+Dash pattern
+
+A numeric vector defining the length and spacing of dashes drawn instead
+of a line.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+Dash pattern
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 25
+LineData.borderDashOffset
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 146
+LineData: property borderDashOffset
+Dash offset
+
+A numeric scalar defining the offset of dashes and spacing drawn instead
+of a line. Default is 0.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+Dash offset
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 24
+LineData.borderJoinStyle
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 154
+LineData: property borderJoinStyle
+Line join style
+
+A character vector defining the line border join style. It can be either
+'round', 'bevel', or 'miter'.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 15
+Line join style
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 20
+LineData.borderWidth
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 123
+LineData: property borderWidth
+Border width
+
+A numeric scalar value defining the width of the line in pixels. Default
+is 3.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+Border width
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 13
+LineData.clip
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 254
+LineData: property clip
+Clipping relative to the chart area
+
+A numeric scalar value defining the pixels to clip relative to the
+chart's area. Positive value allows overflow, negative value clips that
+many pixels inside chartArea. Defaults to zero pixels.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 35
+Clipping relative to the chart area
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 31
+LineData.cubicInterpolationMode
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 168
+LineData: property cubicInterpolationMode
+Cubic interpolation mode
+
+A character vector defining the cubic interpolation mode. It can be
+either 'default' or 'monotonic'.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 24
+Cubic interpolation mode
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 13
+LineData.data
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 122
+LineData: property data
+Data points
+
+A numeric vector assigned at construction of the LineData object.
+It cannot be empty.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+Data points
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 32
+LineData.drawActiveElementsOnTop
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 206
+LineData: property drawActiveElementsOnTop
+Active elements drawn on top
+
+A boolean scalar defining whether to draw the active points of a dataset
+over the other points of the dataset. It is true by default.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 28
+Active elements drawn on top
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 13
+LineData.fill
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 195
+LineData: property fill
+Filled area
+
+A Fill object defining how to fill the area under the line. Type
+help Fill for more details on the available filling modes. By
+default, no filling is applied.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+Filled area
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 29
+LineData.hoverBackgroundColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 241
+LineData: property hoverBackgroundColor
+Fill color on hover
+
+A Color object defining the fill color of the lines between data
+points, when the mouse hovers over it. Default is empty, in which case
+the color is the same as in backgroundColor.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 19
+Fill color on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 28
+LineData.hoverBorderCapStyle
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 279
+LineData: property hoverBorderCapStyle
+Line end style on hover
+
+A character vector, which can be either 'butt', 'round',
+or 'square', defining the cap style of the line when the mouse
+hovers over it. Default is empty, in which case the cap style is the
+same as in borderCapStyle.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 23
+Line end style on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 25
+LineData.hoverBorderColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 230
+LineData: property hoverBorderColor
+Border color on hover
+
+A Color object defining the color of the lines between data
+points, when the mouse hovers over it. Default is empty, in which case
+the color is the same as in borderColor.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+Border color on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 24
+LineData.hoverBorderDash
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 274
+LineData: property hoverBorderDash
+Dash pattern on hover
+
+A numeric vector defining the length and spacing of dashes drawn instead
+of a line, when the mouse hovers over them. Default is empty, in which
+case the length and spacing of the dashes are the same as in
+borderDash.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+Dash pattern on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 30
+LineData.hoverBorderDashOffset
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 245
+LineData: property hoverBorderDashOffset
+Dash offset on hover
+
+A numeric scalar defining the offset of dashes drawn instead of a line,
+when the mouse hovers over them. Default is empty, in which case the
+offset is the same as in borderDashOffset
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 20
+Dash offset on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 29
+LineData.hoverBorderJoinStyle
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 245
+LineData: property hoverBorderJoinStyle
+Line join style on hover
+
+A character vector defining the line border join style, when the mouse
+hovers over it. Default is empty, in which case the line border join
+style is the same as in borderJoinStyle
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 24
+Line join style on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 25
+LineData.hoverBorderWidth
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 227
+LineData: property hoverBorderWidth
+Border width on hover
+
+A numeric scalar value defining the width of the line in pixels, when the
+mouse hovers over it. Default is empty, in which case the width is the
+same as in borderWidth.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+Border width on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 18
+LineData.indexAxis
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 184
+LineData: property indexAxis
+Base axis
+
+A character scalar defining the base axis of the dataset. It can be
+either 'x' for horizontal lines or 'y' for horizontal
+lines. Default is 'x'.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 9
+Base axis
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 19
+LineData.jsonstring
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 365
+LineData: json = jsonstring (obj)
+LineData: json = jsonstring (obj, mixed)
+Generate the JSON string of a LineData dataset.
+
+jsonstring (obj) returns a character vector, json,
+holding the dataset in JSON, as Chart.js reads it in the datasets
+of a chart.
+
+jsonstring (obj, mixed) also writes the dataset's
+chart type when mixed is true, as a chart mixing types
+needs.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 47
+Generate the JSON string of a LineData dataset.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 14
+LineData.label
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 315
+LineData: property label
+Label of the dataset
+
+A character vector defining the label for the dataset which appears in
+the legend and tooltips. Default is empty. A chart shows no legend when
+none of its datasets has a label, and names a dataset without one by its
+position, such as "Dataset 2", when another has one.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 20
+Label of the dataset
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 14
+LineData.order
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 169
+LineData: property order
+Drawing order
+
+A numeric scalar defining the drawing order of the dataset. It also
+affects order for stacking, tooltip and legend. Default is 0.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 13
+Drawing order
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 29
+LineData.pointBackgroundColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 208
+LineData: property pointBackgroundColor
+Point fill color
+
+A Color object defining the fill color for the data points.
+Default is empty, in which case a color is assigned automatically by the
+Chart.js library.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 16
+Point fill color
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 25
+LineData.pointBorderColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 208
+LineData: property pointBorderColor
+Point border color
+
+A Color object defining the border color for the data points.
+Default is empty, in which case a color is assigned automatically by the
+Chart.js library.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 18
+Point border color
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 25
+LineData.pointBorderWidth
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 147
+LineData: property pointBorderWidth
+Point border width
+
+A numeric scalar value defining the width of the data point border in
+pixels. Default is 1.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 18
+Point border width
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 23
+LineData.pointHitRadius
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 178
+LineData: property pointHitRadius
+Point hit detection radius
+
+A numeric scalar value defining the pixel size of the non-displayed point
+that reacts to mouse events. Default is 1.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 26
+Point hit detection radius
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 34
+LineData.pointHoverBackgroundColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 251
+LineData: property pointHoverBackgroundColor
+Point fill color on hover
+
+A Color object defining the fill color for the data points, when
+the mouse hovers over them. Default is empty, in which case the fill
+color is the same as in pointBackgroundColor.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 25
+Point fill color on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 30
+LineData.pointHoverBorderColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 246
+LineData: property pointHoverBorderColor
+Point border color on hover
+
+A Color object defining the border color for the data point, when
+the mouse hovers over it. Default is empty, in which case the border
+color is the same as in pointBorderColor.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 27
+Point border color on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 30
+LineData.pointHoverBorderWidth
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 192
+LineData: property pointHoverBorderWidth
+Point border width on hover
+
+A numeric scalar value defining the width of the data point border in
+pixels, when the mouse hovers over it. Default is 1.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 27
+Point border width on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 25
+LineData.pointHoverRadius
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 182
+LineData: property pointHoverRadius
+Point radius on hover
+
+A numeric scalar value defining the radius of the data point border in
+pixels, when the mouse hovers over it. Default is 4.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+Point radius on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 20
+LineData.pointRadius
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 137
+LineData: property pointRadius
+Point radius
+
+A numeric scalar value defining the radius of the data point border in
+pixels. Default is 3.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+Point radius
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 22
+LineData.pointRotation
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 144
+LineData: property pointRotation
+Point rotation
+
+A numeric scalar value defining the rotation of the data point border in
+degrees. Default is 0.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 14
+Point rotation
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 19
+LineData.pointStyle
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 406
+LineData: property pointStyle
+Point style
+
+A character vector or a boolean value defining the shape of the points of
+the dataset. As a character vector, it can be any of the following
+values: 'circle', 'cross', 'crossRot',
+'dash', 'line', 'rect', 'rectRounded',
+'rectRot', 'star', 'triangle', and
+'none'. By default it is 'circle. As a boolean value,
+true defaults to 'circle' and false defaults to
+'none'.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+Point style
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 16
+LineData.segment
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 115
+LineData: property segment
+Line segment styles
+
+Not supported at the moment: its value is not written to the chart.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 19
+Line segment styles
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 17
+LineData.showLine
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 131
+LineData: property showLine
+Line drawn
+
+A boolean scalar defining whether to draw the line for this dataset. It
+is true by default.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 10
+Line drawn
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 17
+LineData.spanGaps
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 391
+LineData: property spanGaps
+Gaps spanned
+
+A boolean scalar or a numeric scalar defining whether to create a break
+in the line for null data. When true, lines will be
+drawn between points with no or null data. When false, points
+with null data will create a break in the line. It can also be a number
+specifying the maximum gap length to span. The unit of the value depends
+on the scale used.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+Gaps spanned
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 14
+LineData.stack
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 118
+LineData: property stack
+Stack group
+
+A character vector defining the ID of the group to which the dataset
+belongs to.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+Stack group
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 16
+LineData.stepped
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 524
+LineData: property stepped
+Stepped interpolation
+
+A character vector or a boolean value defining the interpolation mode
+between data points. As a character vector, it can be any of the
+following values: 'before' for step-before interpolation,
+'after' for step-after interpolation, and 'middle' for
+step-middle interpolation. As a boolean value, true equals to
+'before' and false, which is the default value,
+corresponds to no step interpolation. If stepped value is set to
+anything other than false, tension will be ignored.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+Stepped interpolation
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 16
+LineData.tension
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 260
+LineData: property tension
+Curve tension
+
+A numeric scalar value defining the Bezier curve tension of the line. By
+default it is 0, which corresponds to drawing straight lines between data
+points. This option is ignored if monotone cubic interpolation is used.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 13
+Curve tension
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 16
+LineData.xAxisID
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 112
+LineData: property xAxisID
+ID of the x axis
+
+Not supported at the moment: its value is not written to the chart.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 16
+ID of the x axis
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 16
+LineData.yAxisID
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 112
+LineData: property yAxisID
+ID of the y axis
+
+Not supported at the moment: its value is not written to the chart.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 16
+ID of the y axis
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 8
+PieChart
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 503
+chartjs: PieChart
+Pie chart drawn by the Chart.js library.
+
+Each dataset of a PieChart is a PieData object in its
+datasets property.
+
+To view the PieChart object in your web browser, use its
+webserve () method. Alternatively, you can generate and/or save to
+a file the corresponding HTML code with the htmlstring () and
+htmlsave () methods and serve it online through a web server of
+your choice.
+
+Each property is documented on its own, as in help PieChart.labels.
+
+See also:
+PieData,
+Color,
+Fill,
+Html
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 40
+Pie chart drawn by the Chart.js library.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 17
+PieChart.PieChart
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 2166
+PieChart: obj = PieChart (data, labels)
+PieChart: obj = PieChart (..., Name, Value)
+Create a PieChart object.
+
+obj = PieChart (data, labels) returns a
+PieChart object, in which data contains the proportional
+arc segments and labels contain the labels of each segment.
+
+data must be a nonempty NxP numeric matrix, where each
+column corresponds to a separate dataset and each row corresponds to an
+element in labels. If data is a row vector and its length
+matches the number of elements in labels, then it is transposed to
+a column vector.
+
+labels must be a nonempty numerical vector or cellstring array,
+where each element corresponds to a row in data. If labels
+is a character vector, then it is converted to a cellstring scalar.
+
+obj = PieChart (..., Name, Value) returns a
+PieChart object with the properties of each dataset specified by
+one or more Name, Value pair arguments. Name
+can be any property name of a PieData object and Value must
+correspond to the data type(s) and values accepted by that property. Type
+help PieData for more details on the available properties.
+
+Specifically for the properties that accept a Color object as
+their input value, besides the Color object you may also parse to
+the PieChart constructor the same values accepted by the
+constructor of the Color object. However, if you choose to
+manually modify the PieChart's properties using the dot notation
+syntax, then you must assign a Color object to the chosen
+property. Type help Color for more details on the available
+syntax.
+
+For properties that accept scalar values, you can pass a vector of the
+same type with each element corresponding to a different dataset. For
+properties that accept vectors, you can pass a matrix of the same type
+with each row corresponding to a different dataset. Otherwise, the same
+property value will be assigned to all datasets available in data.
+For properties accepting a character vector, you need to pass a
+cellstring array for multiple datasets, whereas for properties that can
+take mixed types of scalar values (i.e. either boolean and character
+vectors), you need to pass a cell array with each element corresponding
+to a different dataset.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 25
+Create a PieChart object.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 16
+PieChart.chartID
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 123
+PieChart: property chartID
+Name of the chart
+
+A character vector defining the name of the Chart in the generated html
+code.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 17
+Name of the chart
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 17
+PieChart.datasets
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 135
+PieChart: property datasets
+Datasets of the chart
+
+A cell array containing one or more PieData objects corresponding
+to the data input.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+Datasets of the chart
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 15
+PieChart.labels
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 117
+PieChart: property labels
+Data labels
+
+A numeric vector or a cellstring array with the data labels defined in
+labels.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+Data labels
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 16
+PieChart.options
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 128
+PieChart: property options
+Chart options
+
+A cell array containing one or more Option and Plugin
+objects. Not used at the moment.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 13
+Chart options
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 7
+PieData
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 248
+chartjs: PieData
+One dataset of a pie chart.
+
+A PieChart holds a PieData object for each of its datasets,
+whose properties set how Chart.js draws it.
+
+Each property is documented on its own, as in help PieData.data.
+
+See also:
+PieChart,
+Color,
+Fill
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 27
+One dataset of a pie chart.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 15
+PieData.PieData
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 343
+PieData: obj = PieData (data)
+Create a PieData object.
+
+obj = PieData (data) returns a PieData object,
+in which data must be a nonempty numerical vector containing the
+proportional arc segments of a single dataset. Constructing a
+PieData object always assigns the default property values, which
+can later be modified using dot notation syntax.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 24
+Create a PieData object.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 23
+PieData.backgroundColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 207
+PieData: property backgroundColor
+Fill color
+
+A Color object defining the color of the face of the arc
+segments. Default is empty, in which case and a color is assigned
+automatically by the Chart.js library.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 10
+Fill color
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 19
+PieData.borderAlign
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 266
+PieData: property borderAlign
+Border alignment
+
+A character vector, which can be either 'center' (default) or
+'inner'. When 'center' is set, the borders of arcs next
+to each other will overlap. When 'inner' is set, it is
+guaranteed that all borders will not overlap.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 16
+Border alignment
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 19
+PieData.borderColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 208
+PieData: property borderColor
+Border color
+
+A Color object defining the color of the border line of the arc
+segments. Default is empty, in which case a color is assigned
+automatically by the Chart.js library.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+Border color
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 18
+PieData.borderDash
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 143
+PieData: property borderDash
+Dash pattern
+
+A numeric vector defining the length and spacing of dashes drawn at the
+borders of the arc segments.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+Dash pattern
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 24
+PieData.borderDashOffset
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 150
+PieData: property borderDashOffset
+Dash offset
+
+A numeric scalar defining the offset of dashes drawn at the borders of
+the arc segments. Default is 0.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+Dash offset
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 23
+PieData.borderJoinStyle
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 152
+PieData: property borderJoinStyle
+Line join style
+
+A character vector defining the arc border join style. It can be either
+'round', 'bevel', or 'miter'.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 15
+Line join style
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 20
+PieData.borderRadius
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 144
+PieData: property borderRadius
+Corner radius
+
+A numeric scalar value defining the corner radius of the each arc segment
+in pixels. Default is 0.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 13
+Corner radius
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 19
+PieData.borderWidth
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 144
+PieData: property borderWidth
+Border width
+
+A numeric scalar value defining the width of the each arc segment's
+borders in pixels. Default is 2.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+Border width
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+PieData.circumference
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 148
+PieData: property circumference
+Sweep of the arcs
+
+A numeric scalar value, which defines the per-dataset override for the
+sweep that the arcs cover.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 17
+Sweep of the arcs
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+PieData.clip
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 253
+PieData: property clip
+Clipping relative to the chart area
+
+A numeric scalar value defining the pixels to clip relative to the
+chart's area. Positive value allows overflow, negative value clips that
+many pixels inside chartArea. Defaults to zero pixels.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 35
+Clipping relative to the chart area
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+PieData.data
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 120
+PieData: property data
+Data points
+
+A numeric vector assigned at construction of the PieData object.
+It cannot be empty.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+Data points
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 28
+PieData.hoverBackgroundColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 234
+PieData: property hoverBackgroundColor
+Fill color on hover
+
+A Color object defining the color of the face of each arc
+segment, when the mouse hovers over it. Default is empty, in which case
+the color is the same as in backgroundColor.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 19
+Fill color on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 24
+PieData.hoverBorderColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 231
+PieData: property hoverBorderColor
+Border color on hover
+
+A Color object defining the color of the borders of each arc
+segment, when the mouse hovers over it. Default is empty, in which case
+the color is the same as in borderColor.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+Border color on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 23
+PieData.hoverBorderDash
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 187
+PieData: property hoverBorderDash
+Dash pattern on hover
+
+A numeric vector defining the length and spacing of dashes drawn at the
+borders of the arc segment, when the mouse hovers over it.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+Dash pattern on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 29
+PieData.hoverBorderDashOffset
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 180
+PieData: property hoverBorderDashOffset
+Dash offset on hover
+
+A numeric scalar defining the offset of dashes drawn at the borders of
+the arc segment, when the mouse hovers over it.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 20
+Dash offset on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 28
+PieData.hoverBorderJoinStyle
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 197
+PieData: property hoverBorderJoinStyle
+Line join style on hover
+
+A character vector defining the arc border join style, when the mouse
+hovers over it. It can be either 'round', 'bevel', or
+'miter'.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 24
+Line join style on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 24
+PieData.hoverBorderWidth
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 175
+PieData: property hoverBorderWidth
+Border width on hover
+
+A numeric scalar value defining the width of the each arc segment's
+borders in pixels, when the mouse hovers over it.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+Border width on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 19
+PieData.hoverOffset
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 143
+PieData: property hoverOffset
+Arc offset on hover
+
+A numeric scalar value defining the arc offset, when the mouse hovers
+over it. Default is 0.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 19
+Arc offset on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 18
+PieData.jsonstring
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 209
+PieData: json = jsonstring (obj)
+Generate the JSON string of a PieData dataset.
+
+jsonstring (obj) returns a character vector, json,
+holding the dataset in JSON, as Chart.js reads it in the datasets
+of a chart.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 46
+Generate the JSON string of a PieData dataset.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 14
+PieData.offset
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 102
+PieData: property offset
+Arc offset
+
+A numeric scalar defining the arc offset in pixels. Default is 0.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 10
+Arc offset
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 16
+PieData.rotation
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 114
+PieData: property rotation
+Rotation
+
+A numeric scalar defining the starting angle to draw arcs from. Default
+is 0.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 8
+Rotation
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 15
+PieData.spacing
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 166
+PieData: property spacing
+Fixed arc offset
+
+A numeric scalar defining a fixed arc offset in pixels. Default is 0.
+It is similar to offset, but it applies to all arcs.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 16
+Fixed arc offset
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 14
+PieData.weight
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 259
+PieData: property weight
+Relative thickness
+
+A numeric scalar value defining the relative thickness of the dataset.
+Providing a value for weight will cause the doughnut dataset to be drawn
+with a thickness relative to the sum of all the dataset weight values.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 18
+Relative thickness
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 14
+PolarAreaChart
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 546
+chartjs: PolarAreaChart
+Polar area chart drawn by the Chart.js library.
+
+Each dataset of a PolarAreaChart is a PolarAreaData object
+in its datasets property.
+
+To view the PolarAreaChart object in your web browser, use its
+webserve () method. Alternatively, you can generate and/or save to
+a file the corresponding HTML code with the htmlstring () and
+htmlsave () methods and serve it online through a web server of
+your choice.
+
+Each property is documented on its own, as in help
+PolarAreaChart.labels.
+
+See also:
+PolarAreaData,
+Color,
+Fill,
+Html
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 47
+Polar area chart drawn by the Chart.js library.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 29
+PolarAreaChart.PolarAreaChart
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 2296
+PolarAreaChart: obj = PolarAreaChart (data, labels)
+PolarAreaChart: obj = PolarAreaChart (..., Name, Value)
+Create a PolarAreaChart object.
+
+obj = PolarAreaChart (data, labels) returns a
+PolarAreaChart object, in which data contains the radius of
+each segment and labels contain the labels of each segment. Each
+segment in a polar area chart has the same angle.
+
+data must be a nonempty NxP numeric matrix, where each
+column corresponds to a separate dataset and each row corresponds to an
+element in labels. If data is a row vector and its length
+matches the number of elements in labels, then it is transposed to
+a column vector.
+
+labels must be a nonempty numerical vector or cellstring array,
+where each element corresponds to a row in data. If labels
+is a character vector, then it is converted to a cellstring scalar.
+
+obj = PolarAreaChart (..., Name, Value)
+returns a PolarAreaChart object with the properties of each
+dataset specified by one or more Name, Value pair
+arguments. Name can be any property name of a
+PolarAreaData object and Value must correspond to the data
+type(s) and values accepted by that property. Type help
+PolarAreaData for more details on the available properties.
+
+Specifically for the properties that accept a Color object as
+their input value, besides the Color object you may also parse to
+the PolarAreaChart constructor the same values accepted by the
+constructor of the Color object. However, if you choose to
+manually modify the PolarAreaChart's properties using the dot
+notation syntax, then you must assign a Color object to the
+chosen property. Type help Color for more details on the available
+syntax.
+
+For properties that accept scalar values, you can pass a vector of the
+same type with each element corresponding to a different dataset. For
+properties that accept vectors, you can pass a matrix of the same type
+with each row corresponding to a different dataset. Otherwise, the same
+property value will be assigned to all datasets available in data.
+For properties accepting a character vector, you need to pass a
+cellstring array for multiple datasets, whereas for properties that can
+take mixed types of scalar values (i.e. either boolean and character
+vectors), you need to pass a cell array with each element corresponding
+to a different dataset.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 31
+Create a PolarAreaChart object.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 22
+PolarAreaChart.chartID
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 129
+PolarAreaChart: property chartID
+Name of the chart
+
+A character vector defining the name of the Chart in the generated html
+code.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 17
+Name of the chart
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 23
+PolarAreaChart.datasets
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 147
+PolarAreaChart: property datasets
+Datasets of the chart
+
+A cell array containing one or more PolarAreaData objects
+corresponding to the data input.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+Datasets of the chart
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+PolarAreaChart.labels
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 123
+PolarAreaChart: property labels
+Data labels
+
+A numeric vector or a cellstring array with the data labels defined in
+labels.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+Data labels
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 22
+PolarAreaChart.options
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 134
+PolarAreaChart: property options
+Chart options
+
+A cell array containing one or more Option and Plugin
+objects. Not used at the moment.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 13
+Chart options
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 13
+PolarAreaData
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 285
+chartjs: PolarAreaData
+One dataset of a polar area chart.
+
+A PolarAreaChart holds a PolarAreaData object for each of
+its datasets, whose properties set how Chart.js draws it.
+
+Each property is documented on its own, as in help
+PolarAreaData.data.
+
+See also:
+PolarAreaChart,
+Color,
+Fill
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 34
+One dataset of a polar area chart.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 27
+PolarAreaData.PolarAreaData
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 379
+PolarAreaData: obj = PolarAreaData (data)
+Create a PolarAreaData object.
+
+obj = PolarAreaData (data) returns a
+PolarAreaData object, in which data must be a nonempty
+numerical vector containing the radii of the arc segments of a single
+dataset. Constructing a PolarAreaData object always assigns the
+default property values, which can later be modified using dot notation
+syntax.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 30
+Create a PolarAreaData object.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 29
+PolarAreaData.backgroundColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 213
+PolarAreaData: property backgroundColor
+Fill color
+
+A Color object defining the color of the face of the arc
+segments. Default is empty, in which case and a color is assigned
+automatically by the Chart.js library.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 10
+Fill color
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 25
+PolarAreaData.borderAlign
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 272
+PolarAreaData: property borderAlign
+Border alignment
+
+A character vector, which can be either 'center' (default) or
+'inner'. When 'center' is set, the borders of arcs next
+to each other will overlap. When 'inner' is set, it is
+guaranteed that all borders will not overlap.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 16
+Border alignment
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 25
+PolarAreaData.borderColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 214
+PolarAreaData: property borderColor
+Border color
+
+A Color object defining the color of the border line of the arc
+segments. Default is empty, in which case a color is assigned
+automatically by the Chart.js library.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+Border color
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 24
+PolarAreaData.borderDash
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 149
+PolarAreaData: property borderDash
+Dash pattern
+
+A numeric vector defining the length and spacing of dashes drawn at the
+borders of the arc segments.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+Dash pattern
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 30
+PolarAreaData.borderDashOffset
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 156
+PolarAreaData: property borderDashOffset
+Dash offset
+
+A numeric scalar defining the offset of dashes drawn at the borders of
+the arc segments. Default is 0.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+Dash offset
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 29
+PolarAreaData.borderJoinStyle
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 158
+PolarAreaData: property borderJoinStyle
+Line join style
+
+A character vector defining the arc border join style. It can be either
+'round', 'bevel', or 'miter'.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 15
+Line join style
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 25
+PolarAreaData.borderWidth
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 150
+PolarAreaData: property borderWidth
+Border width
+
+A numeric scalar value defining the width of the each arc segment's
+borders in pixels. Default is 2.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+Border width
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 22
+PolarAreaData.circular
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 186
+PolarAreaData: property circular
+Curved or flat arcs
+
+A boolean scalar value defining whether the arc will be curved or flat.
+By default, it is true corresponding to curved arc segments.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 19
+Curved or flat arcs
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 18
+PolarAreaData.clip
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 259
+PolarAreaData: property clip
+Clipping relative to the chart area
+
+A numeric scalar value defining the pixels to clip relative to the
+chart's area. Positive value allows overflow, negative value clips that
+many pixels inside chartArea. Defaults to zero pixels.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 35
+Clipping relative to the chart area
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 18
+PolarAreaData.data
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 132
+PolarAreaData: property data
+Data points
+
+A numeric vector assigned at construction of the PolarAreaData
+object. It cannot be empty.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+Data points
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 34
+PolarAreaData.hoverBackgroundColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 240
+PolarAreaData: property hoverBackgroundColor
+Fill color on hover
+
+A Color object defining the color of the face of each arc
+segment, when the mouse hovers over it. Default is empty, in which case
+the color is the same as in backgroundColor.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 19
+Fill color on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 30
+PolarAreaData.hoverBorderColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 237
+PolarAreaData: property hoverBorderColor
+Border color on hover
+
+A Color object defining the color of the borders of each arc
+segment, when the mouse hovers over it. Default is empty, in which case
+the color is the same as in borderColor.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+Border color on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 29
+PolarAreaData.hoverBorderDash
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 193
+PolarAreaData: property hoverBorderDash
+Dash pattern on hover
+
+A numeric vector defining the length and spacing of dashes drawn at the
+borders of the arc segment, when the mouse hovers over it.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+Dash pattern on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 35
+PolarAreaData.hoverBorderDashOffset
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 186
+PolarAreaData: property hoverBorderDashOffset
+Dash offset on hover
+
+A numeric scalar defining the offset of dashes drawn at the borders of
+the arc segment, when the mouse hovers over it.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 20
+Dash offset on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 34
+PolarAreaData.hoverBorderJoinStyle
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 203
+PolarAreaData: property hoverBorderJoinStyle
+Line join style on hover
+
+A character vector defining the arc border join style, when the mouse
+hovers over it. It can be either 'round', 'bevel', or
+'miter'.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 24
+Line join style on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 30
+PolarAreaData.hoverBorderWidth
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 181
+PolarAreaData: property hoverBorderWidth
+Border width on hover
+
+A numeric scalar value defining the width of the each arc segment's
+borders in pixels, when the mouse hovers over it.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+Border width on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 24
+PolarAreaData.jsonstring
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 221
+PolarAreaData: json = jsonstring (obj)
+Generate the JSON string of a PolarAreaData dataset.
+
+jsonstring (obj) returns a character vector, json,
+holding the dataset in JSON, as Chart.js reads it in the datasets
+of a chart.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 52
+Generate the JSON string of a PolarAreaData dataset.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 10
+RadarChart
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 517
+chartjs: RadarChart
+Radar chart drawn by the Chart.js library.
+
+Each dataset of a RadarChart is a RadarData object in its
+datasets property.
+
+To view the RadarChart object in your web browser, use its
+webserve () method. Alternatively, you can generate and/or save to
+a file the corresponding HTML code with the htmlstring () and
+htmlsave () methods and serve it online through a web server of
+your choice.
+
+Each property is documented on its own, as in help
+RadarChart.labels.
+
+See also:
+RadarData,
+Color,
+Fill,
+Html
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 42
+Radar chart drawn by the Chart.js library.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+RadarChart.RadarChart
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 2269
+RadarChart: obj = RadarChart (data, labels)
+RadarChart: obj = RadarChart (..., Name, Value)
+Create a RadarChart object.
+
+obj = RadarChart (data, labels) returns a
+RadarChart object, in which data contain the data point
+locations along the radius and labels contain the corresponding
+data point labels evenly spaced along the circumference of the radar
+chart.
+
+data must be a nonempty NxP numeric matrix, where each
+column corresponds to a separate dataset and each row corresponds to an
+element in labels. If data is a row vector and its length
+matches the number of elements in labels, then it is transposed to
+a column vector.
+
+labels must be a nonempty numerical vector or cellstring array,
+where each element corresponds to a row in data. If labels
+is a character vector, then it is converted to a cellstring scalar.
+
+obj = RadarChart (..., Name, Value) returns
+a RadarChart object with the properties of each dataset specified
+by one or more Name, Value pair arguments.
+Name can be any property name of a RadarData object and
+Value must correspond to the data type(s) and values accepted by
+that property. Type help RadarData for more details on the
+available properties.
+
+Specifically for the properties that accept a Color object as
+their input value, besides the Color object you may also parse to
+the RadarChart constructor the same values accepted by the
+constructor of the Color object. However, if you choose to
+manually modify the RadarChart's properties using the dot
+notation syntax, then you must assign a Color object to the
+chosen property. Type help Color for more details on the
+available syntax.
+
+For properties that accept scalar values, you can pass a vector of the
+same type with each element corresponding to a different dataset. For
+properties that accept vectors, you can pass a matrix of the same type
+with each row corresponding to a different dataset. Otherwise, the same
+property value will be assigned to all datasets available in data.
+For properties accepting a character vector, you need to pass a
+cellstring array for multiple datasets, whereas for properties that can
+take mixed types of scalar values (i.e. either boolean and character
+vectors), you need to pass a cell array with each element corresponding
+to a different dataset.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 27
+Create a RadarChart object.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 18
+RadarChart.chartID
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 125
+RadarChart: property chartID
+Name of the chart
+
+A character vector defining the name of the Chart in the generated html
+code.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 17
+Name of the chart
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 19
+RadarChart.datasets
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 139
+RadarChart: property datasets
+Datasets of the chart
+
+A cell array containing one or more RadarData objects
+corresponding to the data input.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+Datasets of the chart
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 17
+RadarChart.labels
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 119
+RadarChart: property labels
+Data labels
+
+A numeric vector or a cellstring array with the data labels defined in
+labels.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+Data labels
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 18
+RadarChart.options
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 130
+RadarChart: property options
+Chart options
+
+A cell array containing one or more Option and Plugin
+objects. Not used at the moment.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 13
+Chart options
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 9
+RadarData
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 259
+chartjs: RadarData
+One dataset of a radar chart.
+
+A RadarChart holds a RadarData object for each of its
+datasets, whose properties set how Chart.js draws it.
+
+Each property is documented on its own, as in help RadarData.data.
+
+See also:
+RadarData,
+Color,
+Fill
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 29
+One dataset of a radar chart.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 19
+RadarData.RadarData
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 358
+RadarData: obj = RadarData (data)
+Create a RadarData object.
+
+obj = RadarData (data) returns a RadarData
+object, in which data must be a nonempty numerical vector
+containing the data points of a single dataset of a radar chart.
+Constructing a RadarData object always assigns the default
+property values, which can later be modified using dot notation syntax.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 26
+Create a RadarData object.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 25
+RadarData.backgroundColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 211
+RadarData: property backgroundColor
+Fill color
+
+A Color object defining the fill color of the lines between data
+points. Default is empty, in which case a color is assigned
+automatically by the Chart.js library.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 10
+Fill color
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 24
+RadarData.borderCapStyle
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 377
+RadarData: property borderCapStyle
+Line end style
+
+A character vector, which can be either 'butt' (default),
+'round', or 'square'. When 'butt', the ends of
+lines are squared off at the endpoints. When 'round', the ends
+of lines are rounded. When 'square' is set, the ends of lines
+are squared off by adding a box with an equal width and half the height
+of the line's thickness.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 14
+Line end style
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+RadarData.borderColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 204
+RadarData: property borderColor
+Border color
+
+A Color object defining the color of the lines between data
+points. Default is empty, in which case a color is assigned
+automatically by the Chart.js library.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+Border color
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 20
+RadarData.borderDash
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 128
+RadarData: property borderDash
+Dash pattern
+
+A numeric vector defining the length and spacing of dashes drawn instead
+of a line.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+Dash pattern
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 26
+RadarData.borderDashOffset
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 147
+RadarData: property borderDashOffset
+Dash offset
+
+A numeric scalar defining the offset of dashes and spacing drawn instead
+of a line. Default is 0.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+Dash offset
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 25
+RadarData.borderJoinStyle
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 155
+RadarData: property borderJoinStyle
+Line join style
+
+A character vector defining the line border join style. It can be either
+'round', 'bevel', or 'miter'.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 15
+Line join style
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+RadarData.borderWidth
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 124
+RadarData: property borderWidth
+Border width
+
+A numeric scalar value defining the width of the line in pixels. Default
+is 3.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+Border width
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 14
+RadarData.clip
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 255
+RadarData: property clip
+Clipping relative to the chart area
+
+A numeric scalar value defining the pixels to clip relative to the
+chart's area. Positive value allows overflow, negative value clips that
+many pixels inside chartArea. Defaults to zero pixels.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 35
+Clipping relative to the chart area
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 14
+RadarData.data
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 124
+RadarData: property data
+Data points
+
+A numeric vector assigned at construction of the RadarData
+object. It cannot be empty.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+Data points
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 14
+RadarData.fill
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 196
+RadarData: property fill
+Filled area
+
+A Fill object defining how to fill the area under the line. Type
+help Fill for more details on the available filling modes. By
+default, no filling is applied.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+Filled area
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 30
+RadarData.hoverBackgroundColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 242
+RadarData: property hoverBackgroundColor
+Fill color on hover
+
+A Color object defining the fill color of the lines between data
+points, when the mouse hovers over it. Default is empty, in which case
+the color is the same as in backgroundColor.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 19
+Fill color on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 29
+RadarData.hoverBorderCapStyle
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 280
+RadarData: property hoverBorderCapStyle
+Line end style on hover
+
+A character vector, which can be either 'butt', 'round',
+or 'square', defining the cap style of the line when the mouse
+hovers over it. Default is empty, in which case the cap style is the
+same as in borderCapStyle.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 23
+Line end style on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 26
+RadarData.hoverBorderColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 231
+RadarData: property hoverBorderColor
+Border color on hover
+
+A Color object defining the color of the lines between data
+points, when the mouse hovers over it. Default is empty, in which case
+the color is the same as in borderColor.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+Border color on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 25
+RadarData.hoverBorderDash
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 275
+RadarData: property hoverBorderDash
+Dash pattern on hover
+
+A numeric vector defining the length and spacing of dashes drawn instead
+of a line, when the mouse hovers over them. Default is empty, in which
+case the length and spacing of the dashes are the same as in
+borderDash.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+Dash pattern on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 31
+RadarData.hoverBorderDashOffset
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 246
+RadarData: property hoverBorderDashOffset
+Dash offset on hover
+
+A numeric scalar defining the offset of dashes drawn instead of a line,
+when the mouse hovers over them. Default is empty, in which case the
+offset is the same as in borderDashOffset
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 20
+Dash offset on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 30
+RadarData.hoverBorderJoinStyle
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 246
+RadarData: property hoverBorderJoinStyle
+Line join style on hover
+
+A character vector defining the line border join style, when the mouse
+hovers over it. Default is empty, in which case the line border join
+style is the same as in borderJoinStyle
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 24
+Line join style on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 26
+RadarData.hoverBorderWidth
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 228
+RadarData: property hoverBorderWidth
+Border width on hover
+
+A numeric scalar value defining the width of the line in pixels, when the
+mouse hovers over it. Default is empty, in which case the width is the
+same as in borderWidth.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+Border width on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 20
+RadarData.jsonstring
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 213
+RadarData: json = jsonstring (obj)
+Generate the JSON string of a RadarData dataset.
+
+jsonstring (obj) returns a character vector, json,
+holding the dataset in JSON, as Chart.js reads it in the datasets
+of a chart.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 48
+Generate the JSON string of a RadarData dataset.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 15
+RadarData.label
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 316
+RadarData: property label
+Label of the dataset
+
+A character vector defining the label for the dataset which appears in
+the legend and tooltips. Default is empty. A chart shows no legend when
+none of its datasets has a label, and names a dataset without one by its
+position, such as "Dataset 2", when another has one.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 20
+Label of the dataset
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 15
+RadarData.order
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 170
+RadarData: property order
+Drawing order
+
+A numeric scalar defining the drawing order of the dataset. It also
+affects order for stacking, tooltip and legend. Default is 0.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 13
+Drawing order
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 30
+RadarData.pointBackgroundColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 209
+RadarData: property pointBackgroundColor
+Point fill color
+
+A Color object defining the fill color for the data points.
+Default is empty, in which case a color is assigned automatically by the
+Chart.js library.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 16
+Point fill color
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 26
+RadarData.pointBorderColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 209
+RadarData: property pointBorderColor
+Point border color
+
+A Color object defining the border color for the data points.
+Default is empty, in which case a color is assigned automatically by the
+Chart.js library.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 18
+Point border color
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 26
+RadarData.pointBorderWidth
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 148
+RadarData: property pointBorderWidth
+Point border width
+
+A numeric scalar value defining the width of the data point border in
+pixels. Default is 1.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 18
+Point border width
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 24
+RadarData.pointHitRadius
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 179
+RadarData: property pointHitRadius
+Point hit detection radius
+
+A numeric scalar value defining the pixel size of the non-displayed point
+that reacts to mouse events. Default is 1.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 26
+Point hit detection radius
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 35
+RadarData.pointHoverBackgroundColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 252
+RadarData: property pointHoverBackgroundColor
+Point fill color on hover
+
+A Color object defining the fill color for the data points, when
+the mouse hovers over them. Default is empty, in which case the fill
+color is the same as in pointBackgroundColor.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 25
+Point fill color on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 31
+RadarData.pointHoverBorderColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 247
+RadarData: property pointHoverBorderColor
+Point border color on hover
+
+A Color object defining the border color for the data point, when
+the mouse hovers over it. Default is empty, in which case the border
+color is the same as in pointBorderColor.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 27
+Point border color on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 31
+RadarData.pointHoverBorderWidth
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 193
+RadarData: property pointHoverBorderWidth
+Point border width on hover
+
+A numeric scalar value defining the width of the data point border in
+pixels, when the mouse hovers over it. Default is 1.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 27
+Point border width on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 26
+RadarData.pointHoverRadius
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 183
+RadarData: property pointHoverRadius
+Point radius on hover
+
+A numeric scalar value defining the radius of the data point border in
+pixels, when the mouse hovers over it. Default is 4.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+Point radius on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+RadarData.pointRadius
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 138
+RadarData: property pointRadius
+Point radius
+
+A numeric scalar value defining the radius of the data point border in
+pixels. Default is 3.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+Point radius
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 23
+RadarData.pointRotation
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 145
+RadarData: property pointRotation
+Point rotation
+
+A numeric scalar value defining the rotation of the data point border in
+degrees. Default is 0.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 14
+Point rotation
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 20
+RadarData.pointStyle
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 407
+RadarData: property pointStyle
+Point style
+
+A character vector or a boolean value defining the shape of the points of
+the dataset. As a character vector, it can be any of the following
+values: 'circle', 'cross', 'crossRot',
+'dash', 'line', 'rect', 'rectRounded',
+'rectRot', 'star', 'triangle', and
+'none'. By default it is 'circle. As a boolean value,
+true defaults to 'circle' and false defaults to
+'none'.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+Point style
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 18
+RadarData.spanGaps
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 392
+RadarData: property spanGaps
+Gaps spanned
+
+A boolean scalar or a numeric scalar defining whether to create a break
+in the line for null data. When true, lines will be
+drawn between points with no or null data. When false, points
+with null data will create a break in the line. It can also be a number
+specifying the maximum gap length to span. The unit of the value depends
+on the scale used.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+Gaps spanned
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 17
+RadarData.tension
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 261
+RadarData: property tension
+Curve tension
+
+A numeric scalar value defining the Bezier curve tension of the line. By
+default it is 0, which corresponds to drawing straight lines between data
+points. This option is ignored if monotone cubic interpolation is used.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 13
+Curve tension
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+ScatterChart
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 531
+chartjs: ScatterChart
+Scatter chart drawn by the Chart.js library.
+
+Each dataset of a ScatterChart is a ScatterData object in
+its datasets property.
+
+To view the ScatterChart object in your web browser, use its
+webserve () method. Alternatively, you can generate and/or save to
+a file the corresponding HTML code with the htmlstring () and
+htmlsave () methods and serve it online through a web server of
+your choice.
+
+Each property is documented on its own, as in help
+ScatterChart.labels.
+
+See also:
+ScatterData,
+Color,
+Fill,
+Html
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 44
+Scatter chart drawn by the Chart.js library.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 25
+ScatterChart.ScatterChart
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 2109
+ScatterChart: obj = ScatterChart (X, Y)
+ScatterChart: obj = ScatterChart (..., Name, Value)
+Create a ScatterChart object.
+
+obj = ScatterChart (X, Y) returns a
+ScatterChart object, in which X and Y define the
+coordinates along the x-axis and y-axis, respectively.
+
+X must be a nonempty NxP numeric matrix, where each column
+corresponds to a separate dataset and each row corresponds to an element
+of the bubble chart defining its position along the x-axis.
+
+Y must be a nonempty NxP numeric matrix, where each column
+corresponds to a separate dataset and each row corresponds to an element
+of the bubble chart defining its position along the y-axis.
+
+obj = ScatterChart (..., Name, Value)
+returns a ScatterChart object with the properties of each dataset
+specified by one or more Name, Value pair arguments.
+Name can be any property name of a ScatterData object and
+Value must correspond to the data type(s) and values accepted by
+that property. Type help ScatterData for more details on the
+available properties.
+
+Specifically for the properties that accept a Color object as
+their input value, besides the Color object you may also parse to
+the ScatterChart constructor the same values accepted by the
+constructor of the Color object. However, if you choose to
+manually modify the ScatterChart's properties using the dot
+notation syntax, then you must assign a Color object to the
+chosen property. Type help Color for more details on the
+available syntax.
+
+For properties that accept scalar values, you can pass a vector of the
+same type with each element corresponding to a different dataset. For
+properties that accept vectors, you can pass a matrix of the same type
+with each row corresponding to a different dataset. Otherwise, the same
+property value will be assigned to all datasets available in data.
+For properties accepting a character vector, you need to pass a
+cellstring array for multiple datasets, whereas for properties that can
+take mixed types of scalar values (i.e. either boolean and character
+vectors), you need to pass a cell array with each element corresponding
+to a different dataset.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 29
+Create a ScatterChart object.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 20
+ScatterChart.chartID
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 127
+ScatterChart: property chartID
+Name of the chart
+
+A character vector defining the name of the Chart in the generated html
+code.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 17
+Name of the chart
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+ScatterChart.datasets
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 139
+ScatterChart: property datasets
+Datasets of the chart
+
+A cell array containing one or more BarData objects corresponding
+to the data input.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+Datasets of the chart
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 19
+ScatterChart.labels
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 121
+ScatterChart: property labels
+Data labels
+
+A numeric vector or a cellstring array with the data labels defined in
+labels.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+Data labels
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 20
+ScatterChart.options
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 132
+ScatterChart: property options
+Chart options
+
+A cell array containing one or more Option and Plugin
+objects. Not used at the moment.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 13
+Chart options
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+ScatterData
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 272
+chartjs: ScatterData
+One dataset of a scatter chart.
+
+A ScatterChart holds a ScatterData object for each of its
+datasets, whose properties set how Chart.js draws it.
+
+Each property is documented on its own, as in help ScatterData.data.
+
+See also:
+ScatterChart,
+Color,
+Fill
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 31
+One dataset of a scatter chart.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 23
+ScatterData.ScatterData
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 402
+ScatterData: obj = ScatterData (data)
+Create a ScatterData object.
+
+obj = ScatterData (data) returns a ScatterData
+object, in which data must be an Nx2 numeric matrix with
+each column defining the x-axis and the y-axis of each
+element of a single dataset, respectively. Constructing a
+ScatterData object always assigns the default property values,
+which can later be modified using dot notation syntax.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 28
+Create a ScatterData object.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 27
+ScatterData.backgroundColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 206
+ScatterData: property backgroundColor
+Fill color
+
+A Color object defining the color of the face of the bubbles.
+Default is empty, in which case and a color is assigned automatically by
+the Chart.js library.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 10
+Fill color
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 23
+ScatterData.borderColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 209
+ScatterData: property borderColor
+Border color
+
+A Color object defining the color of the border circle of the
+bubbles. Default is empty, in which case a color is assigned
+automatically by the Chart.js library.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+Border color
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 23
+ScatterData.borderWidth
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 138
+ScatterData: property borderWidth
+Border width
+
+A numeric scalar value defining the width of the bubble's borders in
+pixels. Default is 3.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 12
+Border width
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 16
+ScatterData.clip
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 257
+ScatterData: property clip
+Clipping relative to the chart area
+
+A numeric scalar value defining the pixels to clip relative to the
+chart's area. Positive value allows overflow, negative value clips that
+many pixels inside chartArea. Defaults to zero pixels.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 35
+Clipping relative to the chart area
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 16
+ScatterData.data
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 128
+ScatterData: property data
+Data points
+
+A numeric matrix assigned at construction of the ScatterData
+object. It cannot be empty.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+Data points
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 35
+ScatterData.drawActiveElementsOnTop
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 211
+ScatterData: property drawActiveElementsOnTop
+Active elements drawn on top
+
+A boolean scalar defining whether to draw the active bubbles of a dataset
+over the other bubbles of the dataset. It is true by default.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 28
+Active elements drawn on top
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+ScatterData.hitRadius
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 150
+ScatterData: property hitRadius
+Hit detection radius
+
+A numeric scalar value defining the additional radius for hit detection
+in pixels. Default is 1.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 20
+Hit detection radius
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 32
+ScatterData.hoverBackgroundColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 225
+ScatterData: property hoverBackgroundColor
+Fill color on hover
+
+A Color object defining the color of the bubble face, when the
+mouse hovers over it. Default is empty, in which case the color is the
+same as in backgroundColor.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 19
+Fill color on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 28
+ScatterData.hoverBorderColor
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 230
+ScatterData: property hoverBorderColor
+Border color on hover
+
+A Color object defining the color of the borders of each bubble,
+when the mouse hovers over it. Empty by default, in which case the color
+is the same as in borderColor.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+Border color on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 28
+ScatterData.hoverBorderWidth
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 188
+ScatterData: property hoverBorderWidth
+Border width on hover
+
+A numeric scalar value defining the width of the each bubble's borders in
+pixels, when the mouse hovers over it. Default is 1.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 21
+Border width on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 23
+ScatterData.hoverRadius
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 168
+ScatterData: property hoverRadius
+Radius on hover
+
+A numeric scalar value defining the radius of the each bubble in pixels,
+when the mouse hovers over it. Default is 4.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 15
+Radius on hover
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 22
+ScatterData.jsonstring
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 374
+ScatterData: json = jsonstring (obj)
+ScatterData: json = jsonstring (obj, mixed)
+Generate the JSON string of a ScatterData dataset.
+
+jsonstring (obj) returns a character vector, json,
+holding the dataset in JSON, as Chart.js reads it in the datasets
+of a chart.
+
+jsonstring (obj, mixed) also writes the dataset's
+chart type when mixed is true, as a chart mixing types
+needs.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 50
+Generate the JSON string of a ScatterData dataset.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 17
+ScatterData.label
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 299
+ScatterData: property label
+Label of the dataset
+
+A character vector defining the label of the dataset which appears in the
+legend and tooltips. A chart shows no legend when none of its datasets
+has a label, and names a dataset without one by its position, such as
+"Dataset 2", when another has one.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 20
+Label of the dataset
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 17
+ScatterData.order
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 148
+ScatterData: property order
+Drawing order
+
+A numeric scalar defining the order of the dataset, which affects order
+for stacking, tooltip and legend.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 13
+Drawing order
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 22
+ScatterData.pointStyle
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 410
+ScatterData: property pointStyle
+Point style
+
+A character vector or a boolean value defining the shape of the bubbles
+of the dataset. As a character vector, it can be any of the following
+values: 'circle', 'cross', 'crossRot',
+'dash', 'line', 'rect', 'rectRounded',
+'rectRot', 'star', 'triangle', and
+'none'. By default it is 'circle. As a boolean value,
+true defaults to 'circle' and false defaults to
+'none'.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+Point style
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 18
+ScatterData.radius
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 104
+ScatterData: property radius
+Radius
+
+A numeric scalar defining the bubble radius for the entire dataset.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 6
+Radius
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 20
+ScatterData.rotation
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 98
+ScatterData: property rotation
+Rotation
+
+A numeric scalar defining the bubble rotation in degrees.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 8
+Rotation
+
+
+
+
+
