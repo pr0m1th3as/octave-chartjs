@@ -203,8 +203,8 @@ classdef DoughnutData
 endclassdef
 
 ## Test output
-%!assert (jsonstring (DoughnutData ([1, 2])), "{\"data\":[1,2]}")
-%!assert (jsonstring (DoughnutData (1)), "{\"data\":[1]}")
+%!assert_equal (jsonstring (DoughnutData ([1, 2])), "{\"data\":[1,2]}")
+%!assert_equal (jsonstring (DoughnutData (1)), "{\"data\":[1]}")
 
 ## Test input validation
 %!error <DoughnutData: too few input arguments.> DoughnutData ()

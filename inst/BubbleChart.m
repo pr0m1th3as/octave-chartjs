@@ -284,11 +284,11 @@ endclassdef
 %!         "\"data\":{\"datasets\":[{\"data\":[{\"x\":1,\"y\":2,\"r\":3},", ...
 %!         "{\"x\":4,\"y\":5,\"r\":6}]}]},", ...
 %!         "\"options\":{\"plugins\":{\"legend\":{\"display\":false}}}}"];
-%! assert (jsonstring (BubbleChart ([1; 4], [2; 5], [3; 6])), json);
+%! assert_equal (jsonstring (BubbleChart ([1; 4], [2; 5], [3; 6])), json);
 %!test
 %! json = jsonstring (BubbleChart (1, 2, 3));
-%! assert (! isempty (strfind (json, ["\"data\":[{\"x\":1,\"y\":2,", ...
-%!                                  "\"r\":3}]"])));
+%! assert_equal (! isempty (strfind (json, ["\"data\":[{\"x\":1,\"y\":2,", ...
+%!                                        "\"r\":3}]"])), true);
 
 ## Test input validation
 %!error <BubbleChart: too few input arguments.> BubbleChart (1)

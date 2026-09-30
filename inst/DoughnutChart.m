@@ -313,7 +313,7 @@ endclassdef
 %!test
 %! json = ["{\"type\":\"doughnut\",\"data\":{\"labels\":[\"a\",\"b\"],", ...
 %!         "\"datasets\":[{\"data\":[1,2]}]},\"options\":{}}"];
-%! assert (jsonstring (DoughnutChart ([1; 2], {'a', 'b'})), json);
+%! assert_equal (jsonstring (DoughnutChart ([1; 2], {'a', 'b'})), json);
 
 ## Test input validation
 %!error <DoughnutChart: too few input arguments.> DoughnutChart (1)

@@ -252,37 +252,43 @@ endfunction
 %!test
 %! c = BarChart ([1; 2], {'</script><script>x</script>', 'b'});
 %! html = htmlstring (c);
-%! assert (numel (strfind (html, "</script>")), 2);
+%! assert_equal (numel (strfind (html, "</script>")), 2);
 %!test
 %! c = BarChart ([1; 2], {'a', 'b'});
 %! c.chartID = "x\" y=\"1";
 %! html = htmlstring (c);
-%! assert (! isempty (strfind (html, "<canvas id=\"x&quot; y=&quot;1\"")));
-%! assert (! isempty (strfind (html, "new Chart(\"x\\\" y=\\\"1\", ")));
+%! piece = "<canvas id=\"x&quot; y=&quot;1\"";
+%! assert_equal (! isempty (strfind (html, piece)), true);
+%! piece = "new Chart(\"x\\\" y=\\\"1\", ";
+%! assert_equal (! isempty (strfind (html, piece)), true);
 %!test
 %! html = htmlstring (BarChart (1, {'a'}));
-%! assert (isempty (strfind (html, "src=")));
-%! assert (! isempty (strfind (html, "Chart.js v4.5.1")));
+%! assert_equal (isempty (strfind (html, "src=")), true);
+%! assert_equal (! isempty (strfind (html, "Chart.js v4.5.1")), true);
 %!test
 %! f = fullfile (fileparts (which ("Html")), "js", "chart.umd.min.js");
-%! assert (isempty (strfind (lower (fileread (f)), "</script")));
+%! assert_equal (isempty (strfind (lower (fileread (f)), "</script")), true);
 %!test
 %! f = fullfile (fileparts (which ("Html")), "js", "chart.umd.min.js");
 %! h = hash ("sha384", fileread (f));
 %! b64 = matlab.net.base64encode (uint8 (hex2dec (reshape (h, 2, [])')));
 %! html = htmlstring (BarChart (1, {'a'}), "cdn");
-%! assert (! isempty (strfind (html, ["integrity=\"sha384-", b64, "\""])));
+%! piece = ["integrity=\"sha384-", b64, "\""];
+%! assert_equal (! isempty (strfind (html, piece)), true);
 %!test
 %! html = htmlstring (BarChart (1, {'a'}), "cdn");
 %! url = "https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js";
-%! assert (! isempty (strfind (html, ["<script src=\"", url, "\""])));
+%! piece = ["<script src=\"", url, "\""];
+%! assert_equal (! isempty (strfind (html, piece)), true);
 %!test
 %! html = htmlstring (BarChart (1, {'a'}), "/static/chart.umd.min.js");
 %! tag = "<script src=\"/static/chart.umd.min.js\"></script>";
-%! assert (! isempty (strfind (html, tag)));
+%! assert_equal (! isempty (strfind (html, tag)), true);
 %!test
 %! html = htmlstring (BarChart (1, {'a'}), "chart.umd.min.js");
-%! assert (! isempty (strfind (html, "<script src=\"chart.umd.min.js\">")));
+%! piece = "<script src=\"chart.umd.min.js\">";
+%! assert_equal (! isempty (strfind (html, piece)), true);
 %!test
 %! html = htmlstring (BarChart (1, {'a'}), "a\"b.js");
-%! assert (! isempty (strfind (html, "<script src=\"a&quot;b.js\">")));
+%! piece = "<script src=\"a&quot;b.js\">";
+%! assert_equal (! isempty (strfind (html, piece)), true);

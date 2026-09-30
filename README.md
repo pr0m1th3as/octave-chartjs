@@ -34,7 +34,7 @@ package_texi2html ("chartjs")
 
 ## 3. Installation
 
-To install the latest release, you need Octave (>=8.1.0) installed on your system. Install it by typing:
+To install the latest release, you need Octave (>=11.1.0) installed on your system. Install it by typing:
 
   `pkg install -forge chartjs`
 

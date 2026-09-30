@@ -286,7 +286,7 @@ endclassdef
 %!test
 %! json = ["{\"type\":\"polarArea\",\"data\":{\"labels\":[\"a\",\"b\"],", ...
 %!         "\"datasets\":[{\"data\":[1,2]}]},\"options\":{}}"];
-%! assert (jsonstring (PolarAreaChart ([1; 2], {'a', 'b'})), json);
+%! assert_equal (jsonstring (PolarAreaChart ([1; 2], {'a', 'b'})), json);
 
 ## Test input validation
 %!error <PolarAreaChart: too few input arguments.> PolarAreaChart (1)

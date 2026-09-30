@@ -190,7 +190,7 @@ endclassdef
 ## Test output
 %!test
 %! json = "{\"type\":\"bubble\",\"data\":[{\"x\":1,\"y\":2,\"r\":3}]}";
-%! assert (jsonstring (BubbleData ([1, 2, 3]), true), json);
+%! assert_equal (jsonstring (BubbleData ([1, 2, 3]), true), json);
 
 ## Test input validation
 %!error <BubbleData: too few input arguments.> BubbleData ()

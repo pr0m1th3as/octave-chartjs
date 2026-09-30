@@ -193,8 +193,8 @@ classdef PieData
 endclassdef
 
 ## Test output
-%!assert (jsonstring (PieData ([1, 2])), "{\"data\":[1,2]}")
-%!assert (jsonstring (PieData (1)), "{\"data\":[1]}")
+%!assert_equal (jsonstring (PieData ([1, 2])), "{\"data\":[1,2]}")
+%!assert_equal (jsonstring (PieData (1)), "{\"data\":[1]}")
 
 ## Test input validation
 %!error <PieData: too few input arguments.> PieData ()

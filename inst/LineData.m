@@ -303,10 +303,10 @@ classdef LineData
 endclassdef
 
 ## Test output
-%!assert (jsonstring (LineData ([1, 2])), "{\"data\":[1,2]}")
-%!assert (jsonstring (LineData (1)), "{\"data\":[1]}")
-%!assert (jsonstring (LineData ([1, 2]), true), ...
-%!        "{\"type\":\"line\",\"data\":[1,2]}")
+%!assert_equal (jsonstring (LineData ([1, 2])), "{\"data\":[1,2]}")
+%!assert_equal (jsonstring (LineData (1)), "{\"data\":[1]}")
+%!assert_equal (jsonstring (LineData ([1, 2]), true), ...
+%!              "{\"type\":\"line\",\"data\":[1,2]}")
 
 ## Test input validation
 %!error <LineData: too few input arguments.> LineData ()

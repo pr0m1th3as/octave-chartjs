@@ -179,8 +179,9 @@ endclassdef
 ## Test output
 %!test
 %! json = "{\"type\":\"scatter\",\"data\":[{\"x\":1,\"y\":2}]}";
-%! assert (jsonstring (ScatterData ([1, 2]), true), json);
-%!assert (jsonstring (ScatterData ([1, 2])), "{\"data\":[{\"x\":1,\"y\":2}]}")
+%! assert_equal (jsonstring (ScatterData ([1, 2]), true), json);
+%!assert_equal (jsonstring (ScatterData ([1, 2])), ...
+%!              "{\"data\":[{\"x\":1,\"y\":2}]}")
 
 ## Test input validation
 %!error <ScatterData: too few input arguments.> ScatterData ()

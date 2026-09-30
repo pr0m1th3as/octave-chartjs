@@ -315,7 +315,7 @@ endclassdef
 %!test
 %! json = ["{\"type\":\"pie\",\"data\":{\"labels\":[\"a\",\"b\"],", ...
 %!         "\"datasets\":[{\"data\":[1,2]}]},\"options\":{}}"];
-%! assert (jsonstring (PieChart ([1; 2], {'a', 'b'})), json);
+%! assert_equal (jsonstring (PieChart ([1; 2], {'a', 'b'})), json);
 
 ## Test input validation
 %!error <PieChart: too few input arguments.> PieChart (1)

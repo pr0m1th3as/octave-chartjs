@@ -282,16 +282,19 @@ function pstr = namespacevector (value)
 endfunction
 
 ## Test output
-%!assert (jsonstring (Color ("red")), "\"red\"")
-%!assert (jsonstring (Color ({'red'})), "[\"red\"]")
-%!assert (jsonstring (Color ({'red', '#00ff00'})), "[\"red\",\"#00ff00\"]")
-%!assert (jsonstring (Color ([1, 0, 0])), "\"rgb(255, 0, 0)\"")
-%!assert (jsonstring (Color ([1, 0, 0, 0.5])), "\"rgba(255, 0, 0, 0.5)\"")
-%!assert (jsonstring (Color ([1, 0, 0; 0, 0, 1])), ...
-%!        "[\"rgb(255, 0, 0)\",\"rgb(0, 0, 255)\"]")
-%!assert (jsonstring (Color ({"hsl", [10, 20, 30]})), "\"hsl(10, 20%, 30%)\"")
-%!assert (jsonstring (Color ({"rgb", [1, 2, 3]; "hsl", [10, 20, 30]})), ...
-%!        "[\"rgb(1, 2, 3)\",\"hsl(10, 20%, 30%)\"]")
+%!assert_equal (jsonstring (Color ("red")), "\"red\"")
+%!assert_equal (jsonstring (Color ({'red'})), "[\"red\"]")
+%!assert_equal (jsonstring (Color ({'red', '#00ff00'})), ...
+%!              "[\"red\",\"#00ff00\"]")
+%!assert_equal (jsonstring (Color ([1, 0, 0])), "\"rgb(255, 0, 0)\"")
+%!assert_equal (jsonstring (Color ([1, 0, 0, 0.5])), "\"rgba(255, 0, 0, 0.5)\"")
+%!assert_equal (jsonstring (Color ([1, 0, 0; 0, 0, 1])), ...
+%!              "[\"rgb(255, 0, 0)\",\"rgb(0, 0, 255)\"]")
+%!assert_equal (jsonstring (Color ({"hsl", [10, 20, 30]})), ...
+%!              "\"hsl(10, 20%, 30%)\"")
+%!test
+%! c = Color ({"rgb", [1, 2, 3]; "hsl", [10, 20, 30]});
+%! assert_equal (jsonstring (c), "[\"rgb(1, 2, 3)\",\"hsl(10, 20%, 30%)\"]");
 
 ## Test input validation
 %!error <Color: too few input arguments.> Color ()

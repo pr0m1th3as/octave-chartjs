@@ -130,8 +130,8 @@ tidy (const char* buf)
   return s.substr (0, e) + "e" + sign + s.substr (d);
 }
 
-// The fewest significant digits that read back as the same double, and null
-// for NaN and Inf, which JSON cannot hold.  Octave keeps LC_NUMERIC at "C",
+// The fewest of 15, 16 or 17 significant digits that read back as the same
+// double, and null for NaN and Inf, which JSON cannot hold.  Octave keeps LC_NUMERIC at "C",
 // so the decimal point is always '.'.
 static void
 encode_double (string& out, double x)
@@ -397,86 +397,94 @@ classes.  Do NOT use this function directly. \n\
 
 /*
 ## Numbers
-%!assert (__chartjson__ (1), "1")
-%!assert (__chartjson__ (-0.5), "-0.5")
-%!assert (__chartjson__ (0.1), "0.1")
-%!assert (__chartjson__ (1/3), "0.3333333333333333")
-%!assert (__chartjson__ (0.1 + 0.2), "0.30000000000000004")
-%!assert (__chartjson__ (1e-7), "1e-7")
-%!assert (__chartjson__ (1e20), "1e20")
-%!assert (__chartjson__ (realmax), "1.7976931348623157e308")
-%!assert (__chartjson__ ([NaN, Inf, -Inf]), "[null,null,null]")
-%!assert (__chartjson__ (single (0.1)), "0.1")
-%!assert (__chartjson__ (single (NaN)), "null")
-%!assert (__chartjson__ (int8 (-5)), "-5")
-%!assert (__chartjson__ (intmin ("int64")), "-9223372036854775808")
-%!assert (__chartjson__ (intmax ("uint64")), "18446744073709551615")
-%!assert (__chartjson__ ([1, 2]), "[1,2]")
-%!assert (__chartjson__ ([1; 2]), "[1,2]")
-%!assert (__chartjson__ ([]), "[]")
-%!assert (__chartjson__ (1:3), "[1,2,3]")
-%!assert (__chartjson__ (sparse ([1, 0])), "[1,0]")
+%!assert_equal (__chartjson__ (1), "1")
+%!assert_equal (__chartjson__ (-0.5), "-0.5")
+%!assert_equal (__chartjson__ (0.1), "0.1")
+%!assert_equal (__chartjson__ (1/3), "0.3333333333333333")
+%!assert_equal (__chartjson__ (0.1 + 0.2), "0.30000000000000004")
+%!assert_equal (__chartjson__ (1e-7), "1e-7")
+%!assert_equal (__chartjson__ (1e20), "1e20")
+%!assert_equal (__chartjson__ (realmax), "1.7976931348623157e308")
+%!assert_equal (__chartjson__ (realmin), "2.2250738585072014e-308")
+%!assert_equal (__chartjson__ (5e-324), "4.94065645841247e-324")
+%!assert_equal (__chartjson__ (2.0041885375976562), "2.0041885375976562")
+%!assert_equal (__chartjson__ (0.37438641622486307), "0.3743864162248631")
+%!assert_equal (__chartjson__ (123456789.12345679), "123456789.12345679")
+%!assert_equal (__chartjson__ (2^53 + 1), "9007199254740992")
+%!assert_equal (__chartjson__ ([NaN, Inf, -Inf]), "[null,null,null]")
+%!assert_equal (__chartjson__ (single (0.1)), "0.1")
+%!assert_equal (__chartjson__ (single (NaN)), "null")
+%!assert_equal (__chartjson__ (int8 (-5)), "-5")
+%!assert_equal (__chartjson__ (intmin ("int64")), "-9223372036854775808")
+%!assert_equal (__chartjson__ (intmax ("uint64")), "18446744073709551615")
+%!assert_equal (__chartjson__ ([1, 2]), "[1,2]")
+%!assert_equal (__chartjson__ ([1; 2]), "[1,2]")
+%!assert_equal (__chartjson__ ([]), "[]")
+%!assert_equal (__chartjson__ (1:3), "[1,2,3]")
+%!assert_equal (__chartjson__ (sparse ([1, 0])), "[1,0]")
 
 ## Logical values
-%!assert (__chartjson__ (true), "true")
-%!assert (__chartjson__ ([true, false]), "[true,false]")
+%!assert_equal (__chartjson__ (true), "true")
+%!assert_equal (__chartjson__ ([true, false]), "[true,false]")
 
 ## Strings
-%!assert (__chartjson__ ("a"), "\"a\"")
-%!assert (__chartjson__ (""), "\"\"")
-%!assert (__chartjson__ ("it's"), "\"it's\"")
-%!assert (__chartjson__ ("say \"hi\""), "\"say \\\"hi\\\"\"")
-%!assert (__chartjson__ ('a\b'), "\"a\\\\b\"")
-%!assert (__chartjson__ ("a\nb\tc"), "\"a\\nb\\tc\"")
-%!assert (__chartjson__ (char (1)), "\"\\u0001\"")
-%!assert (__chartjson__ ("</script>"), "\"\\u003c/script>\"")
-%!assert (__chartjson__ (char ([226, 128, 168])), "\"\\u2028\"")
-%!assert (__chartjson__ ("é"), "\"é\"")
+%!assert_equal (__chartjson__ ("a"), "\"a\"")
+%!assert_equal (__chartjson__ (""), "\"\"")
+%!assert_equal (__chartjson__ ("it's"), "\"it's\"")
+%!assert_equal (__chartjson__ ("say \"hi\""), "\"say \\\"hi\\\"\"")
+%!assert_equal (__chartjson__ ('a\b'), "\"a\\\\b\"")
+%!assert_equal (__chartjson__ ("a\nb\tc"), "\"a\\nb\\tc\"")
+%!assert_equal (__chartjson__ (char (1)), "\"\\u0001\"")
+%!assert_equal (__chartjson__ ("</script>"), "\"\\u003c/script>\"")
+%!assert_equal (__chartjson__ (char ([226, 128, 168])), "\"\\u2028\"")
+%!assert_equal (__chartjson__ ("é"), "\"é\"")
 
 ## Cell arrays
-%!assert (__chartjson__ ({1, "a"}), "[1,\"a\"]")
-%!assert (__chartjson__ ({1}), "[1]")
-%!assert (__chartjson__ ({}), "[]")
-%!assert (__chartjson__ ({{1}}), "[[1]]")
+%!assert_equal (__chartjson__ ({1, "a"}), "[1,\"a\"]")
+%!assert_equal (__chartjson__ ({1}), "[1]")
+%!assert_equal (__chartjson__ ({}), "[]")
+%!assert_equal (__chartjson__ ({{1}}), "[[1]]")
 
 ## Structs
-%!assert (__chartjson__ (struct ("a", 1, "b", "x")), "{\"a\":1,\"b\":\"x\"}")
-%!assert (__chartjson__ (struct ()), "{}")
-%!assert (__chartjson__ (struct ("a", {1, 2})), "[{\"a\":1},{\"a\":2}]")
-%!assert (__chartjson__ (struct ("a", {})), "[]")
-%!assert (__chartjson__ (struct ("a", {{1, 2}})), "{\"a\":[1,2]}")
+%!assert_equal (__chartjson__ (struct ("a", 1, "b", "x")), ...
+%!              "{\"a\":1,\"b\":\"x\"}")
+%!assert_equal (__chartjson__ (struct ()), "{}")
+%!assert_equal (__chartjson__ (struct ("a", {1, 2})), "[{\"a\":1},{\"a\":2}]")
+%!assert_equal (__chartjson__ (struct ("a", {})), "[]")
+%!assert_equal (__chartjson__ (struct ("a", {{1, 2}})), "{\"a\":[1,2]}")
 
 ## Paths always written as arrays
-%!assert (__chartjson__ (struct ("a", 1), {'a'}), "{\"a\":[1]}")
-%!assert (__chartjson__ (struct ("a", "x"), {'a'}), "{\"a\":[\"x\"]}")
-%!assert (__chartjson__ (struct ("a", true), {'a'}), "{\"a\":[true]}")
-%!assert (__chartjson__ (struct ("a", struct ("b", 1)), {'a'}), ...
-%!        "{\"a\":[{\"b\":1}]}")
-%!assert (__chartjson__ (struct ("a", {{1}}), {'a'}), "{\"a\":[1]}")
-%!assert (__chartjson__ (struct ("a", 1), {'b'}), "{\"a\":1}")
+%!assert_equal (__chartjson__ (struct ("a", 1), {'a'}), "{\"a\":[1]}")
+%!assert_equal (__chartjson__ (struct ("a", "x"), {'a'}), "{\"a\":[\"x\"]}")
+%!assert_equal (__chartjson__ (struct ("a", true), {'a'}), "{\"a\":[true]}")
+%!assert_equal (__chartjson__ (struct ("a", struct ("b", 1)), {'a'}), ...
+%!              "{\"a\":[{\"b\":1}]}")
+%!assert_equal (__chartjson__ (struct ("a", {{1}}), {'a'}), "{\"a\":[1]}")
+%!assert_equal (__chartjson__ (struct ("a", 1), {'b'}), "{\"a\":1}")
 %!test
 %! s.data.datasets.data = 5;
-%! assert (__chartjson__ (s, {'data.datasets', 'data.datasets.data'}), ...
-%!         "{\"data\":{\"datasets\":[{\"data\":[5]}]}}");
+%! assert_equal (__chartjson__ (s, {'data.datasets', 'data.datasets.data'}), ...
+%!               "{\"data\":{\"datasets\":[{\"data\":[5]}]}}");
 %!test
 %! s.data.datasets = struct ("data", {5, 6});
-%! assert (__chartjson__ (s, {'data.datasets.data'}), ...
-%!         "{\"data\":{\"datasets\":[{\"data\":[5]},{\"data\":[6]}]}}");
+%! assert_equal (__chartjson__ (s, {'data.datasets.data'}), ...
+%!               "{\"data\":{\"datasets\":[{\"data\":[5]},{\"data\":[6]}]}}");
 %!test
 %! s.data.datasets = {struct("data", 5), struct("data", 6, "b", 1)};
-%! assert (__chartjson__ (s, {'data.datasets.data'}), ...
-%!         "{\"data\":{\"datasets\":[{\"data\":[5]},{\"data\":[6],\"b\":1}]}}");
+%! json = ["{\"data\":{\"datasets\":[{\"data\":[5]},", ...
+%!         "{\"data\":[6],\"b\":1}]}}"];
+%! assert_equal (__chartjson__ (s, {'data.datasets.data'}), json);
 %!test
 %! s = struct ("data", {struct("x", 1), struct("x", 2)});
-%! assert (__chartjson__ (s, {'data.x'}), ...
-%!         "[{\"data\":{\"x\":[1]}},{\"data\":{\"x\":[2]}}]");
+%! assert_equal (__chartjson__ (s, {'data.x'}), ...
+%!               "[{\"data\":{\"x\":[1]}},{\"data\":{\"x\":[2]}}]");
 
 ## The text reads back as the value written
 %!testif HAVE_RAPIDJSON
 %! s = struct ("a", {{"</script>", "it's", char(10)}}, "b", [0.1, 1e-7]);
 %! d = jsondecode (__chartjson__ (s));
-%! assert (d.a, {"</script>"; "it's"; char(10)});
-%! assert (d.b, [0.1; 1e-7]);
+%! assert_equal (d.a, {"</script>"; "it's"; char(10)});
+%! assert_equal (d.b, [0.1; 1e-7]);
 
 ## Input validation
 %!error <__chartjson__: invalid number of input arguments.> __chartjson__ ()

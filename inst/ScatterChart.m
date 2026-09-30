@@ -273,10 +273,11 @@ endclassdef
 %!         "\"data\":{\"datasets\":[{\"data\":[{\"x\":1,\"y\":2},", ...
 %!         "{\"x\":3,\"y\":4}]}]},", ...
 %!         "\"options\":{\"plugins\":{\"legend\":{\"display\":false}}}}"];
-%! assert (jsonstring (ScatterChart ([1; 3], [2; 4])), json);
+%! assert_equal (jsonstring (ScatterChart ([1; 3], [2; 4])), json);
 %!test
 %! json = jsonstring (ScatterChart (1, 2));
-%! assert (! isempty (strfind (json, "\"data\":[{\"x\":1,\"y\":2}]")));
+%! piece = "\"data\":[{\"x\":1,\"y\":2}]";
+%! assert_equal (! isempty (strfind (json, piece)), true);
 
 ## Test input validation
 %!error <ScatterChart: too few input arguments.> ScatterChart (1)

@@ -241,10 +241,10 @@ classdef BarData
 endclassdef
 
 ## Test output
-%!assert (jsonstring (BarData ([1, 2])), "{\"data\":[1,2]}")
-%!assert (jsonstring (BarData (1)), "{\"data\":[1]}")
-%!assert (jsonstring (BarData ([1, 2]), true), ...
-%!        "{\"type\":\"bar\",\"data\":[1,2]}")
+%!assert_equal (jsonstring (BarData ([1, 2])), "{\"data\":[1,2]}")
+%!assert_equal (jsonstring (BarData (1)), "{\"data\":[1]}")
+%!assert_equal (jsonstring (BarData ([1, 2]), true), ...
+%!              "{\"type\":\"bar\",\"data\":[1,2]}")
 
 ## Test input validation
 %!error <BarData: too few input arguments.> BarData ()

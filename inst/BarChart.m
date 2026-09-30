@@ -328,36 +328,37 @@ endclassdef
 %! json = ["{\"type\":\"bar\",\"data\":{\"labels\":[\"a\",\"b\"],", ...
 %!         "\"datasets\":[{\"data\":[1,2]}]},", ...
 %!         "\"options\":{\"plugins\":{\"legend\":{\"display\":false}}}}"];
-%! assert (jsonstring (BarChart ([1; 2], {'a', 'b'})), json);
+%! assert_equal (jsonstring (BarChart ([1; 2], {'a', 'b'})), json);
 %!test
 %! json = ["{\"type\":\"bar\",\"data\":{\"labels\":[\"a\"],", ...
 %!         "\"datasets\":[{\"data\":[1]}]},", ...
 %!         "\"options\":{\"plugins\":{\"legend\":{\"display\":false}}}}"];
-%! assert (jsonstring (BarChart (1, {'a'})), json);
+%! assert_equal (jsonstring (BarChart (1, {'a'})), json);
 %!test
 %! json = ["{\"type\":\"bar\",\"data\":{\"labels\":[10,20],", ...
 %!         "\"datasets\":[{\"data\":[1,3]},{\"data\":[2,4]}]},", ...
 %!         "\"options\":{\"plugins\":{\"legend\":{\"display\":false}}}}"];
-%! assert (jsonstring (BarChart ([1, 2; 3, 4], [10, 20])), json);
+%! assert_equal (jsonstring (BarChart ([1, 2; 3, 4], [10, 20])), json);
 %!test
 %! json = jsonstring (BarChart ([1; 2], {'it''s', 'say "hi"'}));
-%! assert (! isempty (strfind (json, ["\"labels\":[\"it's\",", ...
-%!                                  "\"say \\\"hi\\\"\"]"])));
+%! assert_equal (! isempty (strfind (json, ["\"labels\":[\"it's\",", ...
+%!                                        "\"say \\\"hi\\\"\"]"])), true);
 %!test
 %! json = jsonstring (BarChart ([1e-7; Inf; NaN], {'a', 'b', 'c'}));
-%! assert (! isempty (strfind (json, "\"data\":[1e-7,null,null]")));
+%! assert_equal (! isempty (strfind (json, "\"data\":[1e-7,null,null]")), true);
 %!test
 %! json = jsonstring (BarChart (1, {'a'}, "barThickness", "flex"));
-%! assert (! isempty (strfind (json, "\"barThickness\":\"flex\"")));
+%! assert_equal (! isempty (strfind (json, "\"barThickness\":\"flex\"")), true);
 %!test
 %! json = jsonstring (BarChart (1, {'a'}, "label", "n"));
-%! assert (! isempty (strfind (json, "\"label\":\"n\"}]},\"options\":{}}")));
+%! piece = "\"label\":\"n\"}]},\"options\":{}}";
+%! assert_equal (! isempty (strfind (json, piece)), true);
 %!test
 %! c = BarChart ([1, 2; 3, 4], {'a', 'b'});
 %! c.datasets{1}.label = "first";
 %! json = jsonstring (c);
-%! assert (! isempty (strfind (json, "\"label\":\"Dataset 2\"")));
-%! assert (! isempty (strfind (json, "\"options\":{}")));
+%! assert_equal (! isempty (strfind (json, "\"label\":\"Dataset 2\"")), true);
+%! assert_equal (! isempty (strfind (json, "\"options\":{}")), true);
 
 ## Test input validation
 %!error <BarChart: too few input arguments.> BarChart (1)

@@ -418,19 +418,19 @@ endclassdef
 %! json = ["{\"type\":\"line\",\"data\":{\"labels\":[\"a\",\"b\"],", ...
 %!         "\"datasets\":[{\"data\":[1,2]}]},", ...
 %!         "\"options\":{\"plugins\":{\"legend\":{\"display\":false}}}}"];
-%! assert (jsonstring (LineChart ([1; 2], {'a', 'b'})), json);
+%! assert_equal (jsonstring (LineChart ([1; 2], {'a', 'b'})), json);
 %!test
 %! json = jsonstring (LineChart ([1; 2], {'a', 'b'}, "borderDash", 5));
-%! assert (! isempty (strfind (json, "\"borderDash\":[5]")));
+%! assert_equal (! isempty (strfind (json, "\"borderDash\":[5]")), true);
 %!test
 %! json = jsonstring (LineChart ([1; 2], {'a', 'b'}, "borderDash", [5, 3]));
-%! assert (! isempty (strfind (json, "\"borderDash\":[5,3]")));
+%! assert_equal (! isempty (strfind (json, "\"borderDash\":[5,3]")), true);
 %!test
 %! json = jsonstring (LineChart ([1; 2], {'a', 'b'}, "label", "it's"));
-%! assert (! isempty (strfind (json, "\"label\":\"it's\"")));
+%! assert_equal (! isempty (strfind (json, "\"label\":\"it's\"")), true);
 %!test
 %! json = jsonstring (LineChart ([1; 2], {'a', 'b'}, "fill", Fill ("origin")));
-%! assert (! isempty (strfind (json, "\"fill\":\"origin\"")));
+%! assert_equal (! isempty (strfind (json, "\"fill\":\"origin\"")), true);
 
 ## Test input validation
 %!error <LineChart: too few input arguments.> LineChart (1)

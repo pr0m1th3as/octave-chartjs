@@ -232,14 +232,14 @@ classdef Fill
 endclassdef
 
 ## Test output
-%!assert (jsonstring (Fill ("origin")), "\"origin\"")
-%!assert (jsonstring (Fill (true)), "true")
-%!assert (jsonstring (Fill (1)), "1")
-%!assert (jsonstring (Fill (2, true)), "{\"value\":2}")
+%!assert_equal (jsonstring (Fill ("origin")), "\"origin\"")
+%!assert_equal (jsonstring (Fill (true)), "true")
+%!assert_equal (jsonstring (Fill (1)), "1")
+%!assert_equal (jsonstring (Fill (2, true)), "{\"value\":2}")
 %!test
 %! json = ["{\"target\":\"origin\",\"above\":\"red\",\"below\":\"rgb(0, 0,", ...
 %!         " 255)\"}"];
-%! assert (jsonstring (Fill ("origin", [], "red", [0, 0, 1])), json);
+%! assert_equal (jsonstring (Fill ("origin", [], "red", [0, 0, 1])), json);
 
 ## Test input validation
 %!error <Fill: too few input arguments.> Fill ()

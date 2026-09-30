@@ -267,8 +267,8 @@ classdef RadarData
 endclassdef
 
 ## Test output
-%!assert (jsonstring (RadarData ([1, 2])), "{\"data\":[1,2]}")
-%!assert (jsonstring (RadarData (1)), "{\"data\":[1]}")
+%!assert_equal (jsonstring (RadarData ([1, 2])), "{\"data\":[1,2]}")
+%!assert_equal (jsonstring (RadarData (1)), "{\"data\":[1]}")
 
 ## Test input validation
 %!error <RadarData: too few input arguments.> RadarData ()

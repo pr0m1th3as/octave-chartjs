@@ -385,7 +385,7 @@ endclassdef
 %! json = ["{\"type\":\"radar\",\"data\":{\"labels\":[\"a\",\"b\"],", ...
 %!         "\"datasets\":[{\"data\":[1,2]}]},", ...
 %!         "\"options\":{\"plugins\":{\"legend\":{\"display\":false}}}}"];
-%! assert (jsonstring (RadarChart ([1; 2], {'a', 'b'})), json);
+%! assert_equal (jsonstring (RadarChart ([1; 2], {'a', 'b'})), json);
 
 ## Test input validation
 %!error <RadarChart: too few input arguments.> RadarChart (1)
