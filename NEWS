@@ -1,43 +1,48 @@
- Initial release of octave-chartjs 0.1.0:
+ Summary of important user-visible changes for chartjs 0.2.0:
 -------------------------------------------------------------------
 
- New classdefs:
- ==============
+ This release writes charts as JSON, bundles Chart.js 4.5.1 so that pages
+ open without a network connection, and removes the web server, so the
+ package installs without the Asio library.  It breaks code that relied on
+ the old output; see below.
 
- ** BarChart
+ ** Chart.js 4.5.1 is written into every page by default.  `htmlstring`,
+    `htmlsave` and `webserve` take "cdn" to load the same release from
+    jsDelivr, checked against its hash, or a URL to load it from a server.
 
- ** BarData
+ ** `webserve` saves the chart's page, to a temporary file or a given file
+    name, and opens it in the system's web browser.
 
- ** BubbleChart
+ ** A chart whose datasets have no label hides its legend, which showed
+    "undefined"; an unlabelled dataset beside labelled ones is named by its
+    position, such as "Dataset 2".
 
- ** BubbleData
+ ** Every property and constructor has its own help, as in
+    `help LineData.tension`.
 
- ** Color
+ ** Bug fixes:
+    - An apostrophe or a quote in a label broke the chart, and "</script>"
+      in a label or the chart ID could close the page's script.
+    - `PieChart` and `PolarAreaChart` failed with an error.
+    - `ScatterChart` misread its points in threes, dropping and mixing
+      coordinates.
+    - `borderDash` and `hoverBorderDash` were discarded.
+    - Numbers were written to six decimal places, and `Inf` broke the chart;
+      numbers now read back exactly, with `NaN` and `Inf` as gaps.
+    - RGB and RGBA colors were misspelled, and a list of colors lost its last
+      closing quote.
+    - `ScatterChart` wrote `hoverBorderWidth` at its default.
 
- ** DoughnutChart
 
- ** DoughnutData
+Backwards incompatible improvements:
 
- ** Fill
+ ** The package requires Octave 11.1.0 or later.
 
- ** LineChart
+ ** `jsonstring` writes compact JSON, where it wrote an indented JavaScript
+    object literal.
 
- ** LineData
+ ** `Fill.jsonstring` returns the fill's value, such as "origin", where it
+    returned a "fill:" fragment, and the `target`, `above` and `below`
+    properties hold values rather than JavaScript text.
 
- ** PieChart
-
- ** PieData
-
- ** PolarAreaChart
-
- ** PolarAreaData
-
- ** RadarChart
-
- ** RadarData
-
- ** ScatterChart
-
- ** ScatterData
-
- ** WebServer
+ ** The `WebServer` class is removed; `webserve` opens the page from a file.
