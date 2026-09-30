@@ -43,11 +43,11 @@ function obj = parseValue (obj, pname, value, validstr, type)
     endif
     if (isvector (value))
       for i = 1:nsets
-        this.datasets{i}.(pname) = value;
+        obj.datasets{i}.(pname) = value;
       endfor
     elseif (size (value, 1) == nsets)
       for i = 1:nsets
-        this.datasets{i}.(pname) = value(i,:);
+        obj.datasets{i}.(pname) = value(i,:);
       endfor
     else
       error ("%s: mismatched size for '%s' property.", class (obj), pname);

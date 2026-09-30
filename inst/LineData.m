@@ -275,32 +275,35 @@ classdef LineData
     ## Export to json string
     function json = jsonstring (this, mixed = false)
 
-      ## Initialize json string
-      json = "{\n      ";
+      json = __chartjson__ (jsonvalue (this, mixed), jsonpaths ('dataset'));
 
-      ## Add type for mixed datasets
+    endfunction
+
+  endmethods
+
+  methods (Hidden)
+
+    ## The dataset as a structure, with its type for a mixed chart
+    function s = jsonvalue (this, mixed = false)
+
+      s = struct ();
       if (mixed)
-        json = [json, "type: 'line',\n      "];
+        s.type = "line";
       endif
-
-      ## Add data
-      data = sprintf ("%f, ", this.data);
-      data(end) = [];
-      data(end) = "]";
-      data = sprintf ("data: [%s", data);
-      json = [json, data];
-
-      ## Add optional properties
-      json = parseDataProperties (json, this);
-
-      ## Close json string
-      json = [json, "\n    }"];
+      s.data = this.data;
+      s = parseDataProperties (s, this);
 
     endfunction
 
   endmethods
 
 endclassdef
+
+## Test output
+%!assert (jsonstring (LineData ([1, 2])), "{\"data\":[1,2]}")
+%!assert (jsonstring (LineData (1)), "{\"data\":[1]}")
+%!assert (jsonstring (LineData ([1, 2]), true), ...
+%!        "{\"type\":\"line\",\"data\":[1,2]}")
 
 ## Test input validation
 %!error <LineData: too few input arguments.> LineData ()

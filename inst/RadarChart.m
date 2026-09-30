@@ -357,41 +357,33 @@ classdef RadarChart < Html
     endfunction
 
     ## Export to json string
-    function json = jsonstring (this)
 
-      ## Initialize json string
-      json = "{\n  type: 'radar',\n  data: {\n";
+  endmethods
 
-      ## Add labels
-      if (isnumeric (this.labels))
-        labels = sprintf ("%g, ", this.labels);
-      else
-        labels = sprintf ("'%s', ", this.labels{:});
-      endif
-      labels(end) = [];
-      labels(end) = "]";
-      json = [json, "    labels: [", labels, ",\n"];
+  methods (Hidden)
 
-      ## Add datasets
-      json = [json, "    datasets: ["];
+    ## The chart as a structure
+    function s = jsonvalue (this)
+
+      s.type = "radar";
+      s.data.labels = this.labels;
+      s.data.datasets = cell (1, numel (this.datasets));
       for i = 1:numel (this.datasets)
-        dataset = jsonstring (this.datasets{i});
-        json = [json, dataset, ","];
+        s.data.datasets{i} = jsonvalue (this.datasets{i});
       endfor
-
-      ## Close data
-      json(end) = "]";
-      json = [json, "\n  },\n"];
-
-      ## Add options and close Chart configuration json string
-      options = "  options: {}\n";
-      json = [json, options, "}"];
+      s.options = struct ();
 
     endfunction
 
   endmethods
 
 endclassdef
+
+## Test output
+%!test
+%! json = ["{\"type\":\"radar\",\"data\":{\"labels\":[\"a\",\"b\"],", ...
+%!         "\"datasets\":[{\"data\":[1,2]}]},\"options\":{}}"];
+%! assert (jsonstring (RadarChart ([1; 2], {'a', 'b'})), json);
 
 ## Test input validation
 %!error <RadarChart: too few input arguments.> RadarChart (1)

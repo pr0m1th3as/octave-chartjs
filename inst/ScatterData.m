@@ -148,32 +148,36 @@ classdef ScatterData
     ## Export to json string
     function json = jsonstring (this, mixed = false)
 
-      ## Initialize json string
-      json = "{\n      ";
+      json = __chartjson__ (jsonvalue (this, mixed), jsonpaths ('dataset'));
 
-      ## Add type for mixed datasets
+    endfunction
+
+  endmethods
+
+  methods (Hidden)
+
+    ## The dataset as a structure, with its type for a mixed chart
+    function s = jsonvalue (this, mixed = false)
+
+      s = struct ();
       if (mixed)
-        json = [json, "type: 'scatter',\n      "];
+        s.type = "scatter";
       endif
-
-      ## Add data
-      data = sprintf ("{x: %f, y: %f, r: %i},\n             ", this.data');
-      data = strtrim (data);
-      data(end) = [];
-      data = sprintf ("data: [%s]", data);
-      json = [json, data];
-
-      ## Add optional properties
-      json = parseDataProperties (json, this);
-
-      ## Close json string
-      json = [json, "\n    }"];
+      s.data = struct ("x", num2cell (this.data(:,1)),
+                       "y", num2cell (this.data(:,2)));
+      s = parseDataProperties (s, this);
 
     endfunction
 
   endmethods
 
 endclassdef
+
+## Test output
+%!test
+%! json = ["{\"type\":\"scatter\",\"data\":[{\"x\":1,\"y\":2}],", ...
+%!         "\"hoverBorderWidth\":1}"];
+%! assert (jsonstring (ScatterData ([1, 2]), true), json);
 
 ## Test input validation
 %!error <ScatterData: too few input arguments.> ScatterData ()

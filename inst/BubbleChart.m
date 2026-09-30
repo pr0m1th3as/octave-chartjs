@@ -257,42 +257,36 @@ classdef BubbleChart < Html
 
     endfunction
 
-    ## -*- texinfo -*-
-    ## @deftypefn  {BubbleChart} {@var{json} =} jsonstring (@var{obj})
-    ##
-    ## Generate a JSON string with the BubbleChart's context.
-    ##
-    ## @code{jsonstring (@var{obj})} returns a character vector, @var{json},
-    ## describing the context of the BubbleChart function in java script.
-    ##
-    ## @seealso{BubbleChart, BubbleData}
-    ## @end deftypefn
+  endmethods
 
-    function json = jsonstring (this)
+  methods (Hidden)
 
-      ## Initialize json string
-      json = "{\n  type: 'bubble',\n  data: {\n";
+    ## The chart as a structure
+    function s = jsonvalue (this)
 
-      ## Add datasets
-      json = [json, "    datasets: ["];
+      s.type = "bubble";
+      s.data.datasets = cell (1, numel (this.datasets));
       for i = 1:numel (this.datasets)
-        dataset = jsonstring (this.datasets{i});
-        json = [json, dataset, ","];
+        s.data.datasets{i} = jsonvalue (this.datasets{i});
       endfor
-
-      ## Close data
-      json(end) = "]";
-      json = [json, "\n  },\n"];
-
-      ## Add options and close Chart configuration json string
-      options = "  options: {}\n";
-      json = [json, options, "}"];
+      s.options = struct ();
 
     endfunction
 
   endmethods
 
 endclassdef
+
+## Test output
+%!test
+%! json = ["{\"type\":\"bubble\",", ...
+%!         "\"data\":{\"datasets\":[{\"data\":[{\"x\":1,\"y\":2,\"r\":3},", ...
+%!         "{\"x\":4,\"y\":5,\"r\":6}]}]},\"options\":{}}"];
+%! assert (jsonstring (BubbleChart ([1; 4], [2; 5], [3; 6])), json);
+%!test
+%! json = jsonstring (BubbleChart (1, 2, 3));
+%! assert (! isempty (strfind (json, ["\"data\":[{\"x\":1,\"y\":2,", ...
+%!                                  "\"r\":3}]"])));
 
 ## Test input validation
 %!error <BubbleChart: too few input arguments.> BubbleChart (1)

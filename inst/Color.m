@@ -122,34 +122,25 @@ classdef Color
                      "lightcyan", "cyan", "darkcyan", "beige", "lightcoral", ...
                      "coral", "black", "magenta", "darkmagenta"};
 
-      ## Default tab space
-      tab = repmat (" ", 1, 8);
-
       ## Character vector with color name or hexadecimal value
       if (ischar (value) && isvector (value))
         if (any (strcmpi (value, color_names)))
-          pstr = sprintf ("'%s'", value);
+          pstr = value;
         elseif (check_hexcolor (value))
-          pstr = sprintf ("'%s'", value);
+          pstr = value;
         else
           error ("Color: '%s' is an invalid color value.", value);
         endif
 
       ## Cellstring vector of color names or hexadecimal values
       elseif (iscellstr (value) && isvector (value))
-        pstr = sprintf ("[\n%s", tab);
         for i = 1:numel (value)
-          if (any (strcmpi (value{i}, color_names)))
-            pstr = [pstr, sprintf("'%s',\n%s", value{i}, tab)];
-          elseif (check_hexcolor (value{i}))
-            pstr = [pstr, sprintf("'%s',\n%s", value{i}, tab)];
-          else
+          if (! (any (strcmpi (value{i}, color_names))
+                 || check_hexcolor (value{i})))
             error ("Color: '%s' is an invalid color value.", value{i});
           endif
         endfor
-        pstr = strtrim (pstr);
-        pstr([end-1:end]) = [];
-        pstr = [pstr, sprintf("\n%s]", tab([1:end-2]))];
+        pstr = value;
 
       elseif (iscellstr (value) && ! isvector (value))
         error ("Color: cellstr VALUE must be a vector.");
@@ -157,9 +148,9 @@ classdef Color
       ## Numeric vector of Octave RGB triplet values (and transparency)
       elseif (isnumeric (value) && isvector (value))
         if (numel (value) == 3)
-          pstr = sprintf ("'rbg(%i, %i, %i)'", round (value * 255));
+          pstr = sprintf ("rgb(%i, %i, %i)", round (value * 255));
         elseif (numel (value) == 4)
-          pstr = sprintf ("'rbga(%i, %i, %i, %d)'", ...
+          pstr = sprintf ("rgba(%i, %i, %i, %d)", ...
                           round (value([1:3]) * 255), value(4));
         else
           error ("Color: invalid size of numeric value vector.");
@@ -167,28 +158,20 @@ classdef Color
 
       ## Numeric matric of Octave RGB triplet values (and transparency)
       elseif (isnumeric (value) && ismatrix (value))
+        css = cell (size (value, 1), 1);
         if (size (value, 2) == 3)
-          pstr = sprintf ("[\n%s", tab);
           for i = 1:size (value, 1)
-            pstr = [pstr, sprintf("'rbg(%i, %i, %i)',\n%s", ...
-                                  round (value(i,:) * 255), tab)];
+            css{i} = sprintf ("rgb(%i, %i, %i)", round (value(i,:) * 255));
           endfor
-          pstr = strtrim (pstr);
-          pstr([end-1:end]) = [];
-          pstr = [pstr, sprintf("\n%s]", tab([1:end-2]))];
         elseif (size (value, 2) == 4)
-          pstr = "[";
           for i = 1:size (value, 1)
-            pstr = [pstr, sprintf("'rbga(%i, %i, %i, %d)',\n%s", ...
-                                  round (value(i,[1:3]) * 255), ...
-                                  value(i,4), tab)];
+            css{i} = sprintf ("rgba(%i, %i, %i, %d)", ...
+                              round (value(i,[1:3]) * 255), value(i,4));
           endfor
-          pstr = strtrim (pstr);
-          pstr([end-1:end]) = [];
-          pstr = [pstr, sprintf("\n%s]", tab([1:end-2]))];
         else
           error ("Color: invalid size of numeric value matrix.");
         endif
+        pstr = css;
 
       ## Cell vector with color space name and corresponding numeric vector
       elseif (iscell (value) && isvector (value))
@@ -196,13 +179,11 @@ classdef Color
 
       ## Cell matix with color space names and corresponding numeric vectors
       elseif (iscell (value) && ismatrix (value))
-        pstr = sprintf ("[\n%s", tab);
+        css = cell (size (value, 1), 1);
         for i = 1:size (value, 1)
-          pstr = [pstr, namespacevector(value(i, :)), sprintf(",\n%s", tab)];
+          css{i} = namespacevector (value(i, :));
         endfor
-        pstr = strtrim (pstr);
-        pstr([end-1:end]) = [];
-        pstr = [pstr, sprintf("\n%s]", tab([1:end-2]))];
+        pstr = css;
 
       ## Invalid input
       else
@@ -220,14 +201,26 @@ classdef Color
     ## Generate the JSON string of a Color object.
     ##
     ## @code{jsonstring (@var{obj})} returns a character vector, @var{json},
-    ## describing the context of the Color object in json format.
+    ## holding the color in JSON: a string for a single color and an array of
+    ## strings for a list of colors, even a list of one.
     ##
     ## @seealso{Color, Fill}
     ## @end deftypefn
 
     function json = jsonstring (this)
 
-      json = this.color;
+      json = __chartjson__ (jsonvalue (this));
+
+    endfunction
+
+  endmethods
+
+  methods (Hidden)
+
+    ## The color as a character vector, or a list of them as a cellstr
+    function val = jsonvalue (this)
+
+      val = this.color;
 
     endfunction
 
@@ -255,7 +248,7 @@ function pstr = namespacevector (value)
     if (any (cval < 0) || any (cval > 255))
       error ("Color: invalid numeric value in 'RGB' value space.");
     endif
-    pstr = sprintf ("'rbg(%i, %i, %i)'", value{2});
+    pstr = sprintf ("rgb(%i, %i, %i)", value{2});
   elseif (strcmpi (value{1}, "rgba"))
     if (numel (cval) != 4)
       error ("Color: mismatched vector for 'RGBA' value space.");
@@ -264,7 +257,7 @@ function pstr = namespacevector (value)
                               || cval(4) < 0 || cval(4) > 1)
       error ("Color: invalid numeric value in 'RGBA' value space.");
     endif
-    pstr = sprintf ("'rbga(%i, %i, %i, %d)'", value{2});
+    pstr = sprintf ("rgba(%i, %i, %i, %d)", value{2});
   elseif (strcmpi (value{1}, "hsl"))
     if (numel (cval) != 3)
       error ("Color: mismatched vector for 'HSL' value space.");
@@ -273,7 +266,7 @@ function pstr = namespacevector (value)
                               || cval(1) < 0 || cval(1) > 360)
       error ("Color: invalid numeric value in 'HSL' value space.");
     endif
-    pstr = sprintf ("'hsl(%i, %i%%, %i%%)'", value{2});
+    pstr = sprintf ("hsl(%i, %i%%, %i%%)", value{2});
   elseif (strcmpi (value{1}, "hsla"))
     if (numel (cval) != 4)
       error ("Color: mismatched vector for 'HSLA' value space.");
@@ -282,11 +275,23 @@ function pstr = namespacevector (value)
         cval(1) < 0 || cval(1) > 360 || cval(4) < 0 || cval(4) > 1)
       error ("Color: invalid numeric value in 'HSLA' value space.");
     endif
-    pstr = sprintf ("'hsl(%i, %i%%, %i%%, %d)'", value{2});
+    pstr = sprintf ("hsl(%i, %i%%, %i%%, %d)", value{2});
   else
     error ("Color: '%s' is an invalid color name space.", value{1});
   endif
 endfunction
+
+## Test output
+%!assert (jsonstring (Color ("red")), "\"red\"")
+%!assert (jsonstring (Color ({'red'})), "[\"red\"]")
+%!assert (jsonstring (Color ({'red', '#00ff00'})), "[\"red\",\"#00ff00\"]")
+%!assert (jsonstring (Color ([1, 0, 0])), "\"rgb(255, 0, 0)\"")
+%!assert (jsonstring (Color ([1, 0, 0, 0.5])), "\"rgba(255, 0, 0, 0.5)\"")
+%!assert (jsonstring (Color ([1, 0, 0; 0, 0, 1])), ...
+%!        "[\"rgb(255, 0, 0)\",\"rgb(0, 0, 255)\"]")
+%!assert (jsonstring (Color ({"hsl", [10, 20, 30]})), "\"hsl(10, 20%, 30%)\"")
+%!assert (jsonstring (Color ({"rgb", [1, 2, 3]; "hsl", [10, 20, 30]})), ...
+%!        "[\"rgb(1, 2, 3)\",\"hsl(10, 20%, 30%)\"]")
 
 ## Test input validation
 %!error <Color: too few input arguments.> Color ()

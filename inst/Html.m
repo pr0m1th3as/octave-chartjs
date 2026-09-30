@@ -45,6 +45,24 @@ classdef Html
   methods (Access = public)
 
     ## -*- texinfo -*-
+    ## @deftypefn  {chartjs} {@var{json} =} jsonstring (@var{obj})
+    ##
+    ## Generate the JSON string of a Chart object.
+    ##
+    ## @code{jsonstring (@var{obj})} returns a character vector, @var{json},
+    ## holding the Chart.js configuration of a Chart object in JSON.
+    ##
+    ## @seealso{BarChart, BubbleChart, DoughnutChart, LineChart, PieChart,
+    ## PolarAreaChart, RadarChart, ScatterChart}
+    ## @end deftypefn
+
+    function json = jsonstring (obj)
+
+      json = __chartjson__ (jsonvalue (obj), jsonpaths ('chart'));
+
+    endfunction
+
+    ## -*- texinfo -*-
     ## @deftypefn  {chartjs} {@var{html} =} htmlstring (@var{obj})
     ##
     ## Generate an HTML string from a Chart object.
@@ -65,11 +83,15 @@ classdef Html
       tmp2 = "  <script src=""https://cdn.jsdelivr.net/npm/chart.js"">";
       tmp3 = "  </script>\n  <body>\n    <div>\n";
       tmp4 = "    <canvas id=""%s"" style=""width:100%%"">";
-      ## Add chart ID
-      tmp4 = sprintf (tmp4, obj.chartID);
+      ## Add chart ID, escaped for an HTML attribute
+      id = strrep (obj.chartID, "&", "&amp;");
+      id = strrep (strrep (id, """", "&quot;"), "'", "&#39;");
+      id = strrep (strrep (id, "<", "&lt;"), ">", "&gt;");
+      tmp4 = sprintf (tmp4, id);
       tmp5 = "</canvas>\n    </div>\n  </body>\n</html>\n";
       tmp6 = "<script>\n";
-      tmp7 = sprintf ("new Chart('%s', ", obj.chartID);
+      ## The JSON writes every '<' as an escape, so no string closes the script
+      tmp7 = sprintf ("new Chart(%s, ", __chartjson__ (obj.chartID));
       ## Get Chart configuration json string
       json = jsonstring (obj);
       ## Close html string
@@ -132,3 +154,15 @@ classdef Html
   endmethods
 
 endclassdef
+
+## Test output
+%!test
+%! c = BarChart ([1; 2], {'</script><script>x</script>', 'b'});
+%! html = htmlstring (c);
+%! assert (numel (strfind (html, "</script>")), 2);
+%!test
+%! c = BarChart ([1; 2], {'a', 'b'});
+%! c.chartID = "x\" y=\"1";
+%! html = htmlstring (c);
+%! assert (! isempty (strfind (html, "<canvas id=\"x&quot; y=&quot;1\"")));
+%! assert (! isempty (strfind (html, "new Chart(\"x\\\" y=\\\"1\", ")));

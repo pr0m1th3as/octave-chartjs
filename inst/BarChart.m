@@ -301,52 +301,51 @@ classdef BarChart < Html
 
     endfunction
 
-    ## -*- texinfo -*-
-    ## @deftypefn  {BarChart} {@var{json} =} jsonstring (@var{obj})
-    ##
-    ## Generate a JSON string with the BarChart's context.
-    ##
-    ## @code{jsonstring (@var{obj})} returns a character vector, @var{json},
-    ## describing the context of the BarChart function in java script.
-    ##
-    ## @seealso{BarChart, BarData}
-    ## @end deftypefn
+  endmethods
 
-    function json = jsonstring (this)
+  methods (Hidden)
 
-      ## Initialize json string
-      json = "{\n  type: 'bar',\n  data: {\n";
+    ## The chart as a structure
+    function s = jsonvalue (this)
 
-      ## Add labels
-      if (isnumeric (this.labels))
-        labels = sprintf ("%g, ", this.labels);
-      else
-        labels = sprintf ("'%s', ", this.labels{:});
-      endif
-      labels(end) = [];
-      labels(end) = "]";
-      json = [json, "    labels: [", labels, ",\n"];
-
-      ## Add datasets
-      json = [json, "    datasets: ["];
+      s.type = "bar";
+      s.data.labels = this.labels;
+      s.data.datasets = cell (1, numel (this.datasets));
       for i = 1:numel (this.datasets)
-        dataset = jsonstring (this.datasets{i});
-        json = [json, dataset, ","];
+        s.data.datasets{i} = jsonvalue (this.datasets{i});
       endfor
-
-      ## Close data
-      json(end) = "]";
-      json = [json, "\n  },\n"];
-
-      ## Add options and close Chart configuration json string
-      options = "  options: {}\n";
-      json = [json, options, "}"];
+      s.options = struct ();
 
     endfunction
 
   endmethods
 
 endclassdef
+
+## Test output
+%!test
+%! json = ["{\"type\":\"bar\",\"data\":{\"labels\":[\"a\",\"b\"],", ...
+%!         "\"datasets\":[{\"data\":[1,2]}]},\"options\":{}}"];
+%! assert (jsonstring (BarChart ([1; 2], {'a', 'b'})), json);
+%!test
+%! json = ["{\"type\":\"bar\",\"data\":{\"labels\":[\"a\"],", ...
+%!         "\"datasets\":[{\"data\":[1]}]},\"options\":{}}"];
+%! assert (jsonstring (BarChart (1, {'a'})), json);
+%!test
+%! json = ["{\"type\":\"bar\",\"data\":{\"labels\":[10,20],", ...
+%!         "\"datasets\":[{\"data\":[1,3]},{\"data\":[2,4]}]},", ...
+%!         "\"options\":{}}"];
+%! assert (jsonstring (BarChart ([1, 2; 3, 4], [10, 20])), json);
+%!test
+%! json = jsonstring (BarChart ([1; 2], {'it''s', 'say "hi"'}));
+%! assert (! isempty (strfind (json, ["\"labels\":[\"it's\",", ...
+%!                                  "\"say \\\"hi\\\"\"]"])));
+%!test
+%! json = jsonstring (BarChart ([1e-7; Inf; NaN], {'a', 'b', 'c'}));
+%! assert (! isempty (strfind (json, "\"data\":[1e-7,null,null]")));
+%!test
+%! json = jsonstring (BarChart (1, {'a'}, "barThickness", "flex"));
+%! assert (! isempty (strfind (json, "\"barThickness\":\"flex\"")));
 
 ## Test input validation
 %!error <BarChart: too few input arguments.> BarChart (1)

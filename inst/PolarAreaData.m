@@ -145,27 +145,30 @@ classdef PolarAreaData
     ## Export to json string
     function json = jsonstring (this)
 
-      ## Initialize json string
-      json = "{\n      ";
+      json = __chartjson__ (jsonvalue (this), jsonpaths ('dataset'));
 
-      ## Add data
-      data = sprintf ("%f, ", this.data);
-      data(end) = [];
-      data(end) = "]";
-      data = sprintf ("data: [%s", data);
-      json = [json, data];
+    endfunction
 
-      ## Add optional properties
-      json = parseDataProperties (json, this);
+  endmethods
 
-      ## Close json string
-      json = [json, "\n    }"];
+  methods (Hidden)
+
+    ## The dataset as a structure
+    function s = jsonvalue (this)
+
+      s = struct ();
+      s.data = this.data;
+      s = parseDataProperties (s, this);
 
     endfunction
 
   endmethods
 
 endclassdef
+
+## Test output
+%!assert (jsonstring (PolarAreaData ([1, 2])), "{\"data\":[1,2]}")
+%!assert (jsonstring (PolarAreaData (1)), "{\"data\":[1]}")
 
 ## Test input validation
 %!error <PolarAreaData: too few input arguments.> PolarAreaData ()

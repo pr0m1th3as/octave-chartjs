@@ -126,22 +126,22 @@ classdef Fill
         if (! isnumeric (value))
           error ("Fill: VALUE must be numeric when TOAXIS is true.");
         endif
-        this.target = sprintf ("{value: %d}", value);
+        this.target = struct ("value", value);
       else
         if (isbool (value))
           if (value)
-            this.target = "true";
+            this.target = true;
           else
-            this.target = "false";
+            this.target = false;
           endif
         elseif (isnumeric (value))
           if (value < 0 || round (value) != value)
             error (strcat (["Fill: VALUE for absolute indexing"], ...
                            [" must be a nonnegative integer."]));
           endif
-          this.target = sprintf ("%i", value);
+          this.target = value;
         elseif (ischar (value))
-          this.target = sprintf ("'%s'", value);
+          this.target = value;
         else
           error ("Fill: invalid VALUE.");
         endif
@@ -161,7 +161,7 @@ classdef Fill
           error ("Fill: invalid color value for 'above' property.");
         endif
         if (isa (above, "Color"))
-          this.above = jsonstring (above);
+          this.above = jsonvalue (above);
         else
           error ("Fill: invalid object for 'above' property.");
         endif
@@ -179,7 +179,7 @@ classdef Fill
           error ("Fill: invalid color value for 'below' property.");
         endif
         if (isa (below, "Color"))
-          this.below = jsonstring (below);
+          this.below = jsonvalue (below);
         else
           error ("Fill: invalid object for 'below' property.");
         endif
@@ -193,29 +193,36 @@ classdef Fill
     ## Generate the JSON string of a Fill object.
     ##
     ## @code{jsonstring (@var{obj})} returns a character vector, @var{json},
-    ## describing the context of the Color object in json format.
+    ## holding the value of a dataset's @qcode{fill} option in JSON: the
+    ## target alone, or an object with the target and its colors when
+    ## @var{above} or @var{below} is set.
     ##
     ## @seealso{Color, Fill}
     ## @end deftypefn
 
     function json = jsonstring (this)
 
-      ## Only target
-      if (isempty (this.above) && isempty (this.below))
-        json = sprintf ("fill: %s", this.target);
+      json = __chartjson__ (jsonvalue (this));
 
+    endfunction
+
+  endmethods
+
+  methods (Hidden)
+
+    ## The target alone, or a structure with the target and its colors
+    function val = jsonvalue (this)
+
+      if (isempty (this.above) && isempty (this.below))
+        val = this.target;
       else
-        json = "fill: {\n        ";
-        json = [json, sprintf("target: %s,\n        ", this.target)];
+        val = struct ("target", this.target);
         if (! isempty (this.above))
-          json = [json, sprintf("above: %s,\n        ", this.above)];
+          val.above = this.above;
         endif
         if (! isempty (this.below))
-          json = [json, sprintf("below: %s,\n        ", this.below)];
+          val.below = this.below;
         endif
-        json = strtrim (json);
-        json(end) = [];
-        json = [json, "\n      }"];
       endif
 
     endfunction
@@ -223,6 +230,16 @@ classdef Fill
   endmethods
 
 endclassdef
+
+## Test output
+%!assert (jsonstring (Fill ("origin")), "\"origin\"")
+%!assert (jsonstring (Fill (true)), "true")
+%!assert (jsonstring (Fill (1)), "1")
+%!assert (jsonstring (Fill (2, true)), "{\"value\":2}")
+%!test
+%! json = ["{\"target\":\"origin\",\"above\":\"red\",\"below\":\"rgb(0, 0,", ...
+%!         " 255)\"}"];
+%! assert (jsonstring (Fill ("origin", [], "red", [0, 0, 1])), json);
 
 ## Test input validation
 %!error <Fill: too few input arguments.> Fill ()

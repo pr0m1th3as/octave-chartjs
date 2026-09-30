@@ -288,52 +288,32 @@ classdef DoughnutChart < Html
 
     endfunction
 
-    ## -*- texinfo -*-
-    ## @deftypefn  {DoughnutChart} {@var{json} =} jsonstring (@var{obj})
-    ##
-    ## Generate a JSON string with the DoughnutChart's context.
-    ##
-    ## @code{jsonstring (@var{obj})} returns a character vector, @var{json},
-    ## describing the context of the DoughnutChart function in java script.
-    ##
-    ## @seealso{DoughnutChart, DoughnutData}
-    ## @end deftypefn
+  endmethods
 
-    function json = jsonstring (this)
+  methods (Hidden)
 
-      ## Initialize json string
-      json = "{\n  type: 'doughnut',\n  data: {\n";
+    ## The chart as a structure
+    function s = jsonvalue (this)
 
-      ## Add labels
-      if (isnumeric (this.labels))
-        labels = sprintf ("%g, ", this.labels);
-      else
-        labels = sprintf ("'%s', ", this.labels{:});
-      endif
-      labels(end) = [];
-      labels(end) = "]";
-      json = [json, "    labels: [", labels, ",\n"];
-
-      ## Add datasets
-      json = [json, "    datasets: ["];
+      s.type = "doughnut";
+      s.data.labels = this.labels;
+      s.data.datasets = cell (1, numel (this.datasets));
       for i = 1:numel (this.datasets)
-        dataset = jsonstring (this.datasets{i});
-        json = [json, dataset, ","];
+        s.data.datasets{i} = jsonvalue (this.datasets{i});
       endfor
-
-      ## Close data
-      json(end) = "]";
-      json = [json, "\n  },\n"];
-
-      ## Add options and close Chart configuration json string
-      options = "  options: {}\n";
-      json = [json, options, "}"];
+      s.options = struct ();
 
     endfunction
 
   endmethods
 
 endclassdef
+
+## Test output
+%!test
+%! json = ["{\"type\":\"doughnut\",\"data\":{\"labels\":[\"a\",\"b\"],", ...
+%!         "\"datasets\":[{\"data\":[1,2]}]},\"options\":{}}"];
+%! assert (jsonstring (DoughnutChart ([1; 2], {'a', 'b'})), json);
 
 ## Test input validation
 %!error <DoughnutChart: too few input arguments.> DoughnutChart (1)

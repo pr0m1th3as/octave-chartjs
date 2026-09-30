@@ -390,41 +390,45 @@ classdef LineChart < Html
     endfunction
 
     ## Export to json string
-    function json = jsonstring (this)
 
-      ## Initialize json string
-      json = "{\n  type: 'line',\n  data: {\n";
+  endmethods
 
-      ## Add labels
-      if (isnumeric (this.labels))
-        labels = sprintf ("%g, ", this.labels);
-      else
-        labels = sprintf ("'%s', ", this.labels{:});
-      endif
-      labels(end) = [];
-      labels(end) = "]";
-      json = [json, "    labels: [", labels, ",\n"];
+  methods (Hidden)
 
-      ## Add datasets
-      json = [json, "    datasets: ["];
+    ## The chart as a structure
+    function s = jsonvalue (this)
+
+      s.type = "line";
+      s.data.labels = this.labels;
+      s.data.datasets = cell (1, numel (this.datasets));
       for i = 1:numel (this.datasets)
-        dataset = jsonstring (this.datasets{i});
-        json = [json, dataset, ","];
+        s.data.datasets{i} = jsonvalue (this.datasets{i});
       endfor
-
-      ## Close data
-      json(end) = "]";
-      json = [json, "\n  },\n"];
-
-      ## Add options and close Chart configuration json string
-      options = "  options: {}\n";
-      json = [json, options, "}"];
+      s.options = struct ();
 
     endfunction
 
   endmethods
 
 endclassdef
+
+## Test output
+%!test
+%! json = ["{\"type\":\"line\",\"data\":{\"labels\":[\"a\",\"b\"],", ...
+%!         "\"datasets\":[{\"data\":[1,2]}]},\"options\":{}}"];
+%! assert (jsonstring (LineChart ([1; 2], {'a', 'b'})), json);
+%!test
+%! json = jsonstring (LineChart ([1; 2], {'a', 'b'}, "borderDash", 5));
+%! assert (! isempty (strfind (json, "\"borderDash\":[5]")));
+%!test
+%! json = jsonstring (LineChart ([1; 2], {'a', 'b'}, "borderDash", [5, 3]));
+%! assert (! isempty (strfind (json, "\"borderDash\":[5,3]")));
+%!test
+%! json = jsonstring (LineChart ([1; 2], {'a', 'b'}, "label", "it's"));
+%! assert (! isempty (strfind (json, "\"label\":\"it's\"")));
+%!test
+%! json = jsonstring (LineChart ([1; 2], {'a', 'b'}, "fill", Fill ("origin")));
+%! assert (! isempty (strfind (json, "\"fill\":\"origin\"")));
 
 ## Test input validation
 %!error <LineChart: too few input arguments.> LineChart (1)

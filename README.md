@@ -18,10 +18,11 @@ The **chartjs** package aims to facilitate the generation of web-ready HTML code
 All classdef Classes and their respective methods are documented with [texinfo](https://www.gnu.org/software/texinfo/) format, which can be accessed from the Octave command with the `help` function.  Use dot notation to access the help of a particular method. For example:
 ```
 help BarChart
-help BarChart.jsonstring
+help BarData.jsonstring
 ```
 To access the documentation of available methods inherited from the `Html` Class, type:
 ```
+help Html.jsonstring
 help Html.htmlstring
 help Html.htmlsave
 help Html.webserve

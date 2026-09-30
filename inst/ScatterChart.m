@@ -245,31 +245,36 @@ classdef ScatterChart < Html
     endfunction
 
     ## Export to json string
-    function json = jsonstring (this)
 
-      ## Initialize json string
-      json = "{\n  type: 'scatter',\n  data: {\n";
+  endmethods
 
-      ## Add datasets
-      json = [json, "    datasets: ["];
+  methods (Hidden)
+
+    ## The chart as a structure
+    function s = jsonvalue (this)
+
+      s.type = "scatter";
+      s.data.datasets = cell (1, numel (this.datasets));
       for i = 1:numel (this.datasets)
-        dataset = jsonstring (this.datasets{i});
-        json = [json, dataset, ","];
+        s.data.datasets{i} = jsonvalue (this.datasets{i});
       endfor
-
-      ## Close data
-      json(end) = "]";
-      json = [json, "\n  },\n"];
-
-      ## Add options and close Chart configuration json string
-      options = "  options: {}\n";
-      json = [json, options, "}"];
+      s.options = struct ();
 
     endfunction
 
   endmethods
 
 endclassdef
+
+## Test output
+%!test
+%! json = ["{\"type\":\"scatter\",", ...
+%!         "\"data\":{\"datasets\":[{\"data\":[{\"x\":1,\"y\":2},", ...
+%!         "{\"x\":3,\"y\":4}],\"hoverBorderWidth\":1}]},\"options\":{}}"];
+%! assert (jsonstring (ScatterChart ([1; 3], [2; 4])), json);
+%!test
+%! json = jsonstring (ScatterChart (1, 2));
+%! assert (! isempty (strfind (json, "\"data\":[{\"x\":1,\"y\":2}]")));
 
 ## Test input validation
 %!error <ScatterChart: too few input arguments.> ScatterChart (1)
