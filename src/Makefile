@@ -8,4 +8,5 @@ SOCK_LIBS ?= -lws2_32 -lwsock32
 endif
 
 all:
+	$(MKOCTFILE) __chartjson__.cc
 	$(MKOCTFILE) __webserve__.cc $(SOCK_LIBS)
