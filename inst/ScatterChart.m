@@ -259,6 +259,7 @@ classdef ScatterChart < Html
         s.data.datasets{i} = jsonvalue (this.datasets{i});
       endfor
       s.options = struct ();
+      s = datasetlegend (s);
 
     endfunction
 
@@ -270,7 +271,8 @@ endclassdef
 %!test
 %! json = ["{\"type\":\"scatter\",", ...
 %!         "\"data\":{\"datasets\":[{\"data\":[{\"x\":1,\"y\":2},", ...
-%!         "{\"x\":3,\"y\":4}],\"hoverBorderWidth\":1}]},\"options\":{}}"];
+%!         "{\"x\":3,\"y\":4}]}]},", ...
+%!         "\"options\":{\"plugins\":{\"legend\":{\"display\":false}}}}"];
 %! assert (jsonstring (ScatterChart ([1; 3], [2; 4])), json);
 %!test
 %! json = jsonstring (ScatterChart (1, 2));

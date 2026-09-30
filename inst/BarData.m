@@ -127,6 +127,9 @@ classdef BarData
 ##
 ## @item @qcode{label} @tab @tab A character vector defining the label of the
 ## dataset which appears in the legend and tooltips.
+## A chart shows no legend when none of its datasets has a label, and names a
+## dataset without one by its position, such as @qcode{"Dataset 2"}, when
+## another has one.
 ##
 ## @item @qcode{maxBarThickness} @tab @tab A numeric scalar value defining the
 ## maximum thickness of the bars in pixels.

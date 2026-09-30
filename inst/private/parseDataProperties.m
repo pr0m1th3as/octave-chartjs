@@ -239,9 +239,10 @@ function s = parseDataProperties (s, obj)
 
   ## Bar, Bubble, Doughnut, Pie, Line, Polar, Radar, Scatter
   if (isprop (obj, "hoverBorderWidth"))
-    isBarBubble = any (isa (obj, {"BarData", "BubbleData"}));
-    if ((obj.hoverBorderWidth != 1 && isBarBubble) ||
-        (! isempty (obj.hoverBorderWidth) && ! isBarBubble))
+    ## Bar, Bubble and Scatter default to 1, the others to nothing
+    defaultOne = any (isa (obj, {"BarData", "BubbleData", "ScatterData"}));
+    if ((obj.hoverBorderWidth != 1 && defaultOne) ||
+        (! isempty (obj.hoverBorderWidth) && ! defaultOne))
       s.hoverBorderWidth = obj.hoverBorderWidth;
     endif
   endif

@@ -270,6 +270,7 @@ classdef BubbleChart < Html
         s.data.datasets{i} = jsonvalue (this.datasets{i});
       endfor
       s.options = struct ();
+      s = datasetlegend (s);
 
     endfunction
 
@@ -281,7 +282,8 @@ endclassdef
 %!test
 %! json = ["{\"type\":\"bubble\",", ...
 %!         "\"data\":{\"datasets\":[{\"data\":[{\"x\":1,\"y\":2,\"r\":3},", ...
-%!         "{\"x\":4,\"y\":5,\"r\":6}]}]},\"options\":{}}"];
+%!         "{\"x\":4,\"y\":5,\"r\":6}]}]},", ...
+%!         "\"options\":{\"plugins\":{\"legend\":{\"display\":false}}}}"];
 %! assert (jsonstring (BubbleChart ([1; 4], [2; 5], [3; 6])), json);
 %!test
 %! json = jsonstring (BubbleChart (1, 2, 3));

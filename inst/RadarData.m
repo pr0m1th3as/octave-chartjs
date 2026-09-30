@@ -109,8 +109,11 @@ classdef RadarData
 ## of the dataset.  It can be either @qcode{'x'} for horizontal lines or
 ## @qcode{'y'} for horizontal lines.  Default is @qcode{'x'}.
 ##
-## @item @qcode{labels} @tab @tab A character vector defining the label for the
+## @item @qcode{label} @tab @tab A character vector defining the label for the
 ## dataset which appears in the legend and tooltips.  Default is empty.
+## A chart shows no legend when none of its datasets has a label, and names a
+## dataset without one by its position, such as @qcode{"Dataset 2"}, when
+## another has one.
 ##
 ## @item @qcode{order} @tab @tab A numeric scalar defining the drawing order of
 ## the dataset.  It also affects order for stacking, tooltip and legend.

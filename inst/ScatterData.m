@@ -76,6 +76,9 @@ classdef ScatterData
 ##
 ## @item @qcode{label} @tab @tab A character vector defining the label of the
 ## dataset which appears in the legend and tooltips.
+## A chart shows no legend when none of its datasets has a label, and names a
+## dataset without one by its position, such as @qcode{"Dataset 2"}, when
+## another has one.
 ##
 ## @item @qcode{order} @tab @tab A numeric scalar defining the order of the
 ## dataset, which affects order for stacking, tooltip and legend.
@@ -175,9 +178,9 @@ endclassdef
 
 ## Test output
 %!test
-%! json = ["{\"type\":\"scatter\",\"data\":[{\"x\":1,\"y\":2}],", ...
-%!         "\"hoverBorderWidth\":1}"];
+%! json = "{\"type\":\"scatter\",\"data\":[{\"x\":1,\"y\":2}]}";
 %! assert (jsonstring (ScatterData ([1, 2]), true), json);
+%!assert (jsonstring (ScatterData ([1, 2])), "{\"data\":[{\"x\":1,\"y\":2}]}")
 
 ## Test input validation
 %!error <ScatterData: too few input arguments.> ScatterData ()

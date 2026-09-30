@@ -405,6 +405,7 @@ classdef LineChart < Html
         s.data.datasets{i} = jsonvalue (this.datasets{i});
       endfor
       s.options = struct ();
+      s = datasetlegend (s);
 
     endfunction
 
@@ -415,7 +416,8 @@ endclassdef
 ## Test output
 %!test
 %! json = ["{\"type\":\"line\",\"data\":{\"labels\":[\"a\",\"b\"],", ...
-%!         "\"datasets\":[{\"data\":[1,2]}]},\"options\":{}}"];
+%!         "\"datasets\":[{\"data\":[1,2]}]},", ...
+%!         "\"options\":{\"plugins\":{\"legend\":{\"display\":false}}}}"];
 %! assert (jsonstring (LineChart ([1; 2], {'a', 'b'})), json);
 %!test
 %! json = jsonstring (LineChart ([1; 2], {'a', 'b'}, "borderDash", 5));
