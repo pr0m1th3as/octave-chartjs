@@ -1,1 +1,5 @@
 docs export-ignore
+
+# The bundled Chart.js must stay byte-identical to its release, whose hash
+# the page pins, so git never converts its line endings.
+inst/js/chart.umd.min.js binary
