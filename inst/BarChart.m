@@ -16,97 +16,127 @@
 ## this program; if not, see <http://www.gnu.org/licenses/>.
 
 classdef BarChart < Html
-## -*- texinfo -*-
-## @deftypefn  {chartjs} {@var{obj} =} BarChart (@var{data}, @var{labels})
-## @deftypefnx {chartjs} {@var{obj} =} BarChart (@dots{}, @var{Name}, @var{Value})
-##
-## Create a @qcode{BarChart} object.
-##
-## @code{@var{obj} = BarChart (@var{data}, @var{labels})} returns a
-## @qcode{BarChart} object, in which @var{data} contain the bar heights (by
-## default along the @qcode{y-axis}) and @var{labels} contain the bar labels (by
-## default along the @qcode{x-axis}).
-##
-## @itemize
-## @item
-## @var{data} must be a nonempty @math{NxP} numeric matrix, where each column
-## corresponds to a separate dataset and each row corresponds to an element in
-## @var{labels}.  If @var{data} is a row vector and its length matches the
-## number of elements in @var{labels}, then it is transposed to a column vector.
-##
-## @item
-## @var{labels} must be a nonempty numerical vector or cellstring array, where
-## each element corresponds to a row in @var{data}.  If @var{labels} is a
-## character vector, then it is converted to a cellstring scalar.
-## @end itemize
-##
-## @code{@var{obj} = BarChart (@dots{}, @var{Name}, @var{Value})} returns a
-## @qcode{BarChart} object with the properties of each dataset specified by one
-## or more @qcode{@var{Name}, @var{Value}} pair arguments.  @var{Name} can be
-## any property name of a @qcode{BarData} object and @var{Value} must correspond
-## to the data type(s) and values accepted by that property.
-## Type @code{help BarData} for more details on the available properties.
-##
-## Specifically for the properties that accept a @qcode{Color} object as their
-## input value, besides the @qcode{Color} object you may also parse to the
-## @qcode{BarChart} constructor the same values accepted by the constructor of
-## the @qcode{Color} object.  However, if you choose to manually modify the
-## @qcode{BarChart}'s properties using the dot notation syntax, then you must
-## assign a @qcode{Color} object to the chosen property.  Type @code{help Color}
-## for more details on the available syntax.
-##
-## For properties that accept scalar values, you can pass a vector of the same
-## type with each element corresponding to a different dataset.  For properties
-## that accept vectors, you can pass a matrix of the same type with each row
-## corresponding to a different dataset.  Otherwise, the same property value
-## will be assigned to all datasets available in @var{data}.  For properties
-## accepting a character vector, you need to pass a cellstring array for
-## multiple datasets, whereas for properties that can take mixed types of scalar
-## values (i.e. either boolean and character vectors), you need to pass a cell
-## array with each element corresponding to a different dataset.
-##
-## A @qcode{BarChart} object, @var{obj}, stores the following properties, which
-## can be accessed/modified using dot notation syntax similarly to a
-## @qcode{struct} object:
-##
-## @multitable @columnfractions 0.23 0.02 0.75
-## @headitem @var{Field} @tab @tab @var{Description}
-##
-## @item @qcode{chartID} @tab @tab A character vector defining the name of the
-## Chart in the generated html code.
-##
-## @item @qcode{datasets} @tab @tab A cell array containing one or more
-## @qcode{BarData} objects corresponding to the @var{data} input.
-##
-## @item @qcode{labels} @tab @tab A numeric vector or a cellstring array with
-## the data labels defined in @var{labels}.
-##
-## @item @qcode{options} @tab @tab A cell array containing one or more
-## @qcode{Option} and @qcode{Plugin} objects.  Not used at the moment.
-##
-## @end multitable
-##
-## To view the @qcode{BarChart} object in your web browser, use its
-## @qcode{webserve ()} method.  Alternatively, you can generate and/or save to a
-## file the corresponding HTML code with the @qcode{htmlstring ()} and
-## @qcode{htmlsave ()} methods and serve it online through a web server of your
-## choice.
-##
-## @seealso{BarData, Color, Fill, Html}
-## @end deftypefn
+  ## -*- texinfo -*-
+  ## @deftp {chartjs} BarChart
+  ##
+  ## Bar chart drawn by the Chart.js library.
+  ##
+  ## Each dataset of a @qcode{BarChart} is a @qcode{BarData} object in its
+  ## @qcode{datasets} property.
+  ##
+  ## To view the @qcode{BarChart} object in your web browser, use its
+  ## @qcode{webserve ()} method.  Alternatively, you can generate and/or save to
+  ## a file the corresponding HTML code with the @qcode{htmlstring ()} and
+  ## @qcode{htmlsave ()} methods and serve it online through a web server of
+  ## your choice.
+  ##
+  ## Each property is documented on its own, as in @code{help BarChart.labels}.
+  ##
+  ## @seealso{BarData, Color, Fill, Html}
+  ## @end deftp
 
   properties (Access = public)
 
+    ## -*- texinfo -*-
+    ## @deftp {BarChart} {property} chartID
+    ##
+    ## Name of the chart
+    ##
+    ## A character vector defining the name of the Chart in the generated html
+    ## code.
+    ##
+    ## @end deftp
     chartID            = "barChart";
+
+    ## -*- texinfo -*-
+    ## @deftp {BarChart} {property} datasets
+    ##
+    ## Datasets of the chart
+    ##
+    ## A cell array containing one or more @qcode{BarData} objects corresponding
+    ## to the @var{data} input.
+    ##
+    ## @end deftp
     datasets           = {};
+
+    ## -*- texinfo -*-
+    ## @deftp {BarChart} {property} labels
+    ##
+    ## Data labels
+    ##
+    ## A numeric vector or a cellstring array with the data labels defined in
+    ## @var{labels}.
+    ##
+    ## @end deftp
     labels             = [];
+
+    ## -*- texinfo -*-
+    ## @deftp {BarChart} {property} options
+    ##
+    ## Chart options
+    ##
+    ## A cell array containing one or more @qcode{Option} and @qcode{Plugin}
+    ## objects.  Not used at the moment.
+    ##
+    ## @end deftp
     options            = {};
 
   endproperties
 
   methods (Access = public)
 
-    ## Class object constructor
+    ## -*- texinfo -*-
+    ## @deftypefn  {BarChart} {@var{obj} =} BarChart (@var{data}, @var{labels})
+    ## @deftypefnx {BarChart} {@var{obj} =} BarChart (@dots{}, @var{Name}, @var{Value})
+    ##
+    ## Create a @qcode{BarChart} object.
+    ##
+    ## @code{@var{obj} = BarChart (@var{data}, @var{labels})} returns a
+    ## @qcode{BarChart} object, in which @var{data} contain the bar heights (by
+    ## default along the @qcode{y-axis}) and @var{labels} contain the bar labels
+    ## (by default along the @qcode{x-axis}).
+    ##
+    ## @itemize
+    ## @item
+    ## @var{data} must be a nonempty @math{NxP} numeric matrix, where each
+    ## column corresponds to a separate dataset and each row corresponds to an
+    ## element in @var{labels}.  If @var{data} is a row vector and its length
+    ## matches the number of elements in @var{labels}, then it is transposed to
+    ## a column vector.
+    ##
+    ## @item
+    ## @var{labels} must be a nonempty numerical vector or cellstring array,
+    ## where each element corresponds to a row in @var{data}.  If @var{labels}
+    ## is a character vector, then it is converted to a cellstring scalar.
+    ## @end itemize
+    ##
+    ## @code{@var{obj} = BarChart (@dots{}, @var{Name}, @var{Value})} returns a
+    ## @qcode{BarChart} object with the properties of each dataset specified by
+    ## one or more @qcode{@var{Name}, @var{Value}} pair arguments.  @var{Name}
+    ## can be any property name of a @qcode{BarData} object and @var{Value} must
+    ## correspond to the data type(s) and values accepted by that property. Type
+    ## @code{help BarData} for more details on the available properties.
+    ##
+    ## Specifically for the properties that accept a @qcode{Color} object as
+    ## their input value, besides the @qcode{Color} object you may also parse to
+    ## the @qcode{BarChart} constructor the same values accepted by the
+    ## constructor of the @qcode{Color} object.  However, if you choose to
+    ## manually modify the @qcode{BarChart}'s properties using the dot notation
+    ## syntax, then you must assign a @qcode{Color} object to the chosen
+    ## property.  Type @code{help Color} for more details on the available
+    ## syntax.
+    ##
+    ## For properties that accept scalar values, you can pass a vector of the
+    ## same type with each element corresponding to a different dataset.  For
+    ## properties that accept vectors, you can pass a matrix of the same type
+    ## with each row corresponding to a different dataset.  Otherwise, the same
+    ## property value will be assigned to all datasets available in @var{data}.
+    ## For properties accepting a character vector, you need to pass a
+    ## cellstring array for multiple datasets, whereas for properties that can
+    ## take mixed types of scalar values (i.e. either boolean and character
+    ## vectors), you need to pass a cell array with each element corresponding
+    ## to a different dataset.
+    ## @end deftypefn
     function this = BarChart (data, labels, varargin)
 
       ## Check data and labels

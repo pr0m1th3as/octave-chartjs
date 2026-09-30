@@ -15,9 +15,20 @@
 ## You should have received a copy of the GNU General Public License along with
 ## this program; if not, see <http://www.gnu.org/licenses/>.
 
-## The fields Chart.js always reads as arrays, as the paths __chartjson__
-## takes, below a whole chart when ROOT is 'chart' and below a single dataset
-## when ROOT is 'dataset'.
+## -*- texinfo -*-
+## @deftypefn {chartjs} {@var{paths} =} jsonpaths (@var{root})
+##
+## List the fields Chart.js always reads as arrays.
+##
+## @var{paths} is a cellstring array of dotted field names, in the form
+## @code{__chartjson__} takes, below a whole chart when @var{root} is
+## @qcode{'chart'} and below a single dataset when @var{root} is
+## @qcode{'dataset'}.
+##
+## This is an internal helper of the @code{jsonstring} methods.  Do NOT call it
+## directly.
+##
+## @end deftypefn
 
 function paths = jsonpaths (root)
 

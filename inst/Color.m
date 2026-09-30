@@ -16,81 +16,31 @@
 ## this program; if not, see <http://www.gnu.org/licenses/>.
 
 classdef Color
-## -*- texinfo -*-
-## @deftypefn  {chartjs} {@var{obj} =} Color (@var{value})
-##
-## A class for creating Chart.js compatible Color objects.
-##
-## @code{@var{obj} = Color (@var{value})} returns a Color object defined by
-## @var{value}, which can either be a character vector, a cellstring array, a
-## numeric matrix, or a cell matrix containing the following combinations.  Each
-## Color object only applies to a given dataset.  If you want to pass different
-## color patterns to multiple datasets when constructing a Chart object, then
-## you need to pass a Color object array to the Chart's constructor.
-##
-## When @var{value} is character vector, it can define a single color either by
-## using one of the acceptable color names given below or by using hexadecimal
-## string values in the forms @qcode{#FFFFFF} and @qcode{#FFFFFFFF}.  The former
-## defines an @qcode{RGB} color space, whereas the later defines an @qcode{RGBA}
-## color space that includes transparency.
-##
-## Valid color names are:
-## @itemize
-## @item @code{beige}
-## @item @code{black}
-## @item @code{blue}, @code{lightblue}, @code{darkblue}
-## @item @code{brown}
-## @item @code{coral}, @code{lightcoral}
-## @item @code{cyan}, @code{darkcyan}
-## @item @code{green}, @code{lightgreen}, @code{darkgreen}
-## @item @code{gray}, @code{grey}, @code{lightgray}, @code{lightgrey},
-## @code{darkgray}, @code{darkgrey}
-## @item @code{magenta}, @code{darkmagenta}
-## @item @code{pink}
-## @item @code{red}, @code{darkred}
-## @item @code{white}
-## @item @code{yellow}, @code{lightyellow}
-## @end itemize
-##
-## If you want to apply multiple colors to a given dataset, then you can use a
-## cellstring array whose elements follow the requirements for character vector
-## values described above.  The cellstring array must be a vector and its
-## elements can interchangeably contain known color names or hexadecimal color
-## values.
-##
-## If @var{value} is a numeric, it follows Octave's native @qcode{RGB} tripplet
-## syntax.  An @qcode{RGB} triplet is a @math{1x3} vector where each value is
-## between 0 and 1 inclusive.  The first value represents the percentage of Red,
-## the second value the percentage of Green, and the third value the percentage
-## of Blue.  This syntax is also extended to support @qcode{RGBA} quadruplets,
-## in which case the fourth value (also between 0 and 1 inclusive) of the
-## @math{1x4} vector represents the transparency.  If you want to apply multiple
-## colors to a given dataset, then you can pass a numeric matrix of @math{Nx3}
-## or @math{Nx4} size with each row representing a distinct @qcode{RGB} tripplet
-## or @qcode{RGBA} quadruplet, respectively.
-##
-## Alternatively you can define @var{value} as a cell array with two elements or
-## an @math{Nx2} cell matrix in case you need to specify multiple colors in the
-## same dataset.  The first element of each row represents a color space name,
-## which can be any of the four available choices: @code{rgb}, @code{rgba},
-## @code{hsl}, and @code{hsla}.  The second element of each row must be a
-## numeric @math{1x3} vector for @code{rgb} and @code{hsl} color spaces, or a
-## numeric @math{1x4} vector for @code{rgba} and @code{hsla} color spaces.  When
-## assigning color value(s) as a cell array, the @qcode{RGB} values must be
-## between 0 and 255 inclusive, the @qcode{hue} value must be between 0 and 360
-## inclusive, the @qcode{saturation} and @qcode{lightness} values must be
-## percentages between 0 and 100 inclusive, whereas the @qcode{alpha} value must
-## be between 0 and 1 inclusive.  All numeric values except for the transparency
-## are expected to be integer values, otherwise they are rounded to the nearest
-## integer.
-##
-## @seealso{BarChart, BarData, BubbleChart, BubbleData, DoughnutChart,
-## DoughnutData, LineChart, LineData, PieChart, PieData, PolarAreaChart,
-## PolarAreaData, RadarChart, RadarData, ScatterChart, ScatterData}
-## @end deftypefn
+  ## -*- texinfo -*-
+  ## @deftp {chartjs} Color
+  ##
+  ## A color or a list of colors for a Chart.js chart.
+  ##
+  ## Every dataset property that takes a color, such as @qcode{backgroundColor},
+  ## holds a @qcode{Color} object.
+  ##
+  ## @seealso{BarChart, BarData, BubbleChart, BubbleData, DoughnutChart,
+  ## DoughnutData, LineChart, LineData, PieChart, PieData, PolarAreaChart,
+  ## PolarAreaData, RadarChart, RadarData, ScatterChart, ScatterData}
+  ## @end deftp
 
   properties (SetAccess = protected)
 
+    ## -*- texinfo -*-
+    ## @deftp {Color} {property} value
+    ##
+    ## Value given to the constructor
+    ##
+    ## The @var{value} passed to the @qcode{Color} constructor, unchanged: a
+    ## color name or hexadecimal code, a cellstring array of them, an RGB or
+    ## RGBA matrix, or a cell array of color space names and values.
+    ##
+    ## @end deftp
     value = [];
 
   endproperties
@@ -103,7 +53,76 @@ classdef Color
 
   methods (Access = public)
 
-    ## Class object constructor
+    ## -*- texinfo -*-
+    ## @deftypefn  {Color} {@var{obj} =} Color (@var{value})
+    ##
+    ## @code{@var{obj} = Color (@var{value})} returns a Color object defined by
+    ## @var{value}, which can either be a character vector, a cellstring array,
+    ## a numeric matrix, or a cell matrix containing the following combinations.
+    ## Each Color object only applies to a given dataset.  If you want to pass
+    ## different color patterns to multiple datasets when constructing a Chart
+    ## object, then you need to pass a Color object array to the Chart's
+    ## constructor.
+    ##
+    ## When @var{value} is character vector, it can define a single color either
+    ## by using one of the acceptable color names given below or by using
+    ## hexadecimal string values in the forms @qcode{#FFFFFF} and
+    ## @qcode{#FFFFFFFF}.  The former defines an @qcode{RGB} color space,
+    ## whereas the later defines an @qcode{RGBA} color space that includes
+    ## transparency.
+    ##
+    ## Valid color names are:
+    ## @itemize
+    ## @item @code{beige}
+    ## @item @code{black}
+    ## @item @code{blue}, @code{lightblue}, @code{darkblue}
+    ## @item @code{brown}
+    ## @item @code{coral}, @code{lightcoral}
+    ## @item @code{cyan}, @code{darkcyan}
+    ## @item @code{green}, @code{lightgreen}, @code{darkgreen}
+    ## @item @code{gray}, @code{grey}, @code{lightgray}, @code{lightgrey},
+    ## @code{darkgray}, @code{darkgrey}
+    ## @item @code{magenta}, @code{darkmagenta}
+    ## @item @code{pink}
+    ## @item @code{red}, @code{darkred}
+    ## @item @code{white}
+    ## @item @code{yellow}, @code{lightyellow}
+    ## @end itemize
+    ##
+    ## If you want to apply multiple colors to a given dataset, then you can use
+    ## a cellstring array whose elements follow the requirements for character
+    ## vector values described above.  The cellstring array must be a vector and
+    ## its elements can interchangeably contain known color names or hexadecimal
+    ## color values.
+    ##
+    ## If @var{value} is a numeric, it follows Octave's native @qcode{RGB}
+    ## tripplet syntax.  An @qcode{RGB} triplet is a @math{1x3} vector where
+    ## each value is between 0 and 1 inclusive.  The first value represents the
+    ## percentage of Red, the second value the percentage of Green, and the
+    ## third value the percentage of Blue.  This syntax is also extended to
+    ## support @qcode{RGBA} quadruplets, in which case the fourth value (also
+    ## between 0 and 1 inclusive) of the @math{1x4} vector represents the
+    ## transparency.  If you want to apply multiple colors to a given dataset,
+    ## then you can pass a numeric matrix of @math{Nx3} or @math{Nx4} size with
+    ## each row representing a distinct @qcode{RGB} tripplet or @qcode{RGBA}
+    ## quadruplet, respectively.
+    ##
+    ## Alternatively you can define @var{value} as a cell array with two
+    ## elements or an @math{Nx2} cell matrix in case you need to specify
+    ## multiple colors in the same dataset.  The first element of each row
+    ## represents a color space name, which can be any of the four available
+    ## choices: @code{rgb}, @code{rgba}, @code{hsl}, and @code{hsla}.  The
+    ## second element of each row must be a numeric @math{1x3} vector for
+    ## @code{rgb} and @code{hsl} color spaces, or a numeric @math{1x4} vector
+    ## for @code{rgba} and @code{hsla} color spaces.  When assigning color
+    ## value(s) as a cell array, the @qcode{RGB} values must be between 0 and
+    ## 255 inclusive, the @qcode{hue} value must be between 0 and 360 inclusive,
+    ## the @qcode{saturation} and @qcode{lightness} values must be percentages
+    ## between 0 and 100 inclusive, whereas the @qcode{alpha} value must be
+    ## between 0 and 1 inclusive.  All numeric values except for the
+    ## transparency are expected to be integer values, otherwise they are
+    ## rounded to the nearest integer.
+    ## @end deftypefn
     function this = Color (value)
 
       ## Check value

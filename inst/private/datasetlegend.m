@@ -15,9 +15,21 @@
 ## You should have received a copy of the GNU General Public License along with
 ## this program; if not, see <http://www.gnu.org/licenses/>.
 
+## -*- texinfo -*-
+## @deftypefn {chartjs} {@var{s} =} datasetlegend (@var{s})
+##
+## Settle the legend of a chart structure before it is written as JSON.
+##
 ## Chart.js names each dataset in the legend by its label, and writes
-## "undefined" for a dataset without one.  Hide the legend of a chart structure
-## S when no dataset has a label, and name the rest by position when some do.
+## @qcode{undefined} for a dataset without one.  @var{s} is the structure a
+## chart class builds in its @code{jsonvalue} method.  When no dataset has a
+## label, the legend is hidden; when some do, the rest are named by position,
+## such as @qcode{"Dataset 2"}.
+##
+## This is an internal helper of the chart classes whose legend lists datasets.
+## Do NOT call it directly.
+##
+## @end deftypefn
 
 function s = datasetlegend (s)
 
