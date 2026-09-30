@@ -42,3 +42,8 @@ Install the latest dev version from the Octave command prompt by typing
 
  `pkg install "https://github.com/pr0m1th3as/octave-chartjs/archive/refs/heads/main.zip"`
 
+## 4. Chart.js
+
+The package bundles [Chart.js](https://www.chartjs.org/) v4.5.1 as `inst/js/chart.umd.min.js`, unchanged from its [npm release](https://www.npmjs.com/package/chart.js/v/4.5.1).  Chart.js is released under the MIT License, Copyright (c) 2014-2024 Chart.js Contributors, and the file keeps its own license notice.
+
+By default, `htmlstring`, `htmlsave`, and `webserve` write this copy into the page, so it opens without a network connection.  Pass `"cdn"` to load the same release from jsDelivr instead, checked against its hash, or a URL to load it from a server that hosts the file.
