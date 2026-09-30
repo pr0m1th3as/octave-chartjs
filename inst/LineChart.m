@@ -86,13 +86,13 @@ classdef LineChart < Html
 ##
 ## @end multitable
 ##
-## To directly serve the @qcode{LineChart} object on a local web server
-## instance, you can use the object's @qcode{webserve ()} method.
-## Alternatively, you can generate and/or save to a file the corresponding HTML
-## code with the @qcode{htmlstring ()} and @qcode{htmlsave ()} methods and serve
-## it online through a web server of your choice.
+## To view the @qcode{LineChart} object in your web browser, use its
+## @qcode{webserve ()} method.  Alternatively, you can generate and/or save to a
+## file the corresponding HTML code with the @qcode{htmlstring ()} and
+## @qcode{htmlsave ()} methods and serve it online through a web server of your
+## choice.
 ##
-## @seealso{LineData, Color, Fill, Html, WebServer}
+## @seealso{LineData, Color, Fill, Html}
 ## @end deftypefn
 
   properties (Access = public)

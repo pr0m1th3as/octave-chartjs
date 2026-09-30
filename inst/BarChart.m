@@ -86,13 +86,13 @@ classdef BarChart < Html
 ##
 ## @end multitable
 ##
-## To directly serve the @qcode{BarChart} object on a local web server instance,
-## you can use the object's @qcode{webserve ()} method.  Alternatively, you can
-## generate and/or save to a file the corresponding HTML code with the
-## @qcode{htmlstring ()} and @qcode{htmlsave ()} methods and serve it online
-## through a web server of your choice.
+## To view the @qcode{BarChart} object in your web browser, use its
+## @qcode{webserve ()} method.  Alternatively, you can generate and/or save to a
+## file the corresponding HTML code with the @qcode{htmlstring ()} and
+## @qcode{htmlsave ()} methods and serve it online through a web server of your
+## choice.
 ##
-## @seealso{BarData, Color, Fill, Html, WebServer}
+## @seealso{BarData, Color, Fill, Html}
 ## @end deftypefn
 
   properties (Access = public)
@@ -366,3 +366,7 @@ endclassdef
 %! htmlsave (BarChart (1, "A"), 1)
 %!error <BarChart.htmlsave: FILENAME must be a character vector.> ...
 %! htmlsave (BarChart (1, "A"), {"bar.html"})
+%!error <BarChart.webserve: FILENAME must be a character vector.> ...
+%! webserve (BarChart (1, "A"), 1)
+%!error <BarChart.webserve: FILENAME must be a character vector.> ...
+%! webserve (BarChart (1, "A"), {"bar.html"})

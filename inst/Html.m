@@ -24,13 +24,11 @@ classdef Html
 ## Do NOT use this class directly! This class acts as a parent class for
 ## inheriting methods to the Chart classes for generating HTML code.
 ##
-## If you want to serve your Chart objects online through the Octave
-## environment, use the WebServer class to initialize a web server instance and
-## serve your Chart object directly throught the @qcode{update} method of the
-## @qcode{WebServer} object .
+## To view a Chart object in your web browser, use its @qcode{webserve}
+## method.
 ##
 ## @seealso{BarChart, BubbleChart, DoughnutChart, LineChart, PieChart,
-## PolarAreaChart, RadarChart, ScatterChart, WebServer}
+## PolarAreaChart, RadarChart, ScatterChart}
 ## @end deftypefn
 
   methods (Access = private)
@@ -68,12 +66,11 @@ classdef Html
     ## Generate an HTML string from a Chart object.
     ##
     ## @code{htmlstring (@var{obj})} returns a character vector defining the
-    ## HTML code to display a Chart object on a web browser.  You can use a
-    ## @qcode{WebServer} object and its @qcode{update} method to serve the
-    ## Chart online.
+    ## HTML code to display a Chart object on a web browser.  Use the
+    ## @qcode{webserve} method to view it in your web browser.
     ##
     ## @seealso{BarChart, BubbleChart, DoughnutChart, LineChart, PieChart,
-    ## PolarAreaChart, RadarChart, ScatterChart, WebServer}
+    ## PolarAreaChart, RadarChart, ScatterChart}
     ## @end deftypefn
 
     function html = htmlstring (obj)
@@ -131,23 +128,36 @@ classdef Html
 
     ## -*- texinfo -*-
     ## @deftypefn  {chartjs} {} webserve (@var{obj})
+    ## @deftypefnx {chartjs} {} webserve (@var{obj}, @var{filename})
     ##
-    ## Serve Chart online.
+    ## View a Chart object in your web browser.
     ##
-    ## @code{webserve (@var{obj})} serves the HTML describing the Chart object
-    ## to a local web server instance.  If the web server instance has not
-    ## started yet, it is initialized automatically with the default settings
-    ## listening to @qcode{localhost:8080}.
+    ## @code{webserve (@var{obj})} saves the HTML code describing the Chart
+    ## object to a temporary file and opens it in your system's web browser.
+    ## No web server is involved: the page is opened from the file.
+    ##
+    ## @code{webserve (@var{obj}, @var{filename})} saves the HTML code to
+    ## @var{filename} instead, so that the page can be kept and opened again.
+    ## Calling it again with the same @var{filename} and reloading the page in
+    ## the browser shows the updated chart.
     ##
     ## @seealso{BarChart, BubbleChart, DoughnutChart, LineChart, PieChart,
-    ## PolarAreaChart, RadarChart, ScatterChart, WebServer}
+    ## PolarAreaChart, RadarChart, ScatterChart}
     ## @end deftypefn
 
-    function webserve (this)
+    function webserve (this, filename)
 
-      webserver = WebServer.start ();
+      ## Check filename
+      if (nargin < 2)
+        filename = [tempname(), ".html"];
+      elseif (! (ischar (filename) && isrow (filename)))
+        error ("%s.webserve: FILENAME must be a character vector.", ...
+               class (this));
+      endif
 
-      webserver.serve (this);
+      ## Save the page and open it with the system's web browser
+      htmlsave (this, filename);
+      web (make_absolute_filename (filename));
 
     endfunction
 
