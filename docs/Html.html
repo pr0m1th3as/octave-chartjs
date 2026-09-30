@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
     <script type="text/javascript" async
-      src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+      src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS_CHTML">
     </script>
     <script type="text/javascript">
       window.addEventListener("load", () => {
@@ -21,14 +21,112 @@
           i.parentElement.insertBefore(tog, i);
         }
       });
+      // Open the collapsible demo an "#example" link points to, then scroll to
+      // it.  getElementById (not querySelector) matches ids that contain a dot,
+      // e.g. "Class.method-example1".
+      function openHashTarget () {
+        if (! window.location.hash) { return; }
+        let el = document.getElementById (
+          decodeURIComponent (window.location.hash.slice (1)));
+        if (! el) { return; }
+        if (el.classList.contains ("collapse") &&
+            ! el.classList.contains ("show")) {
+          bootstrap.Collapse.getOrCreateInstance (el).show ();
+        }
+        el.scrollIntoView ();
+      }
+      window.addEventListener ("DOMContentLoaded", openHashTarget);
+      window.addEventListener ("hashchange", openHashTarget);
+      // When the collapsible named by the current URL fragment is collapsed,
+      // drop the fragment (replaceState: no scroll, no history entry).  Otherwise
+      // the fragment would still equal this id, so clicking the same #example
+      // link again fires no "hashchange" and the example would not re-expand.
+      document.addEventListener ("hide.bs.collapse", (e) => {
+        if (e.target.id && window.location.hash === "#" + e.target.id) {
+          history.replaceState (null, "",
+            window.location.pathname + window.location.search);
+        }
+      });
+      // Let the browser's find-in-page reach the text inside a collapsed
+      // panel.  The attribute "hidden=until-found" is what makes content
+      // searchable and revealable; the style block below clears the
+      // "display: none" that would otherwise stop the attribute meaning
+      // anything, a box that is not generated having nothing to reveal.  Set
+      // it only where it is understood, which "content-visibility" is no test
+      // for, Firefox having shipped the two apart.  Where it is not, the panel
+      // keeps the user agent's plain [hidden] and the page behaves as before.
+      window.addEventListener ("DOMContentLoaded", () => {
+        if (! ("onbeforematch" in document.body)) { return; }
+        document.documentElement.classList.add ("until-found");
+        let panels = document.querySelectorAll (
+          ".collapse:not(.show):not(.navbar-collapse)");
+        for (let el of panels) {
+          el.setAttribute ("hidden", "until-found");
+          // Fired on a find-in-page hit, before the browser drops the
+          // attribute and scrolls to it.  Bootstrap keeps a panel's state in
+          // its class list, so adding the class here opens the panel in the
+          // same frame and leaves the button shutting it correctly afterwards.
+          // Bootstrap's own show () would animate against that scroll, and the
+          // attribute once dropped, "display: none" would take the panel back
+          // part way through.
+          el.addEventListener ("beforematch", () => {
+            el.classList.add ("show");
+            for (let b of document.querySelectorAll ("[data-bs-target]")) {
+              if (b.getAttribute ("data-bs-target") === "#" + el.id) {
+                b.setAttribute ("aria-expanded", "true");
+              }
+            }
+          });
+        }
+        // Drop the attribute before Bootstrap measures the panel it is opening,
+        // which it does after firing this; a revealable one measures nothing.
+        document.addEventListener ("show.bs.collapse", (e) => {
+          e.target.removeAttribute ("hidden");
+        });
+        // Restore it once the panel is shut, rather than while it is shutting.
+        document.addEventListener ("hidden.bs.collapse", (e) => {
+          if (! e.target.classList.contains ("navbar-collapse")) {
+            e.target.setAttribute ("hidden", "until-found");
+          }
+        });
+      });
     </script>
     <style>
+    .fs {
+    margin-top: -0.15em;
+    margin-bottom: -0.15em;
+    }
+    .fs-last {
+    margin-bottom: calc(1rem - 0.15em);
+    }
+    p.description {
+    font-family: Consolas, "Courier New", monospace;
+    }
+    p.description code {
+    font-size: inherit;
+    }
     h6:hover {
       color: gray;
     }
+    code {
+    font-family: Consolas, "Courier New", monospace;
+    border-radius: 0.3em;
+    white-space: nowrap;
+    color: gray;
+    }
+    code.description {
+    font-family: Consolas, "Courier New", monospace;
+    border-radius: 0.3em;
+    white-space: normal;
+    font-size:1.2em;
+    color: gray;
+    }
     var {
-      font-style: italics;
-      font-weight: bold;
+    font-family: Consolas, "Courier New", monospace;
+    border-radius: 0.3em;
+    font-style: normal;
+    font-weight: bold;
+    color: gray;
     }
     td {
       vertical-align: top;
@@ -45,6 +143,19 @@
     [id^="togList"]:checked ~ .list{
       display:block;                        /* SHOW LIST (IF CHECKED) */
     }
+    /* Bootstrap hides a collapsed panel with "display: none", which generates
+       no box, so the "content-visibility: hidden" the user agent gives
+       "hidden=until-found" could never apply and the text would stay beyond
+       find-in-page.  Clear that one declaration, and only where the script
+       above has found the attribute to be understood: an attribute selector
+       matches a value the browser does not understand, so an ungated rule
+       would leave every panel of an older browser standing open.  The
+       "!important" is required rather than decoration: the reboot carries
+       "[hidden] {display: none !important}", which the attribute itself brings
+       into play, and only another "!important" can outrank it. */
+    html.until-found .collapse[hidden="until-found"]:not(.show) {
+      display: block !important;
+    }
     </style>
   </head>
   <body>
@@ -53,7 +164,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
           <div class="container-fluid">
             <a class="navbar-brand" href=index.html>
-              <img src="assets/chartjs.png" alt="chartjs" class="d-inline-block align-top" width="25" height="25">
+              <img src="assets/octave-chartjs.svg" alt="chartjs" class="d-inline-block align-top" width="25" height="25">
               ChartJS interface for GNU Octave
             </a>
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -95,25 +206,6 @@
 			<div class="row">
 				<input id="togList1" type="checkbox">
 				<label for="togList1">
-					<span><h6>Chart Classes</h6></span>
-					<span><h6>Chart Classes</h6></span>
-				</label>
-				<div class="list">
-				<ul style="list-style-type: none; padding-left: 20px;">
-					<li><a href="BarChart.html" class="text-decoration-none font-monospace"><small>BarChart</small></a></li>
-					<li><a href="BubbleChart.html" class="text-decoration-none font-monospace"><small>BubbleChart</small></a></li>
-					<li><a href="DoughnutChart.html" class="text-decoration-none font-monospace"><small>DoughnutChart</small></a></li>
-					<li><a href="LineChart.html" class="text-decoration-none font-monospace"><small>LineChart</small></a></li>
-					<li><a href="PieChart.html" class="text-decoration-none font-monospace"><small>PieChart</small></a></li>
-					<li><a href="PolarAreaChart.html" class="text-decoration-none font-monospace"><small>PolarAreaChart</small></a></li>
-					<li><a href="RadarChart.html" class="text-decoration-none font-monospace"><small>RadarChart</small></a></li>
-					<li><a href="ScatterChart.html" class="text-decoration-none font-monospace"><small>ScatterChart</small></a></li>
-				</ul>
-				</div>
-			</div>
-			<div class="row">
-				<input id="togList2" type="checkbox">
-				<label for="togList2">
 					<span><h6>Data Classes</h6></span>
 					<span><h6>Data Classes</h6></span>
 				</label>
@@ -127,6 +219,25 @@
 					<li><a href="PolarAreaData.html" class="text-decoration-none font-monospace"><small>PolarAreaData</small></a></li>
 					<li><a href="RadarData.html" class="text-decoration-none font-monospace"><small>RadarData</small></a></li>
 					<li><a href="ScatterData.html" class="text-decoration-none font-monospace"><small>ScatterData</small></a></li>
+				</ul>
+				</div>
+			</div>
+			<div class="row">
+				<input id="togList2" type="checkbox">
+				<label for="togList2">
+					<span><h6>Chart Classes</h6></span>
+					<span><h6>Chart Classes</h6></span>
+				</label>
+				<div class="list">
+				<ul style="list-style-type: none; padding-left: 20px;">
+					<li><a href="BarChart.html" class="text-decoration-none font-monospace"><small>BarChart</small></a></li>
+					<li><a href="BubbleChart.html" class="text-decoration-none font-monospace"><small>BubbleChart</small></a></li>
+					<li><a href="DoughnutChart.html" class="text-decoration-none font-monospace"><small>DoughnutChart</small></a></li>
+					<li><a href="LineChart.html" class="text-decoration-none font-monospace"><small>LineChart</small></a></li>
+					<li><a href="PieChart.html" class="text-decoration-none font-monospace"><small>PieChart</small></a></li>
+					<li><a href="PolarAreaChart.html" class="text-decoration-none font-monospace"><small>PolarAreaChart</small></a></li>
+					<li><a href="RadarChart.html" class="text-decoration-none font-monospace"><small>RadarChart</small></a></li>
+					<li><a href="ScatterChart.html" class="text-decoration-none font-monospace"><small>ScatterChart</small></a></li>
 				</ul>
 				</div>
 			</div>
@@ -152,7 +263,6 @@
 				<div class="list">
 				<ul style="list-style-type: none; padding-left: 20px;">
 					<li><a href="Html.html" class="text-decoration-none font-monospace fw-bolder"><small>Html</small></a></li>
-					<li><a href="WebServer.html" class="text-decoration-none font-monospace"><small>WebServer</small></a></li>
 				</ul>
 				</div>
 			</div>
@@ -168,57 +278,15 @@
               </div>
             </div>
             <div class="card-body">
-<dl>
-<dt><u>chartjs:</u> <var>obj</var> = <b>html</b><i> ()</i></dt>
-</dl>
-
+<p class="h5 description mb-3"><code>chartjs: Html</code></p>
 <p> A parent class for generating HMTL code.
 </p>
 <div class="ms-5">
 <p> Do NOT use this class directly! This class acts as a parent class for
  inheriting methods to the Chart classes for generating HTML code.
 </p>
-<p> If you want to serve your Chart objects online through the Octave
- environment, use the WebServer class to initialize a web server instance and
- serve your Chart object directly throught the <code>update</code> method of the
- <code>WebServer</code> object .
-</p>
-<p> <strong>See also: </strong>
-  <a href="BarChart.html">BarChart</a>, 
-  <a href="BubbleChart.html">BubbleChart</a>, 
-  <a href="DoughnutChart.html">DoughnutChart</a>, 
-  <a href="LineChart.html">LineChart</a>, 
-  <a href="PieChart.html">PieChart</a>, 
-  <a href="PolarAreaChart.html">PolarAreaChart</a>, 
-  <a href="RadarChart.html">RadarChart</a>, 
-  <a href="ScatterChart.html">ScatterChart</a>, 
-  <a href="WebServer.html">WebServer</a>
-</p>
-<p><strong>Source Code: </strong>
-  <a href="https://github.com/pr0m1th3as/octave-chartjs/tree/main/inst/Html.m">Html</a>
-</div>
-        <div class="container-xl my-4">
-          <div class="card rounded">
-            <div class="card-header card-header-mod">
-              <div class="row d-flex flex-wrap align-items-center">
-                <div class="col-sm-3 col-md-5 mb-2 mb-sm-0">
-                  <h3 class="d-inline-block mr-2">
-                  Method: <b><code>htmlsave</code></b>
-                  </h3>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-<dl>
-<dt><u>chartjs:</u> <b>htmlsave</b><i> (<var>obj</var>, <var>filename</var>)</i></dt>
-</dl>
-
-<p> Save a Chart object&rsquo;s HTML code to a file.
-</p>
-<div class="ms-5">
-<p> <code>htmlsave (<var>obj</var>)</code> saves the HTML code describing a Chart object
- to a file.  The HTML code is identical to that generated by the
- <code>htmlstring</code> method.
+<p> To view a Chart object in your web browser, use its <code>webserve</code>
+ method.
 </p>
 <p> <strong>See also: </strong>
   <a href="BarChart.html">BarChart</a>, 
@@ -230,35 +298,93 @@
   <a href="RadarChart.html">RadarChart</a>, 
   <a href="ScatterChart.html">ScatterChart</a>
 </p>
+<p><strong>Source Code: </strong>
+  <a href="https://github.com/pr0m1th3as/octave-chartjs/blob/b938f82/inst/Html.m">Html</a>
+</p>
 </div>
+        <p class="lead my-3">The <code>Html</code> class offers the following public methods:</p>
+
+        <div class="container-xl my-1">
+          <div class="row">
+            <button class="btn btn-light btn-sm w-100 text-start" type="button"
+              data-bs-toggle="collapse" data-bs-target="#Html_jsonstring"
+              aria-expanded="false" aria-controls="Html_jsonstring">
+              <div class="row align-items-center">
+                <div class="col-4">
+                  <h4 class="d-inline-block mr-4">
+                    <b><code>jsonstring</code></b>
+                  </h4>
+                </div>
+                <div class="col-8">
+Generate the JSON string of a Chart object.
+                </div>
+              </div>
+          </div>
+          <div class="collapse multi-collapse" id="Html_jsonstring">
+            <div class="border-bottom py-2">
+<p class="h5 fs fs-last"><code>chartjs: <var>json</var> = <b>jsonstring</b> (<var>obj</var>)</code></p>
+<p> </p>
+<p> <code>jsonstring (<var>obj</var>)</code> returns a character vector, <var>json</var>,
+ holding the Chart.js configuration of a Chart object in JSON.
+</p>
+<p> <strong>See also: </strong>
+  <a href="BarChart.html">BarChart</a>, 
+  <a href="BubbleChart.html">BubbleChart</a>, 
+  <a href="DoughnutChart.html">DoughnutChart</a>, 
+  <a href="LineChart.html">LineChart</a>, 
+  <a href="PieChart.html">PieChart</a>, 
+  <a href="PolarAreaChart.html">PolarAreaChart</a>, 
+  <a href="RadarChart.html">RadarChart</a>, 
+  <a href="ScatterChart.html">ScatterChart</a>
+</p>
+
+
             </div>
           </div>
         </div>
 
-        <div class="container-xl my-4">
-          <div class="card rounded">
-            <div class="card-header card-header-mod">
-              <div class="row d-flex flex-wrap align-items-center">
-                <div class="col-sm-3 col-md-5 mb-2 mb-sm-0">
-                  <h3 class="d-inline-block mr-2">
-                  Method: <b><code>htmlstring</code></b>
-                  </h3>
+        <div class="container-xl my-1">
+          <div class="row">
+            <button class="btn btn-light btn-sm w-100 text-start" type="button"
+              data-bs-toggle="collapse" data-bs-target="#Html_htmlstring"
+              aria-expanded="false" aria-controls="Html_htmlstring">
+              <div class="row align-items-center">
+                <div class="col-4">
+                  <h4 class="d-inline-block mr-4">
+                    <b><code>htmlstring</code></b>
+                  </h4>
+                </div>
+                <div class="col-8">
+Generate an HTML string from a Chart object.
                 </div>
               </div>
-            </div>
-            <div class="card-body">
-<dl>
-<dt><u>chartjs:</u> <var>html</var> = <b>htmlstring</b><i> (<var>obj</var>)</i></dt>
-</dl>
-
-<p> Generate an HTML string from a Chart object.
-</p>
-<div class="ms-5">
+          </div>
+          <div class="collapse multi-collapse" id="Html_htmlstring">
+            <div class="border-bottom py-2">
+<p class="h5 fs"><code>chartjs: <var>html</var> = <b>htmlstring</b> (<var>obj</var>)</code></p>
+<p class="h5 fs fs-last"><code>chartjs: <var>html</var> = <b>htmlstring</b> (<var>obj</var>, <var>source</var>)</code></p>
+<p> </p>
 <p> <code>htmlstring (<var>obj</var>)</code> returns a character vector defining the
- HTML code to display a Chart object on a web browser.  You can use a
- <code>WebServer</code> object and its <code>update</code> method to serve the
- Chart online.
+ HTML code to display a Chart object on a web browser.  Use the
+ <code>webserve</code> method to view it in your web browser.
 </p>
+<p> <code>htmlstring (<var>obj</var>, <var>source</var>)</code> also sets where the page
+ loads the Chart.js library from, as one of the following.
+</p>
+<div class="table-responsive">
+<table class="table table-striped table-bordered table-sm">
+<thead class="table-primary"><tr><th width="15%"><var>source</var></th><th width="2%"></th><th width="83%">Chart.js is loaded</th></tr></thead>
+<tr><td width="15%"><code>&quot;inline&quot;</code></td><td width="2%"></td><td width="83%">from a copy written into the page, the
+ default.  The page opens without a network connection and never changes.</td></tr>
+<tr><td width="15%"><code>&quot;cdn&quot;</code></td><td width="2%"></td><td width="83%">from the jsDelivr CDN, pinned to the
+ release bundled with the package and checked against its hash, so that
+ the browser runs nothing else.</td></tr>
+<tr><td width="15%">a URL</td><td width="2%"></td><td width="83%">from <var>source</var>, such as
+ <code>&quot;/static/chart.umd.min.js&quot;</code> on a server that hosts the file.  A
+ URL holds a <code>/</code> or ends in <code>.js</code>.</td></tr>
+</table>
+</div>
+
 <p> <strong>See also: </strong>
   <a href="BarChart.html">BarChart</a>, 
   <a href="BubbleChart.html">BubbleChart</a>, 
@@ -267,37 +393,39 @@
   <a href="PieChart.html">PieChart</a>, 
   <a href="PolarAreaChart.html">PolarAreaChart</a>, 
   <a href="RadarChart.html">RadarChart</a>, 
-  <a href="ScatterChart.html">ScatterChart</a>, 
-  <a href="WebServer.html">WebServer</a>
+  <a href="ScatterChart.html">ScatterChart</a>
 </p>
-</div>
+
+
             </div>
           </div>
         </div>
 
-        <div class="container-xl my-4">
-          <div class="card rounded">
-            <div class="card-header card-header-mod">
-              <div class="row d-flex flex-wrap align-items-center">
-                <div class="col-sm-3 col-md-5 mb-2 mb-sm-0">
-                  <h3 class="d-inline-block mr-2">
-                  Method: <b><code>webserve</code></b>
-                  </h3>
+        <div class="container-xl my-1">
+          <div class="row">
+            <button class="btn btn-light btn-sm w-100 text-start" type="button"
+              data-bs-toggle="collapse" data-bs-target="#Html_htmlsave"
+              aria-expanded="false" aria-controls="Html_htmlsave">
+              <div class="row align-items-center">
+                <div class="col-4">
+                  <h4 class="d-inline-block mr-4">
+                    <b><code>htmlsave</code></b>
+                  </h4>
+                </div>
+                <div class="col-8">
+Save a Chart object&rsquo;s HTML code to a file.
                 </div>
               </div>
-            </div>
-            <div class="card-body">
-<dl>
-<dt><u>chartjs:</u> <b>webserve</b><i> (<var>obj</var>)</i></dt>
-</dl>
-
-<p> Serve Chart online.
-</p>
-<div class="ms-5">
-<p> <code>webserve (<var>obj</var>)</code> serves the HTML describing the Chart object
- to a local web server instance.  If the web server instance has not
- started yet, it is initialized automatically with the default settings
- listening to <code>localhost:8080</code>.
+          </div>
+          <div class="collapse multi-collapse" id="Html_htmlsave">
+            <div class="border-bottom py-2">
+<p class="h5 fs"><code>chartjs: <b>htmlsave</b> (<var>obj</var>, <var>filename</var>)</code></p>
+<p class="h5 fs fs-last"><code>chartjs: <b>htmlsave</b> (<var>obj</var>, <var>filename</var>, <var>source</var>)</code></p>
+<p> </p>
+<p> <code>htmlsave (<var>obj</var>, <var>filename</var>)</code> saves the HTML code
+ describing a Chart object to a file.  The HTML code is identical to that
+ generated by the <code>htmlstring</code> method, and <var>source</var> sets where
+ it loads Chart.js from in the same way.
 </p>
 <p> <strong>See also: </strong>
   <a href="BarChart.html">BarChart</a>, 
@@ -307,14 +435,64 @@
   <a href="PieChart.html">PieChart</a>, 
   <a href="PolarAreaChart.html">PolarAreaChart</a>, 
   <a href="RadarChart.html">RadarChart</a>, 
-  <a href="ScatterChart.html">ScatterChart</a>, 
-  <a href="WebServer.html">WebServer</a>
+  <a href="ScatterChart.html">ScatterChart</a>
 </p>
-</div>
+
+
             </div>
           </div>
         </div>
 
+        <div class="container-xl my-1">
+          <div class="row">
+            <button class="btn btn-light btn-sm w-100 text-start" type="button"
+              data-bs-toggle="collapse" data-bs-target="#Html_webserve"
+              aria-expanded="false" aria-controls="Html_webserve">
+              <div class="row align-items-center">
+                <div class="col-4">
+                  <h4 class="d-inline-block mr-4">
+                    <b><code>webserve</code></b>
+                  </h4>
+                </div>
+                <div class="col-8">
+View a Chart object in your web browser.
+                </div>
+              </div>
+          </div>
+          <div class="collapse multi-collapse" id="Html_webserve">
+            <div class="border-bottom py-2">
+<p class="h5 fs"><code>chartjs: <b>webserve</b> (<var>obj</var>)</code></p>
+<p class="h5 fs"><code>chartjs: <b>webserve</b> (<var>obj</var>, <var>filename</var>)</code></p>
+<p class="h5 fs fs-last"><code>chartjs: <b>webserve</b> (<var>obj</var>, <var>filename</var>, <var>source</var>)</code></p>
+<p> </p>
+<p> <code>webserve (<var>obj</var>)</code> saves the HTML code describing the Chart
+ object to a temporary file and opens it in your system&rsquo;s web browser.
+ No web server is involved: the page is opened from the file.
+</p>
+<p> <code>webserve (<var>obj</var>, <var>filename</var>)</code> saves the HTML code to
+ <var>filename</var> instead, so that the page can be kept and opened again.
+ Calling it again with the same <var>filename</var> and reloading the page in
+ the browser shows the updated chart.  An empty <var>filename</var> uses a
+ temporary file.
+</p>
+<p> <code>webserve (<var>obj</var>, <var>filename</var>, <var>source</var>)</code> sets where the
+ page loads Chart.js from, as in <code>htmlstring</code>.
+</p>
+<p> <strong>See also: </strong>
+  <a href="BarChart.html">BarChart</a>, 
+  <a href="BubbleChart.html">BubbleChart</a>, 
+  <a href="DoughnutChart.html">DoughnutChart</a>, 
+  <a href="LineChart.html">LineChart</a>, 
+  <a href="PieChart.html">PieChart</a>, 
+  <a href="PolarAreaChart.html">PolarAreaChart</a>, 
+  <a href="RadarChart.html">RadarChart</a>, 
+  <a href="ScatterChart.html">ScatterChart</a>
+</p>
+
+
+            </div>
+          </div>
+        </div>
 
             </div>
           </div>

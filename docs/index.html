@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
     <script type="text/javascript" async
-      src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+      src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS_CHTML">
     </script>
     <script type="text/javascript">
       window.addEventListener("load", () => {
@@ -21,14 +21,112 @@
           i.parentElement.insertBefore(tog, i);
         }
       });
+      // Open the collapsible demo an "#example" link points to, then scroll to
+      // it.  getElementById (not querySelector) matches ids that contain a dot,
+      // e.g. "Class.method-example1".
+      function openHashTarget () {
+        if (! window.location.hash) { return; }
+        let el = document.getElementById (
+          decodeURIComponent (window.location.hash.slice (1)));
+        if (! el) { return; }
+        if (el.classList.contains ("collapse") &&
+            ! el.classList.contains ("show")) {
+          bootstrap.Collapse.getOrCreateInstance (el).show ();
+        }
+        el.scrollIntoView ();
+      }
+      window.addEventListener ("DOMContentLoaded", openHashTarget);
+      window.addEventListener ("hashchange", openHashTarget);
+      // When the collapsible named by the current URL fragment is collapsed,
+      // drop the fragment (replaceState: no scroll, no history entry).  Otherwise
+      // the fragment would still equal this id, so clicking the same #example
+      // link again fires no "hashchange" and the example would not re-expand.
+      document.addEventListener ("hide.bs.collapse", (e) => {
+        if (e.target.id && window.location.hash === "#" + e.target.id) {
+          history.replaceState (null, "",
+            window.location.pathname + window.location.search);
+        }
+      });
+      // Let the browser's find-in-page reach the text inside a collapsed
+      // panel.  The attribute "hidden=until-found" is what makes content
+      // searchable and revealable; the style block below clears the
+      // "display: none" that would otherwise stop the attribute meaning
+      // anything, a box that is not generated having nothing to reveal.  Set
+      // it only where it is understood, which "content-visibility" is no test
+      // for, Firefox having shipped the two apart.  Where it is not, the panel
+      // keeps the user agent's plain [hidden] and the page behaves as before.
+      window.addEventListener ("DOMContentLoaded", () => {
+        if (! ("onbeforematch" in document.body)) { return; }
+        document.documentElement.classList.add ("until-found");
+        let panels = document.querySelectorAll (
+          ".collapse:not(.show):not(.navbar-collapse)");
+        for (let el of panels) {
+          el.setAttribute ("hidden", "until-found");
+          // Fired on a find-in-page hit, before the browser drops the
+          // attribute and scrolls to it.  Bootstrap keeps a panel's state in
+          // its class list, so adding the class here opens the panel in the
+          // same frame and leaves the button shutting it correctly afterwards.
+          // Bootstrap's own show () would animate against that scroll, and the
+          // attribute once dropped, "display: none" would take the panel back
+          // part way through.
+          el.addEventListener ("beforematch", () => {
+            el.classList.add ("show");
+            for (let b of document.querySelectorAll ("[data-bs-target]")) {
+              if (b.getAttribute ("data-bs-target") === "#" + el.id) {
+                b.setAttribute ("aria-expanded", "true");
+              }
+            }
+          });
+        }
+        // Drop the attribute before Bootstrap measures the panel it is opening,
+        // which it does after firing this; a revealable one measures nothing.
+        document.addEventListener ("show.bs.collapse", (e) => {
+          e.target.removeAttribute ("hidden");
+        });
+        // Restore it once the panel is shut, rather than while it is shutting.
+        document.addEventListener ("hidden.bs.collapse", (e) => {
+          if (! e.target.classList.contains ("navbar-collapse")) {
+            e.target.setAttribute ("hidden", "until-found");
+          }
+        });
+      });
     </script>
     <style>
+    .fs {
+    margin-top: -0.15em;
+    margin-bottom: -0.15em;
+    }
+    .fs-last {
+    margin-bottom: calc(1rem - 0.15em);
+    }
+    p.description {
+    font-family: Consolas, "Courier New", monospace;
+    }
+    p.description code {
+    font-size: inherit;
+    }
     h6:hover {
       color: gray;
     }
+    code {
+    font-family: Consolas, "Courier New", monospace;
+    border-radius: 0.3em;
+    white-space: nowrap;
+    color: gray;
+    }
+    code.description {
+    font-family: Consolas, "Courier New", monospace;
+    border-radius: 0.3em;
+    white-space: normal;
+    font-size:1.2em;
+    color: gray;
+    }
     var {
-      font-style: italics;
-      font-weight: bold;
+    font-family: Consolas, "Courier New", monospace;
+    border-radius: 0.3em;
+    font-style: normal;
+    font-weight: bold;
+    color: gray;
     }
     td {
       vertical-align: top;
@@ -45,6 +143,19 @@
     [id^="togList"]:checked ~ .list{
       display:block;                        /* SHOW LIST (IF CHECKED) */
     }
+    /* Bootstrap hides a collapsed panel with "display: none", which generates
+       no box, so the "content-visibility: hidden" the user agent gives
+       "hidden=until-found" could never apply and the text would stay beyond
+       find-in-page.  Clear that one declaration, and only where the script
+       above has found the attribute to be understood: an attribute selector
+       matches a value the browser does not understand, so an ungated rule
+       would leave every panel of an older browser standing open.  The
+       "!important" is required rather than decoration: the reboot carries
+       "[hidden] {display: none !important}", which the attribute itself brings
+       into play, and only another "!important" can outrank it. */
+    html.until-found .collapse[hidden="until-found"]:not(.show) {
+      display: block !important;
+    }
     </style>
   </head>
   <body>
@@ -53,7 +164,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
           <div class="container-fluid">
             <a class="navbar-brand" href=https://gnu-octave.github.io/packages/chartjs>
-              <img src="assets/chartjs.png" alt="chartjs" class="d-inline-block align-top" width="25" height="25">
+              <img src="assets/octave-chartjs.svg" alt="chartjs" class="d-inline-block align-top" width="25" height="25">
               ChartJS interface for GNU Octave
             </a>
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -84,11 +195,11 @@
         <div class="card-header card-header-mod">
           <div class="row d-flex flex-wrap align-items-center">
             <div class="col-sm-3 col-md-2 mb-2 mb-sm-0">
-              <img src="assets/chartjs.png" class="d-block m-auto" alt="chartjs">
+              <img src="assets/octave-chartjs.svg" class="img-fluid" alt="chartjs" style="max-height: 180px;">
             </div>
             <div class="col-sm-9 col-md-10">
               <h3 class="d-inline-block mr-2">chartjs</h3>
-              <b>0.1.0&nbsp;2025-02-17</b>
+              <b>0.2.0&nbsp;2026-09-30</b>
               <p class="indent">
                 ChartJS interface for GNU Octave.
               </p>
@@ -116,7 +227,7 @@
                    <a href="BarData.html">BarData</a>
                    </code></b>
                  </td>
-                 <td>Create a BarData object.</td>
+                 <td>One dataset of a bar chart.</td>
                </tr>
                <tr>
                  <td>
@@ -124,7 +235,7 @@
                    <a href="BubbleData.html">BubbleData</a>
                    </code></b>
                  </td>
-                 <td>Create a BubbleData object.</td>
+                 <td>One dataset of a bubble chart.</td>
                </tr>
                <tr>
                  <td>
@@ -132,7 +243,7 @@
                    <a href="DoughnutData.html">DoughnutData</a>
                    </code></b>
                  </td>
-                 <td>Create a DoughnutData object.</td>
+                 <td>One dataset of a doughnut chart.</td>
                </tr>
                <tr>
                  <td>
@@ -140,7 +251,7 @@
                    <a href="LineData.html">LineData</a>
                    </code></b>
                  </td>
-                 <td>Create a LineData object.</td>
+                 <td>One dataset of a line chart.</td>
                </tr>
                <tr>
                  <td>
@@ -148,7 +259,7 @@
                    <a href="PieData.html">PieData</a>
                    </code></b>
                  </td>
-                 <td>Create a PieData object.</td>
+                 <td>One dataset of a pie chart.</td>
                </tr>
                <tr>
                  <td>
@@ -156,7 +267,7 @@
                    <a href="PolarAreaData.html">PolarAreaData</a>
                    </code></b>
                  </td>
-                 <td>Create a PolarAreaData object.</td>
+                 <td>One dataset of a polar area chart.</td>
                </tr>
                <tr>
                  <td>
@@ -164,7 +275,7 @@
                    <a href="RadarData.html">RadarData</a>
                    </code></b>
                  </td>
-                 <td>Create a RadarData object.</td>
+                 <td>One dataset of a radar chart.</td>
                </tr>
                <tr>
                  <td>
@@ -172,7 +283,7 @@
                    <a href="ScatterData.html">ScatterData</a>
                    </code></b>
                  </td>
-                 <td>Create a ScatterData object.</td>
+                 <td>One dataset of a scatter chart.</td>
                </tr>
              </tbody>
            </table>
@@ -187,7 +298,7 @@
                    <a href="BarChart.html">BarChart</a>
                    </code></b>
                  </td>
-                 <td>Create a BarChart object.</td>
+                 <td>Bar chart drawn by the Chart.js library.</td>
                </tr>
                <tr>
                  <td>
@@ -195,7 +306,7 @@
                    <a href="BubbleChart.html">BubbleChart</a>
                    </code></b>
                  </td>
-                 <td>Create a BubbleChart object.</td>
+                 <td>Bubble chart drawn by the Chart.js library.</td>
                </tr>
                <tr>
                  <td>
@@ -203,7 +314,7 @@
                    <a href="DoughnutChart.html">DoughnutChart</a>
                    </code></b>
                  </td>
-                 <td>Create a DoughnutChart object.</td>
+                 <td>Doughnut chart drawn by the Chart.js library.</td>
                </tr>
                <tr>
                  <td>
@@ -211,7 +322,7 @@
                    <a href="LineChart.html">LineChart</a>
                    </code></b>
                  </td>
-                 <td>Create a LineChart object.</td>
+                 <td>Line chart drawn by the Chart.js library.</td>
                </tr>
                <tr>
                  <td>
@@ -219,7 +330,7 @@
                    <a href="PieChart.html">PieChart</a>
                    </code></b>
                  </td>
-                 <td>Create a PieChart object.</td>
+                 <td>Pie chart drawn by the Chart.js library.</td>
                </tr>
                <tr>
                  <td>
@@ -227,7 +338,7 @@
                    <a href="PolarAreaChart.html">PolarAreaChart</a>
                    </code></b>
                  </td>
-                 <td>Create a PolarAreaChart object.</td>
+                 <td>Polar area chart drawn by the Chart.js library.</td>
                </tr>
                <tr>
                  <td>
@@ -235,7 +346,7 @@
                    <a href="RadarChart.html">RadarChart</a>
                    </code></b>
                  </td>
-                 <td>Create a RadarChart object.</td>
+                 <td>Radar chart drawn by the Chart.js library.</td>
                </tr>
                <tr>
                  <td>
@@ -243,7 +354,7 @@
                    <a href="ScatterChart.html">ScatterChart</a>
                    </code></b>
                  </td>
-                 <td>Create a ScatterChart object.</td>
+                 <td>Scatter chart drawn by the Chart.js library.</td>
                </tr>
              </tbody>
            </table>
@@ -258,7 +369,7 @@
                    <a href="Color.html">Color</a>
                    </code></b>
                  </td>
-                 <td>A class for creating Chart.js compatible Color objects.</td>
+                 <td>A color or a list of colors for a Chart.js chart.</td>
                </tr>
                <tr>
                  <td>
@@ -266,7 +377,7 @@
                    <a href="Fill.html">Fill</a>
                    </code></b>
                  </td>
-                 <td>A class for creating Chart.js compatible Fill objects.</td>
+                 <td>The filled area of a line or radar dataset.</td>
                </tr>
              </tbody>
            </table>
@@ -282,14 +393,6 @@
                    </code></b>
                  </td>
                  <td>A parent class for generating HMTL code.</td>
-               </tr>
-               <tr>
-                 <td>
-                   <b><code>
-                   <a href="WebServer.html">WebServer</a>
-                   </code></b>
-                 </td>
-                 <td>Interface to a web server instance.</td>
                </tr>
              </tbody>
            </table>
